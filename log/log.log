@@ -1,0 +1,269 @@
+[2021-10-01T23:57:43.433] [ERROR] log - Error: ER_NO_SUCH_TABLE: Table 'amazsync.supplier' doesn't exist
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sqlMessage: "Table 'amazsync.supplier' doesn't exist",
+  sqlState: '42S02',
+  index: 0,
+  sql: "select * from supplier where user='gurumohansingh@gmail.com' and \tproductSKU =NULL"
+}
+[2021-10-01T23:57:43.434] [ERROR] log - suppliersRouter ER_NO_SUCH_TABLE: Table 'amazsync.supplier' doesn't exist
+[2021-10-01T23:58:54.980] [INFO] log - Application started
+[2021-10-02T00:00:22.589] [INFO] log - /users/validateToken?_dc=1633113022584 {}
+[2021-10-02T00:01:54.208] [INFO] log - /users/validateToken?_dc=1633113114202 {}
+[2021-10-02T00:06:04.931] [INFO] log - /users/validateToken?_dc=1633113364927 {}
+[2021-10-02T00:06:59.349] [INFO] log - /users/validateToken?_dc=1633113419344 {}
+[2021-10-02T00:09:12.066] [INFO] log - /users/validateToken?_dc=1633113552062 {}
+[2021-10-02T00:10:05.550] [INFO] log - /users/validateToken?_dc=1633113605545 {}
+[2021-10-02T00:10:50.170] [INFO] log - /users/validateToken?_dc=1633113650166 {}
+[2021-10-02T00:11:20.151] [INFO] log - /users/validateToken?_dc=1633113680147 {}
+[2021-10-02T00:12:04.547] [INFO] log - /users/validateToken?_dc=1633113724541 {}
+[2021-10-02T00:12:19.052] [INFO] log - /users/validateToken?_dc=1633113739048 {}
+[2021-10-02T00:13:45.826] [INFO] log - /users/validateToken?_dc=1633113825822 {}
+[2021-10-02T00:14:10.305] [INFO] log - /users/validateToken?_dc=1633113850302 {}
+[2021-10-02T00:14:24.826] [INFO] log - /users/validateToken?_dc=1633113864821 {}
+[2021-10-02T00:17:59.533] [INFO] log - /users/validateToken?_dc=1633114079529 {}
+[2021-10-02T00:21:37.936] [INFO] log - /users/validateToken?_dc=1633114297931 {}
+[2021-10-02T00:25:41.002] [INFO] log - /users/validateToken?_dc=1633114540996 {}
+[2021-10-02T00:27:53.839] [INFO] log - /users/validateToken?_dc=1633114673835 {}
+[2021-10-02T11:06:00.676] [INFO] log - /users/validateToken?_dc=1633152960671 {}
+[2021-10-02T11:17:28.688] [INFO] log - /users/validateToken?_dc=1633153648683 {}
+[2021-10-02T11:18:41.269] [INFO] log - /users/validateToken?_dc=1633153721264 {}
+[2021-10-02T11:19:48.984] [INFO] log - /users/validateToken?_dc=1633153788981 {}
+[2021-10-02T11:21:32.294] [INFO] log - /users/validateToken?_dc=1633153892289 {}
+[2021-10-02T11:22:19.849] [INFO] log - /users/validateToken?_dc=1633153939845 {}
+[2021-10-02T11:25:19.527] [INFO] log - /users/validateToken?_dc=1633154119483 {}
+[2021-10-02T12:02:43.708] [INFO] log - /users/validateToken?_dc=1633156363705 {}
+[2021-10-02T12:03:16.779] [INFO] log - /users/validateToken?_dc=1633156396773 {}
+[2021-10-02T12:14:32.924] [INFO] log - /users/validateToken?_dc=1633157072919 {}
+[2021-10-02T12:14:47.789] [INFO] log - /users/validateToken?_dc=1633157087784 {}
+[2021-10-02T12:28:18.538] [INFO] log - /users/validateToken?_dc=1633157898533 {}
+[2021-10-02T12:29:21.394] [INFO] log - /users/validateToken?_dc=1633157961387 {}
+[2021-10-02T13:06:57.560] [INFO] log - Application started
+[2021-10-02T13:07:07.906] [INFO] log - /users/validateToken?_dc=1633160227896 {}
+[2021-10-02T13:09:01.057] [INFO] log - /users/validateToken?_dc=1633160341052 {}
+[2021-10-02T13:09:38.125] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:57:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-10-02T13:10:23.579] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:57:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-10-02T13:45:57.886] [INFO] log - Application started
+[2021-10-02T13:46:23.149] [INFO] log - Application started
+[2021-10-02T13:50:07.883] [INFO] log - /users/validateToken?_dc=1633162807873 {}
+[2021-10-02T13:53:28.203] [INFO] log - /users/validateToken?_dc=1633163008199 {}
+[2021-10-02T13:54:21.070] [INFO] log - /users/validateToken?_dc=1633163061066 {}
+[2021-10-02T13:54:53.372] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:57:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-10-02T14:01:08.568] [INFO] log - /users/validateToken?_dc=1633163468558 {}
+[2021-10-02T14:04:01.743] [INFO] log - /users/validateToken?_dc=1633163641739 {}
+[2021-10-02T14:07:41.821] [INFO] log - Application started
+[2021-10-02T14:12:05.404] [INFO] log - Application started
+[2021-10-02T14:13:06.751] [INFO] log - /users/validateToken?_dc=1633164186745 {}
+[2021-10-02T14:22:05.309] [INFO] log - Application started
+[2021-10-02T14:22:06.256] [INFO] log - /users/validateToken?_dc=1633164726243 {}
+[2021-10-02T14:24:01.575] [INFO] log - /users/validateToken?_dc=1633164841570 {}
+[2021-10-02T14:25:44.154] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:57:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-10-02T14:26:20.070] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:57:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-10-02T14:30:17.875] [INFO] log - /users/validateToken?_dc=1633165217871 {}
+[2021-10-02T14:30:29.429] [INFO] log - /users/validateToken?_dc=1633165229425 {}
+[2021-10-02T14:30:31.842] [INFO] log - /users/validateToken?_dc=1633165231838 {}
+[2021-10-02T14:33:19.167] [INFO] log - /users/validateToken?_dc=1633165399163 {}
+[2021-10-02T14:33:59.981] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 'sellerSKU' in 'where clause'
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 'sellerSKU' in 'where clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "update suppliers SET `supplierSKU` = '45', `costPerUnit` = '0', `casePackQuantity` = '0', `alwaysPurchaseInCase` = '', `minimumOrderQuantity` = '0', `inboundShippingCost` = '0', `additionalSupplierCosts` = '0' where user='gurumohansingh@gmail.com' and sellerSKU='01042-007-SNL' and supplierID='1'"
+}
+[2021-10-02T14:33:59.984] [ERROR] log - suppliersRouter ER_BAD_FIELD_ERROR: Unknown column 'sellerSKU' in 'where clause'
+[2021-10-02T14:37:11.670] [INFO] log - Application started
+[2021-10-02T14:40:40.615] [INFO] log - /users/validateToken?_dc=1633165834750 {}
+[2021-10-02T15:21:57.245] [INFO] log - /users/validateToken?_dc=1633168317239 {}
+[2021-10-02T15:26:33.883] [INFO] log - /users/validateToken?_dc=1633168593879 {}
+[2021-10-02T15:37:42.477] [INFO] log - /users/validateToken?_dc=1633169262472 {}
+[2021-10-02T15:38:16.399] [INFO] log - /users/validateToken?_dc=1633169296394 {}
+[2021-10-02T15:39:46.321] [INFO] log - /users/validateToken?_dc=1633169386317 {}
+[2021-10-02T15:42:20.201] [INFO] log - Application started
+[2021-10-02T15:42:24.355] [INFO] log - /users/validateToken?_dc=1633169544344 {}
+[2021-10-02T15:47:00.522] [INFO] log - /users/validateToken?_dc=1633169820517 {}
+[2021-10-02T15:48:23.810] [INFO] log - /users/validateToken?_dc=1633169903788 {}
+[2021-10-02T15:48:38.572] [ERROR] log - ReferenceError: err is not defined
+    at g:\projects\todd\amazsync\routes\suppliersRouter.js:72:32
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-10-02T15:50:04.782] [INFO] log - Application started
+[2021-10-02T15:50:05.650] [INFO] log - /users/validateToken?_dc=1633170005640 {}
+[2021-10-02T15:50:18.204] [ERROR] log - suppliersRouter Cannot set headers after they are sent to the client
+[2021-10-02T15:50:38.370] [ERROR] log - suppliersRouter Cannot set headers after they are sent to the client
+[2021-10-02T15:51:24.836] [INFO] log - Application started
+[2021-10-02T15:51:29.945] [ERROR] log - suppliersRouter Cannot set headers after they are sent to the client
+[2021-10-02T15:52:26.088] [INFO] log - Application started
+[2021-10-02T17:22:52.785] [INFO] log - /users/validateToken?_dc=1633175572780 {}
+[2021-10-02T17:24:22.283] [INFO] log - /users/validateToken?_dc=1633175662277 {}
+[2021-10-04T21:28:06.994] [INFO] log - Application started
+[2021-10-04T21:28:16.205] [INFO] log - /users/validateToken?_dc=1633363096193 {}
+[2021-10-04T21:45:57.555] [INFO] log - Sync start by gurumohansingh@gmail.com
+[2021-10-04T21:45:58.985] [INFO] log - Report ID 35316740128018904
+[2021-10-04T21:46:05.172] [INFO] log - Total products  3639 for reportid 35316740128018904
+[2021-10-04T21:46:06.013] [INFO] log - Adding new products 17
+[2021-10-04T21:46:06.013] [INFO] log - Updating products 3622
+[2021-10-04T21:46:26.530] [INFO] log - Total added products 17
+[2021-10-04T21:46:26.613] [INFO] log - getMatchingProductForId executed and total :3772
+[2021-10-04T21:46:31.024] [ERROR] log - TypeError: Cannot read property 'Value' of undefined
+    at G:\projects\todd\amazsync\service\mws\mwsSyncService.js:114:68
+    at Array.forEach (<anonymous>)
+    at mwsSyncService.getMatchingProductForId (G:\projects\todd\amazsync\service\mws\mwsSyncService.js:99:41)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async mwsSyncService.updateInvetory (G:\projects\todd\amazsync\service\mws\mwsSyncService.js:17:11)
