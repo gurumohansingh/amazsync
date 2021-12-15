@@ -12,11 +12,16 @@ var createError = require('http-errors'),
 	MySQLStore = require('express-mysql-session')(session),
 	settings = require('./routes/settings'),
 	infoRouter = require('./routes/info'),
-	suppierRouter = require('./routes/suppliersRouter');
+	suppierRouter = require('./routes/suppliersRouter'),
+	locationsRouter = require('./routes/locationRouter'),
+	kitRouter = require('./routes/kitRouter'),
+	uploadDownloadRouter = require('./routes/uploadDownloadRouter'),
+	fileUpload = require('express-fileupload');
 var log = require('./service/log');
 log.info("Application started")
 app = express();
 app.use(express.json());
+app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -46,6 +51,7 @@ app.use(session({
 	saveUninitialized: false
 }));
 app.use('/users', usersRouter);
+app.use('/file', uploadDownloadRouter);
 app.use(validateToken);
 app.use('/', indexRouter);
 app.use('/settings', settings);
@@ -53,6 +59,9 @@ app.use('/mws', mwsRouter);
 app.use('/products', productsRouter);
 app.use('/info', infoRouter);
 app.use('/supplier', suppierRouter);
+app.use('/location', locationsRouter);
+app.use('/kit', kitRouter);
+
 app.use(function (req, res, next) {
 	next(createError(404));
 });

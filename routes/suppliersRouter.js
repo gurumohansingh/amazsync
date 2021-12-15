@@ -29,7 +29,7 @@ router.put("/", (req, res, next) => {
 
 router.delete("/", (req, res, next) => {
      suppliersService
-          .deleteSupplier(req.loggedUser.username, req.query)
+          .deleteSupplier(req.loggedUser.username, req.body)
           .then((response) => {
                res.send(response);
           })

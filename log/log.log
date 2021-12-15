@@ -1,4 +1,4 @@
-[2021-10-01T23:57:43.433] [ERROR] log - Error: ER_NO_SUCH_TABLE: Table 'amazsync.supplier' doesn't exist
+[2021-11-27T06:54:59.869] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where sellerSKU='0140-0944-Alt'' at line 1
     at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
     at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
     at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
@@ -30,151 +30,15 @@
     at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
     at Socket.emit (events.js:315:20)
     at addChunk (internal/streams/readable.js:309:12) {
-  code: 'ER_NO_SUCH_TABLE',
-  errno: 1146,
-  sqlMessage: "Table 'amazsync.supplier' doesn't exist",
-  sqlState: '42S02',
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where sellerSKU='0140-0944-Alt'' at line 1",
+  sqlState: '42000',
   index: 0,
-  sql: "select * from supplier where user='gurumohansingh@gmail.com' and \tproductSKU =NULL"
+  sql: "update products set kit=true, where sellerSKU='0140-0944-Alt'"
 }
-[2021-10-01T23:57:43.434] [ERROR] log - suppliersRouter ER_NO_SUCH_TABLE: Table 'amazsync.supplier' doesn't exist
-[2021-10-01T23:58:54.980] [INFO] log - Application started
-[2021-10-02T00:00:22.589] [INFO] log - /users/validateToken?_dc=1633113022584 {}
-[2021-10-02T00:01:54.208] [INFO] log - /users/validateToken?_dc=1633113114202 {}
-[2021-10-02T00:06:04.931] [INFO] log - /users/validateToken?_dc=1633113364927 {}
-[2021-10-02T00:06:59.349] [INFO] log - /users/validateToken?_dc=1633113419344 {}
-[2021-10-02T00:09:12.066] [INFO] log - /users/validateToken?_dc=1633113552062 {}
-[2021-10-02T00:10:05.550] [INFO] log - /users/validateToken?_dc=1633113605545 {}
-[2021-10-02T00:10:50.170] [INFO] log - /users/validateToken?_dc=1633113650166 {}
-[2021-10-02T00:11:20.151] [INFO] log - /users/validateToken?_dc=1633113680147 {}
-[2021-10-02T00:12:04.547] [INFO] log - /users/validateToken?_dc=1633113724541 {}
-[2021-10-02T00:12:19.052] [INFO] log - /users/validateToken?_dc=1633113739048 {}
-[2021-10-02T00:13:45.826] [INFO] log - /users/validateToken?_dc=1633113825822 {}
-[2021-10-02T00:14:10.305] [INFO] log - /users/validateToken?_dc=1633113850302 {}
-[2021-10-02T00:14:24.826] [INFO] log - /users/validateToken?_dc=1633113864821 {}
-[2021-10-02T00:17:59.533] [INFO] log - /users/validateToken?_dc=1633114079529 {}
-[2021-10-02T00:21:37.936] [INFO] log - /users/validateToken?_dc=1633114297931 {}
-[2021-10-02T00:25:41.002] [INFO] log - /users/validateToken?_dc=1633114540996 {}
-[2021-10-02T00:27:53.839] [INFO] log - /users/validateToken?_dc=1633114673835 {}
-[2021-10-02T11:06:00.676] [INFO] log - /users/validateToken?_dc=1633152960671 {}
-[2021-10-02T11:17:28.688] [INFO] log - /users/validateToken?_dc=1633153648683 {}
-[2021-10-02T11:18:41.269] [INFO] log - /users/validateToken?_dc=1633153721264 {}
-[2021-10-02T11:19:48.984] [INFO] log - /users/validateToken?_dc=1633153788981 {}
-[2021-10-02T11:21:32.294] [INFO] log - /users/validateToken?_dc=1633153892289 {}
-[2021-10-02T11:22:19.849] [INFO] log - /users/validateToken?_dc=1633153939845 {}
-[2021-10-02T11:25:19.527] [INFO] log - /users/validateToken?_dc=1633154119483 {}
-[2021-10-02T12:02:43.708] [INFO] log - /users/validateToken?_dc=1633156363705 {}
-[2021-10-02T12:03:16.779] [INFO] log - /users/validateToken?_dc=1633156396773 {}
-[2021-10-02T12:14:32.924] [INFO] log - /users/validateToken?_dc=1633157072919 {}
-[2021-10-02T12:14:47.789] [INFO] log - /users/validateToken?_dc=1633157087784 {}
-[2021-10-02T12:28:18.538] [INFO] log - /users/validateToken?_dc=1633157898533 {}
-[2021-10-02T12:29:21.394] [INFO] log - /users/validateToken?_dc=1633157961387 {}
-[2021-10-02T13:06:57.560] [INFO] log - Application started
-[2021-10-02T13:07:07.906] [INFO] log - /users/validateToken?_dc=1633160227896 {}
-[2021-10-02T13:09:01.057] [INFO] log - /users/validateToken?_dc=1633160341052 {}
-[2021-10-02T13:09:38.125] [ERROR] log - ClientError [NotFoundError]: Not Found
-    at g:\projects\todd\amazsync\app.js:57:7
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
-    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
-    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-[2021-10-02T13:10:23.579] [ERROR] log - ClientError [NotFoundError]: Not Found
-    at g:\projects\todd\amazsync\app.js:57:7
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
-    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
-    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-[2021-10-02T13:45:57.886] [INFO] log - Application started
-[2021-10-02T13:46:23.149] [INFO] log - Application started
-[2021-10-02T13:50:07.883] [INFO] log - /users/validateToken?_dc=1633162807873 {}
-[2021-10-02T13:53:28.203] [INFO] log - /users/validateToken?_dc=1633163008199 {}
-[2021-10-02T13:54:21.070] [INFO] log - /users/validateToken?_dc=1633163061066 {}
-[2021-10-02T13:54:53.372] [ERROR] log - ClientError [NotFoundError]: Not Found
-    at g:\projects\todd\amazsync\app.js:57:7
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
-    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
-    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-[2021-10-02T14:01:08.568] [INFO] log - /users/validateToken?_dc=1633163468558 {}
-[2021-10-02T14:04:01.743] [INFO] log - /users/validateToken?_dc=1633163641739 {}
-[2021-10-02T14:07:41.821] [INFO] log - Application started
-[2021-10-02T14:12:05.404] [INFO] log - Application started
-[2021-10-02T14:13:06.751] [INFO] log - /users/validateToken?_dc=1633164186745 {}
-[2021-10-02T14:22:05.309] [INFO] log - Application started
-[2021-10-02T14:22:06.256] [INFO] log - /users/validateToken?_dc=1633164726243 {}
-[2021-10-02T14:24:01.575] [INFO] log - /users/validateToken?_dc=1633164841570 {}
-[2021-10-02T14:25:44.154] [ERROR] log - ClientError [NotFoundError]: Not Found
-    at g:\projects\todd\amazsync\app.js:57:7
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
-    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
-    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-[2021-10-02T14:26:20.070] [ERROR] log - ClientError [NotFoundError]: Not Found
-    at g:\projects\todd\amazsync\app.js:57:7
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
-    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
-    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
-    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-[2021-10-02T14:30:17.875] [INFO] log - /users/validateToken?_dc=1633165217871 {}
-[2021-10-02T14:30:29.429] [INFO] log - /users/validateToken?_dc=1633165229425 {}
-[2021-10-02T14:30:31.842] [INFO] log - /users/validateToken?_dc=1633165231838 {}
-[2021-10-02T14:33:19.167] [INFO] log - /users/validateToken?_dc=1633165399163 {}
-[2021-10-02T14:33:59.981] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 'sellerSKU' in 'where clause'
+[2021-11-27T06:56:46.329] [INFO] log - Application started
+[2021-11-27T06:57:28.189] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
     at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
     at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
     at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
@@ -206,27 +70,1265 @@
     at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
     at Socket.emit (events.js:315:20)
     at addChunk (internal/streams/readable.js:309:12) {
-  code: 'ER_BAD_FIELD_ERROR',
-  errno: 1054,
-  sqlMessage: "Unknown column 'sellerSKU' in 'where clause'",
-  sqlState: '42S22',
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
   index: 0,
-  sql: "update suppliers SET `supplierSKU` = '45', `costPerUnit` = '0', `casePackQuantity` = '0', `alwaysPurchaseInCase` = '', `minimumOrderQuantity` = '0', `inboundShippingCost` = '0', `additionalSupplierCosts` = '0' where user='gurumohansingh@gmail.com' and sellerSKU='01042-007-SNL' and supplierID='1'"
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
 }
-[2021-10-02T14:33:59.984] [ERROR] log - suppliersRouter ER_BAD_FIELD_ERROR: Unknown column 'sellerSKU' in 'where clause'
-[2021-10-02T14:37:11.670] [INFO] log - Application started
-[2021-10-02T14:40:40.615] [INFO] log - /users/validateToken?_dc=1633165834750 {}
-[2021-10-02T15:21:57.245] [INFO] log - /users/validateToken?_dc=1633168317239 {}
-[2021-10-02T15:26:33.883] [INFO] log - /users/validateToken?_dc=1633168593879 {}
-[2021-10-02T15:37:42.477] [INFO] log - /users/validateToken?_dc=1633169262472 {}
-[2021-10-02T15:38:16.399] [INFO] log - /users/validateToken?_dc=1633169296394 {}
-[2021-10-02T15:39:46.321] [INFO] log - /users/validateToken?_dc=1633169386317 {}
-[2021-10-02T15:42:20.201] [INFO] log - Application started
-[2021-10-02T15:42:24.355] [INFO] log - /users/validateToken?_dc=1633169544344 {}
-[2021-10-02T15:47:00.522] [INFO] log - /users/validateToken?_dc=1633169820517 {}
-[2021-10-02T15:48:23.810] [INFO] log - /users/validateToken?_dc=1633169903788 {}
-[2021-10-02T15:48:38.572] [ERROR] log - ReferenceError: err is not defined
-    at g:\projects\todd\amazsync\routes\suppliersRouter.js:72:32
+[2021-11-27T07:18:44.650] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:22:07.844] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:22:49.166] [INFO] log - Application started
+[2021-11-27T07:24:01.546] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:24:09.441] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:24:36.331] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:25:31.755] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:25:41.342] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:26:21.360] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T07:41:04.244] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T08:36:39.838] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT p.imageUrl,kt.sku as sellerSKU,p.itemName,p.amazonASIN from kitProducts kt inner join products p on kt.sku= p.sellerSKU where kt.parentSku=?'
+}
+[2021-11-27T08:37:54.017] [INFO] log - Application started
+[2021-11-27T08:38:22.542] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:38:22.544] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:38:30.910] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:38:30.910] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:38:43.449] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:38:43.449] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:38:46.767] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:38:46.768] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:39:10.714] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:39:10.715] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Ping.onOperationComplete (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:110:5)
+    at Ping.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Ping._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Ping.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''0140-0944-Alt'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "INSERT INTO kitProducts SET '0140-0944-Alt'"
+}
+[2021-11-27T08:39:29.919] [INFO] log - Application started
+[2021-11-27T08:39:58.065] [INFO] log - Application started
+[2021-11-27T08:45:56.337] [INFO] log - /users/validateToken?_dc=1637982956330 {}
+[2021-11-27T08:48:07.442] [INFO] log - /users/validateToken?_dc=1637983087437 {}
+[2021-11-27T09:55:40.068] [INFO] log - /users/validateToken?_dc=1637987140061 {}
+[2021-11-27T09:56:47.913] [INFO] log - /users/validateToken?_dc=1637987207907 {}
+[2021-11-27T09:58:53.251] [INFO] log - /users/validateToken?_dc=1637987333248 {}
+[2021-11-27T10:06:15.453] [INFO] log - /users/validateToken?_dc=1637987775447 {}
+[2021-11-27T10:07:15.335] [INFO] log - /users/validateToken?_dc=1637987835331 {}
+[2021-11-27T10:08:02.547] [INFO] log - /users/validateToken?_dc=1637987882540 {}
+[2021-11-27T10:12:43.464] [INFO] log - /users/validateToken?_dc=1637988163459 {}
+[2021-11-27T10:13:27.637] [INFO] log - /users/validateToken?_dc=1637988207631 {}
+[2021-11-27T10:14:19.482] [INFO] log - /users/validateToken?_dc=1637988259478 {}
+[2021-11-27T10:14:53.325] [INFO] log - /users/validateToken?_dc=1637988293321 {}
+[2021-11-27T10:16:32.051] [INFO] log - /users/validateToken?_dc=1637988392045 {}
+[2021-11-27T10:16:57.570] [INFO] log - /users/validateToken?_dc=1637988417564 {}
+[2021-11-27T10:20:41.215] [INFO] log - /users/validateToken?_dc=1637988641210 {}
+[2021-11-27T10:21:30.103] [INFO] log - /users/validateToken?_dc=1637988690092 {}
+[2021-11-27T10:22:02.157] [INFO] log - /users/validateToken?_dc=1637988722152 {}
+[2021-11-27T10:24:03.854] [INFO] log - /users/validateToken?_dc=1637988843847 {}
+[2021-11-27T10:24:49.914] [INFO] log - /users/validateToken?_dc=1637988889909 {}
+[2021-11-27T10:30:18.449] [INFO] log - /users/validateToken?_dc=1637989218441 {}
+[2021-11-27T18:37:08.317] [INFO] log - /users/validateToken?_dc=1638018428311 {}
+[2021-11-27T18:37:49.682] [INFO] log - /users/validateToken?_dc=1638018469675 {}
+[2021-11-27T18:39:18.244] [INFO] log - /users/validateToken?_dc=1638018558241 {}
+[2021-11-27T18:40:09.856] [INFO] log - /users/validateToken?_dc=1638018609850 {}
+[2021-11-27T18:40:12.636] [INFO] log - /users/validateToken?_dc=1638018612633 {}
+[2021-11-27T19:33:23.307] [INFO] log - /users/validateToken?_dc=1638021803299 {}
+[2021-11-27T19:36:38.960] [INFO] log - /users/validateToken?_dc=1638021998956 {}
+[2021-11-27T19:42:05.933] [INFO] log - /users/validateToken?_dc=1638022325929 {}
+[2021-11-27T19:42:26.768] [INFO] log - /users/validateToken?_dc=1638022346764 {}
+[2021-11-27T19:45:33.279] [INFO] log - /users/validateToken?_dc=1638022533274 {}
+[2021-11-27T19:48:01.339] [INFO] log - /users/validateToken?_dc=1638022681335 {}
+[2021-11-27T19:48:51.115] [INFO] log - /users/validateToken?_dc=1638022731111 {}
+[2021-11-27T19:52:23.266] [INFO] log - /users/validateToken?_dc=1638022943262 {}
+[2021-11-27T19:53:00.732] [INFO] log - /users/validateToken?_dc=1638022980727 {}
+[2021-11-27T19:53:32.188] [INFO] log - /users/validateToken?_dc=1638023012184 {}
+[2021-11-27T19:54:10.999] [INFO] log - /users/validateToken?_dc=1638023050991 {}
+[2021-11-27T19:54:47.759] [INFO] log - /users/validateToken?_dc=1638023087750 {}
+[2021-11-27T19:55:02.774] [INFO] log - /users/validateToken?_dc=1638023102769 {}
+[2021-11-27T19:55:13.662] [INFO] log - /users/validateToken?_dc=1638023113655 {}
+[2021-11-27T19:55:27.982] [INFO] log - /users/validateToken?_dc=1638023127978 {}
+[2021-11-27T19:55:38.915] [INFO] log - /users/validateToken?_dc=1638023138909 {}
+[2021-11-29T13:43:09.585] [INFO] log - Application started
+[2021-11-29T13:43:16.774] [INFO] log - /users/validateToken?_dc=1638173596763 {}
+[2021-11-29T13:52:25.054] [INFO] log - /users/validateToken?_dc=1638174145045 {}
+[2021-11-29T14:22:10.593] [INFO] log - Application started
+[2021-11-29T14:22:24.120] [INFO] log - /users/validateToken?_dc=1638175944108 {}
+[2021-11-29T17:32:32.236] [INFO] log - /users/validateToken?_dc=1638187352217 {}
+[2021-11-29T17:34:16.826] [INFO] log - /users/validateToken?_dc=1638187456822 {}
+[2021-11-29T17:35:02.593] [INFO] log - /users/validateToken?_dc=1638187502587 {}
+[2021-11-29T17:47:50.115] [INFO] log - /users/validateToken?_dc=1638188270108 {}
+[2021-11-30T08:01:02.334] [INFO] log - /users/validateToken?_dc=1638239462324 {}
+[2021-11-30T08:09:05.027] [INFO] log - /users/validateToken?_dc=1638239945023 {}
+[2021-11-30T08:09:12.877] [INFO] log - /users/validateToken?_dc=1638239952863 {}
+[2021-11-30T08:12:13.925] [INFO] log - /users/validateToken?_dc=1638240133921 {}
+[2021-11-30T08:13:02.588] [INFO] log - /users/validateToken?_dc=1638240182584 {}
+[2021-11-30T08:13:10.749] [INFO] log - /users/validateToken?_dc=1638240190746 {}
+[2021-11-30T08:22:00.107] [INFO] log - /users/validateToken?_dc=1638240720102 {}
+[2021-11-30T08:22:10.466] [INFO] log - /users/validateToken?_dc=1638240730459 {}
+[2021-11-30T08:28:36.080] [INFO] log - /users/validateToken?_dc=1638241116075 {}
+[2021-11-30T09:37:00.811] [INFO] log - Application started
+[2021-11-30T09:38:42.407] [INFO] log - /users/validateToken?_dc=1638245322401 {}
+[2021-11-30T09:53:40.683] [INFO] log - /users/validateToken?_dc=1638246220679 {}
+[2021-11-30T09:54:39.027] [INFO] log - /users/validateToken?_dc=1638246279007 {}
+[2021-11-30T10:02:43.550] [INFO] log - /users/validateToken?_dc=1638246763543 {}
+[2021-11-30T10:26:14.856] [INFO] log - /users/validateToken?_dc=1638248174850 {}
+[2021-11-30T10:27:07.443] [INFO] log - /users/validateToken?_dc=1638248227439 {}
+[2021-11-30T10:28:04.598] [INFO] log - Application started
+[2021-11-30T10:32:35.956] [INFO] log - /users/validateToken?_dc=1638248555939 {}
+[2021-11-30T10:33:30.826] [INFO] log - /users/validateToken?_dc=1638248610820 {}
+[2021-11-30T10:34:06.487] [INFO] log - Application started
+[2021-11-30T10:34:23.474] [INFO] log - /users/validateToken?_dc=1638248663462 {}
+[2021-11-30T10:35:28.437] [INFO] log - /users/validateToken?_dc=1638248728429 {}
+[2021-11-30T10:36:02.664] [INFO] log - /users/validateToken?_dc=1638248762658 {}
+[2021-11-30T10:36:13.591] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Array
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T10:51:39.382] [INFO] log - Application started
+[2021-11-30T10:51:39.582] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Array
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T10:52:01.325] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Array
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T10:52:33.378] [INFO] log - Application started
+[2021-11-30T10:52:42.842] [INFO] log - Application started
+[2021-11-30T10:54:04.143] [INFO] log - Application started
+[2021-11-30T10:55:01.048] [INFO] log - /users/validateToken?_dc=1638249901034 {}
+[2021-11-30T11:00:47.080] [INFO] log - /users/validateToken?_dc=1638250247073 {}
+[2021-11-30T11:02:16.689] [INFO] log - /users/validateToken?_dc=1638250336685 {}
+[2021-11-30T11:04:45.062] [INFO] log - /users/validateToken?_dc=1638250485056 {}
+[2021-11-30T11:05:08.027] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:63:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-11-30T12:41:10.916] [INFO] log - /users/validateToken?_dc=1638256270907 {}
+[2021-11-30T14:43:05.805] [INFO] log - Application started
+[2021-11-30T14:43:05.890] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:63:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-11-30T14:43:08.446] [INFO] log - /users/validateToken?_dc=1638263588439 {}
+[2021-11-30T14:46:09.169] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:63:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-11-30T14:53:03.435] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:63:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-11-30T15:03:50.692] [INFO] log - /users/validateToken?_dc=1638264830685 {}
+[2021-11-30T15:04:25.279] [ERROR] log - ClientError [NotFoundError]: Not Found
+    at g:\projects\todd\amazsync\app.js:63:7
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:260:14)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
+[2021-11-30T15:11:51.535] [INFO] log - /users/validateToken?_dc=1638265311531 {}
+[2021-11-30T15:11:59.547] [INFO] log - /users/validateToken?_dc=1638265319541 {}
+[2021-11-30T16:02:44.360] [INFO] log - /users/validateToken?_dc=1638268364351 {}
+[2021-11-30T16:02:46.687] [INFO] log - /users/validateToken?_dc=1638268366683 {}
+[2021-11-30T16:04:07.858] [INFO] log - Application started
+[2021-11-30T16:04:29.370] [INFO] log - /users/validateToken?_dc=1638268469360 {}
+[2021-11-30T16:04:32.756] [INFO] log - /users/validateToken?_dc=1638268472752 {}
+[2021-11-30T16:06:18.411] [INFO] log - /users/validateToken?_dc=1638268578406 {}
+[2021-11-30T16:06:21.833] [INFO] log - /users/validateToken?_dc=1638268581829 {}
+[2021-11-30T16:08:28.235] [INFO] log - /users/validateToken?_dc=1638268708230 {}
+[2021-11-30T16:09:38.802] [INFO] log - /users/validateToken?_dc=1638268778796 {}
+[2021-11-30T16:10:38.691] [INFO] log - /users/validateToken?_dc=1638268838687 {}
+[2021-11-30T16:14:51.924] [INFO] log - /users/validateToken?_dc=1638269091920 {}
+[2021-11-30T16:15:47.021] [INFO] log - /users/validateToken?_dc=1638269147016 {}
+[2021-11-30T16:15:49.866] [INFO] log - /users/validateToken?_dc=1638269149861 {}
+[2021-11-30T16:19:13.360] [INFO] log - /users/validateToken?_dc=1638269353355 {}
+[2021-11-30T16:19:57.263] [INFO] log - /users/validateToken?_dc=1638269397259 {}
+[2021-11-30T16:19:59.651] [INFO] log - /users/validateToken?_dc=1638269399647 {}
+[2021-11-30T20:24:00.685] [INFO] log - /users/validateToken?_dc=1638284040675 {}
+[2021-11-30T20:26:53.175] [INFO] log - Application started
+[2021-11-30T20:27:57.173] [INFO] log - Application started
+[2021-11-30T20:29:32.474] [INFO] log - Application started
+[2021-11-30T20:29:39.076] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Array
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T20:30:01.838] [INFO] log - Application started
+[2021-11-30T20:30:02.017] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Object
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T20:30:04.264] [INFO] log - Application started
+[2021-11-30T20:30:04.447] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Object
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T20:30:08.607] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Object
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T20:33:13.896] [INFO] log - Application started
+[2021-11-30T20:33:13.945] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Array
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T20:33:23.683] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Array
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T20:33:35.812] [INFO] log - Application started
+[2021-11-30T20:33:35.884] [ERROR] log - TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of Array
+    at ServerResponse.end (_http_outgoing.js:785:13)
+    at ServerResponse.end (g:\projects\todd\amazsync\node_modules\express-session\index.js:355:19)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+[2021-11-30T20:33:56.614] [INFO] log - Application started
+[2021-11-30T20:34:14.075] [INFO] log - Application started
+[2021-11-30T20:34:36.141] [INFO] log - Application started
+[2021-11-30T20:35:09.223] [INFO] log - Application started
+[2021-11-30T20:39:24.896] [INFO] log - /users/validateToken?_dc=1638284964890 {}
+[2021-11-30T20:40:55.960] [INFO] log - /users/validateToken?_dc=1638285055955 {}
+[2021-11-30T20:47:17.644] [INFO] log - /users/validateToken?_dc=1638285437637 {}
+[2021-11-30T20:48:11.603] [INFO] log - /users/validateToken?_dc=1638285491596 {}
+[2021-11-30T20:48:45.164] [INFO] log - /users/validateToken?_dc=1638285525160 {}
+[2021-11-30T20:49:00.731] [INFO] log - /users/validateToken?_dc=1638285540725 {}
+[2021-11-30T20:53:06.468] [INFO] log - /users/validateToken?_dc=1638285786464 {}
+[2021-11-30T20:56:26.869] [INFO] log - Application started
+[2021-11-30T20:56:44.274] [ERROR] log - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type: text/csv"]
+    at ServerResponse.setHeader (_http_outgoing.js:560:3)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10) {
+  code: 'ERR_INVALID_HTTP_TOKEN'
+}
+[2021-11-30T20:57:11.851] [ERROR] log - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type: text/csv"]
+    at ServerResponse.setHeader (_http_outgoing.js:560:3)
+    at g:\projects\todd\amazsync\routes\locationRouter.js:142:10
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10) {
+  code: 'ERR_INVALID_HTTP_TOKEN'
+}
+[2021-11-30T20:59:51.324] [INFO] log - Application started
+[2021-11-30T20:59:55.693] [INFO] log - Application started
+[2021-11-30T21:05:24.790] [INFO] log - /users/validateToken?_dc=1638286524785 {}
+[2021-11-30T21:05:27.623] [INFO] log - /users/validateToken?_dc=1638286527619 {}
+[2021-11-30T21:05:29.641] [INFO] log - /users/validateToken?_dc=1638286529637 {}
+[2021-11-30T21:06:34.039] [INFO] log - /users/validateToken?_dc=1638286594031 {}
+[2021-11-30T21:07:39.383] [INFO] log - /users/validateToken?_dc=1638286659376 {}
+[2021-11-30T21:09:02.208] [INFO] log - /users/validateToken?_dc=1638286742203 {}
+[2021-11-30T21:09:48.436] [INFO] log - /users/validateToken?_dc=1638286788432 {}
+[2021-11-30T21:11:35.716] [INFO] log - /users/validateToken?_dc=1638286895711 {}
+[2021-11-30T21:12:35.273] [INFO] log - /users/validateToken?_dc=1638286955268 {}
+[2021-11-30T21:13:22.129] [INFO] log - /users/validateToken?_dc=1638287002122 {}
+[2021-11-30T21:15:26.953] [INFO] log - /users/validateToken?_dc=1638287126946 {}
+[2021-11-30T21:16:40.913] [INFO] log - /users/validateToken?_dc=1638287200909 {}
+[2021-11-30T21:22:44.230] [INFO] log - /users/validateToken?_dc=1638287564224 {}
+[2021-11-30T21:22:49.437] [INFO] log - /users/validateToken?_dc=1638287569432 {}
+[2021-12-01T09:51:40.996] [INFO] log - Application started
+[2021-12-01T09:52:28.383] [INFO] log - /users/validateToken?_dc=1638332548372 {}
+[2021-12-01T09:53:47.084] [INFO] log - /users/validateToken?_dc=1638332627077 {}
+[2021-12-01T09:56:18.287] [INFO] log - /users/validateToken?_dc=1638332778281 {}
+[2021-12-01T10:14:08.214] [INFO] log - Application started
+[2021-12-01T10:20:12.996] [INFO] log - /users/validateToken?_dc=1638334212984 {}
+[2021-12-01T10:20:58.417] [INFO] log - /users/validateToken?_dc=1638334258412 {}
+[2021-12-01T10:21:54.944] [INFO] log - /users/validateToken?_dc=1638334314941 {}
+[2021-12-01T10:26:23.250] [INFO] log - /users/validateToken?_dc=1638334583246 {}
+[2021-12-01T10:27:15.557] [INFO] log - /users/validateToken?_dc=1638334635552 {}
+[2021-12-01T10:29:17.105] [INFO] log - /users/validateToken?_dc=1638334757097 {}
+[2021-12-01T10:30:31.321] [INFO] log - Application started
+[2021-12-01T10:30:33.742] [INFO] log - /users/validateToken?_dc=1638334833730 {}
+[2021-12-01T10:30:36.509] [INFO] log - /users/validateToken?_dc=1638334836506 {}
+[2021-12-01T10:31:54.745] [ERROR] log - ReferenceError: locationService is not defined
+    at g:\projects\todd\amazsync\routes\uploadDownloadRouter.js:13:6
     at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
     at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
     at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
@@ -241,29 +1343,358 @@
     at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
     at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
     at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
-    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:635:15
-[2021-10-02T15:50:04.782] [INFO] log - Application started
-[2021-10-02T15:50:05.650] [INFO] log - /users/validateToken?_dc=1633170005640 {}
-[2021-10-02T15:50:18.204] [ERROR] log - suppliersRouter Cannot set headers after they are sent to the client
-[2021-10-02T15:50:38.370] [ERROR] log - suppliersRouter Cannot set headers after they are sent to the client
-[2021-10-02T15:51:24.836] [INFO] log - Application started
-[2021-10-02T15:51:29.945] [ERROR] log - suppliersRouter Cannot set headers after they are sent to the client
-[2021-10-02T15:52:26.088] [INFO] log - Application started
-[2021-10-02T17:22:52.785] [INFO] log - /users/validateToken?_dc=1633175572780 {}
-[2021-10-02T17:24:22.283] [INFO] log - /users/validateToken?_dc=1633175662277 {}
-[2021-10-04T21:28:06.994] [INFO] log - Application started
-[2021-10-04T21:28:16.205] [INFO] log - /users/validateToken?_dc=1633363096193 {}
-[2021-10-04T21:45:57.555] [INFO] log - Sync start by gurumohansingh@gmail.com
-[2021-10-04T21:45:58.985] [INFO] log - Report ID 35316740128018904
-[2021-10-04T21:46:05.172] [INFO] log - Total products  3639 for reportid 35316740128018904
-[2021-10-04T21:46:06.013] [INFO] log - Adding new products 17
-[2021-10-04T21:46:06.013] [INFO] log - Updating products 3622
-[2021-10-04T21:46:26.530] [INFO] log - Total added products 17
-[2021-10-04T21:46:26.613] [INFO] log - getMatchingProductForId executed and total :3772
-[2021-10-04T21:46:31.024] [ERROR] log - TypeError: Cannot read property 'Value' of undefined
-    at G:\projects\todd\amazsync\service\mws\mwsSyncService.js:114:68
-    at Array.forEach (<anonymous>)
-    at mwsSyncService.getMatchingProductForId (G:\projects\todd\amazsync\service\mws\mwsSyncService.js:99:41)
-    at runMicrotasks (<anonymous>)
-    at processTicksAndRejections (internal/process/task_queues.js:93:5)
-    at async mwsSyncService.updateInvetory (G:\projects\todd\amazsync\service\mws\mwsSyncService.js:17:11)
+    at session (g:\projects\todd\amazsync\node_modules\express-session\index.js:475:7)
+[2021-12-01T10:31:54.763] [INFO] log - /users/validateToken?_dc=1638334912544 {}
+[2021-12-01T10:33:55.528] [ERROR] log - ReferenceError: locationService is not defined
+    at g:\projects\todd\amazsync\routes\uploadDownloadRouter.js:13:6
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at session (g:\projects\todd\amazsync\node_modules\express-session\index.js:475:7)
+[2021-12-01T10:34:30.376] [INFO] log - /users/validateToken?_dc=1638335070370 {}
+[2021-12-01T10:53:58.903] [ERROR] log - ReferenceError: locationService is not defined
+    at g:\projects\todd\amazsync\routes\uploadDownloadRouter.js:13:6
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at session (g:\projects\todd\amazsync\node_modules\express-session\index.js:475:7)
+[2021-12-01T11:03:28.690] [ERROR] log - ReferenceError: locationService is not defined
+    at g:\projects\todd\amazsync\routes\uploadDownloadRouter.js:13:6
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at session (g:\projects\todd\amazsync\node_modules\express-session\index.js:475:7)
+[2021-12-01T11:03:42.381] [INFO] log - Application started
+[2021-12-01T11:04:03.663] [INFO] log - Application started
+[2021-12-02T20:50:53.471] [INFO] log - Application started
+[2021-12-02T20:51:27.917] [INFO] log - /users/validateToken?_dc=1638458487905 {}
+[2021-12-03T12:28:08.987] [INFO] log - Application started
+[2021-12-03T12:28:12.283] [INFO] log - /users/validateToken?_dc=1638514692272 {}
+[2021-12-03T12:40:50.508] [ERROR] log - ReferenceError: locationService is not defined
+    at g:\projects\todd\amazsync\routes\uploadDownloadRouter.js:13:6
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (g:\projects\todd\amazsync\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:174:3)
+    at router (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (g:\projects\todd\amazsync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:317:13)
+    at g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:335:12)
+    at next (g:\projects\todd\amazsync\node_modules\express\lib\router\index.js:275:10)
+    at session (g:\projects\todd\amazsync\node_modules\express-session\index.js:475:7)
+[2021-12-03T12:43:33.741] [INFO] log - /users/validateToken?_dc=1638515613736 {}
+[2021-12-03T14:32:56.436] [INFO] log - Application started
+[2021-12-03T14:33:00.056] [INFO] log - /users/validateToken?_dc=1638522180046 {}
+[2021-12-03T14:38:05.444] [INFO] log - Application started
+[2021-12-03T14:38:10.810] [INFO] log - /users/validateToken?_dc=1638522490801 {}
+[2021-12-03T14:49:29.205] [INFO] log - Application started
+[2021-12-03T14:58:29.789] [INFO] log - Application started
+[2021-12-03T16:47:50.839] [INFO] log - Application started
+[2021-12-03T16:47:56.557] [INFO] log - /users/validateToken?_dc=1638530276547 {}
+[2021-12-03T16:49:49.745] [INFO] log - Application started
+[2021-12-03T16:51:53.068] [INFO] log - Application started
+[2021-12-03T16:51:57.217] [INFO] log - /users/validateToken?_dc=1638530517203 {}
+[2021-12-03T16:53:35.718] [INFO] log - Application started
+[2021-12-03T16:53:41.764] [INFO] log - /users/validateToken?_dc=1638530621754 {}
+[2021-12-03T16:55:10.743] [INFO] log - Application started
+[2021-12-03T16:55:19.968] [INFO] log - /users/validateToken?_dc=1638530719958 {}
+[2021-12-03T17:05:33.514] [INFO] log - /users/validateToken?_dc=1638531333509 {}
+[2021-12-03T17:10:23.784] [INFO] log - Application started
+[2021-12-03T17:10:26.315] [INFO] log - /users/validateToken?_dc=1638531626306 {}
+[2021-12-03T17:15:11.547] [INFO] log - Application started
+[2021-12-03T17:15:13.136] [INFO] log - /users/validateToken?_dc=1638531913126 {}
+[2021-12-03T17:19:11.210] [INFO] log - /users/validateToken?_dc=1638532151205 {}
+[2021-12-03T17:21:47.138] [INFO] log - /users/validateToken?_dc=1638532307134 {}
+[2021-12-03T17:22:26.285] [INFO] log - /users/validateToken?_dc=1638532346281 {}
+[2021-12-03T17:22:57.935] [INFO] log - /users/validateToken?_dc=1638532377931 {}
+[2021-12-03T22:51:10.503] [INFO] log - /users/validateToken?_dc=1638552070498 {}
+[2021-12-03T22:51:46.040] [INFO] log - /users/validateToken?_dc=1638552106035 {}
+[2021-12-03T22:52:02.332] [INFO] log - /users/validateToken?_dc=1638552122328 {}
+[2021-12-03T22:52:24.555] [INFO] log - /users/validateToken?_dc=1638552144551 {}
+[2021-12-03T22:58:43.745] [INFO] log - /users/validateToken?_dc=1638552523740 {}
+[2021-12-03T23:12:08.325] [INFO] log - /users/validateToken?_dc=1638553328322 {}
+[2021-12-05T12:36:35.342] [INFO] log - /users/validateToken?_dc=1638687995331 {}
+[2021-12-05T13:06:18.726] [INFO] log - /users/validateToken?_dc=1638689778721 {}
+[2021-12-05T13:10:46.344] [INFO] log - /users/validateToken?_dc=1638690046340 {}
+[2021-12-05T13:11:11.424] [INFO] log - /users/validateToken?_dc=1638690071421 {}
+[2021-12-05T13:11:19.944] [INFO] log - /users/validateToken?_dc=1638690079940 {}
+[2021-12-05T13:11:27.675] [INFO] log - /users/validateToken?_dc=1638690087669 {}
+[2021-12-05T13:11:58.366] [INFO] log - /users/validateToken?_dc=1638690118360 {}
+[2021-12-05T17:15:25.804] [INFO] log - /users/validateToken?_dc=1638704725799 {}
+[2021-12-05T17:20:01.687] [INFO] log - /users/validateToken?_dc=1638705001681 {}
+[2021-12-05T17:20:49.089] [INFO] log - /users/validateToken?_dc=1638705049082 {}
+[2021-12-05T17:21:52.081] [INFO] log - /users/validateToken?_dc=1638705112075 {}
+[2021-12-05T17:23:02.983] [INFO] log - /users/validateToken?_dc=1638705182978 {}
+[2021-12-05T17:29:15.084] [INFO] log - /users/validateToken?_dc=1638705555079 {}
+[2021-12-05T17:30:28.202] [INFO] log - /users/validateToken?_dc=1638705628197 {}
+[2021-12-05T17:41:25.890] [INFO] log - /users/validateToken?_dc=1638706285883 {}
+[2021-12-05T17:42:53.012] [INFO] log - /users/validateToken?_dc=1638706373007 {}
+[2021-12-05T17:43:54.603] [INFO] log - /users/validateToken?_dc=1638706434599 {}
+[2021-12-05T17:46:04.658] [INFO] log - /users/validateToken?_dc=1638706564655 {}
+[2021-12-06T10:30:06.033] [INFO] log - /users/validateToken?_dc=1638766806028 {}
+[2021-12-06T10:32:52.683] [INFO] log - /users/validateToken?_dc=1638766972678 {}
+[2021-12-06T11:14:06.262] [INFO] log - /users/validateToken?_dc=1638769446258 {}
+[2021-12-06T14:28:18.340] [INFO] log - /users/validateToken?_dc=1638781098334 {}
+[2021-12-06T14:28:34.528] [INFO] log - /users/validateToken?_dc=1638781114525 {}
+[2021-12-06T14:29:19.244] [INFO] log - /users/validateToken?_dc=1638781159241 {}
+[2021-12-06T14:40:34.626] [INFO] log - /users/validateToken?_dc=1638781834622 {}
+[2021-12-06T17:58:45.415] [INFO] log - Application started
+[2021-12-06T17:58:45.483] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'in('sellerSettingGroup')' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Handshake.onConnect (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:64:7)
+    at Handshake.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Handshake._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Handshake.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Handshake.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'in('sellerSettingGroup')' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "select * from settings where username='gurumohansingh@gmail.com' and settinggroup =in('sellerSettingGroup')"
+}
+[2021-12-06T17:58:45.486] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'in('suppliersettings')' at line 1
+    at Query.Sequence._packetToError (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+    at TCP.callbackTrampoline (internal/async_hooks.js:131:14)
+    --------------------
+    at Protocol._enqueue (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at PoolConnection.query (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:198:25)
+    at g:\projects\todd\amazsync\service\mysql.js:13:28
+    at Handshake.onConnect (g:\projects\todd\amazsync\node_modules\mysql\lib\Pool.js:64:7)
+    at Handshake.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Handshake._callback (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:488:16)
+    at Handshake.Sequence.end (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Handshake.Sequence.OkPacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\sequences\Sequence.js:92:8)
+    at Protocol._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (g:\projects\todd\amazsync\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (g:\projects\todd\amazsync\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'in('suppliersettings')' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "select * from settings where username='gurumohansingh@gmail.com' and settinggroup =in('suppliersettings')"
+}
+[2021-12-06T17:58:57.683] [INFO] log - Application started
+[2021-12-06T18:00:55.120] [INFO] log - /users/validateToken?_dc=1638793855115 {}
+[2021-12-06T21:36:10.920] [INFO] log - /users/validateToken?_dc=1638806770910 {}
+[2021-12-06T21:38:11.950] [INFO] log - /users/validateToken?_dc=1638806891946 {}
+[2021-12-06T21:38:22.148] [INFO] log - /users/validateToken?_dc=1638806902144 {}
+[2021-12-06T21:39:38.000] [INFO] log - /users/validateToken?_dc=1638806977998 {}
+[2021-12-07T10:22:35.445] [INFO] log - /users/validateToken?_dc=1638852755439 {}
+[2021-12-07T10:23:08.816] [INFO] log - /users/validateToken?_dc=1638852788810 {}
+[2021-12-07T10:24:04.445] [INFO] log - /users/validateToken?_dc=1638852844438 {}
+[2021-12-07T10:24:45.423] [INFO] log - /users/validateToken?_dc=1638852885419 {}
+[2021-12-07T10:25:23.419] [INFO] log - /users/validateToken?_dc=1638852923415 {}
+[2021-12-07T12:19:59.055] [INFO] log - /users/validateToken?_dc=1638859799050 {}
+[2021-12-07T13:10:29.299] [INFO] log - /users/validateToken?_dc=1638862829292 {}
+[2021-12-07T13:25:40.816] [INFO] log - /users/validateToken?_dc=1638863740812 {}
+[2021-12-07T13:26:16.260] [INFO] log - /users/validateToken?_dc=1638863776256 {}
+[2021-12-07T19:05:53.424] [INFO] log - /users/validateToken?_dc=1638884153419 {}
+[2021-12-07T19:06:00.558] [INFO] log - /users/validateToken?_dc=1638884160555 {}
+[2021-12-07T19:08:24.134] [INFO] log - /users/validateToken?_dc=1638884304129 {}
+[2021-12-08T10:07:33.063] [INFO] log - /users/validateToken?_dc=1638938253058 {}
+[2021-12-08T10:10:08.011] [INFO] log - /users/validateToken?_dc=1638938408006 {}
+[2021-12-08T10:18:55.439] [INFO] log - /users/validateToken?_dc=1638938935433 {}
+[2021-12-08T10:20:26.826] [INFO] log - /users/validateToken?_dc=1638939026820 {}
+[2021-12-08T10:21:37.556] [INFO] log - /users/validateToken?_dc=1638939097545 {}
+[2021-12-08T10:25:41.563] [INFO] log - /users/validateToken?_dc=1638939341558 {}
+[2021-12-08T10:26:55.165] [INFO] log - /users/validateToken?_dc=1638939415159 {}
+[2021-12-08T10:27:24.980] [INFO] log - /users/validateToken?_dc=1638939444974 {}
+[2021-12-08T10:28:56.873] [INFO] log - /users/validateToken?_dc=1638939536869 {}
+[2021-12-08T11:30:29.138] [INFO] log - /users/validateToken?_dc=1638943229132 {}
+[2021-12-08T11:33:37.374] [INFO] log - /users/validateToken?_dc=1638943417369 {}
+[2021-12-08T11:39:05.088] [INFO] log - /users/validateToken?_dc=1638943745085 {}
+[2021-12-08T11:40:03.101] [INFO] log - /users/validateToken?_dc=1638943803098 {}
+[2021-12-08T11:59:07.257] [INFO] log - /users/validateToken?_dc=1638944947253 {}
+[2021-12-08T11:59:20.967] [INFO] log - /users/validateToken?_dc=1638944960962 {}
+[2021-12-08T12:00:55.332] [INFO] log - /users/validateToken?_dc=1638945055328 {}
+[2021-12-08T12:01:20.435] [INFO] log - /users/validateToken?_dc=1638945080428 {}
+[2021-12-08T12:02:25.604] [INFO] log - /users/validateToken?_dc=1638945145600 {}
+[2021-12-08T12:07:54.998] [INFO] log - /users/validateToken?_dc=1638945474995 {}
+[2021-12-08T12:10:52.009] [INFO] log - /users/validateToken?_dc=1638945652004 {}
+[2021-12-08T12:11:15.112] [INFO] log - /users/validateToken?_dc=1638945675106 {}
+[2021-12-08T12:40:48.959] [INFO] log - Application started
+[2021-12-08T12:41:55.749] [INFO] log - /users/validateToken?_dc=1638947515736 {}
+[2021-12-08T12:43:46.679] [INFO] log - /users/validateToken?_dc=1638947626674 {}
+[2021-12-08T12:44:36.547] [INFO] log - /users/validateToken?_dc=1638947676541 {}
+[2021-12-08T12:44:53.355] [INFO] log - /users/validateToken?_dc=1638947693349 {}
+[2021-12-08T18:42:52.229] [INFO] log - /users/validateToken?_dc=1638969172202 {}
+[2021-12-08T18:47:14.244] [INFO] log - /users/validateToken?_dc=1638969434238 {}
+[2021-12-08T18:49:32.054] [INFO] log - /users/validateToken?_dc=1638969572050 {}
+[2021-12-08T18:52:26.072] [INFO] log - /users/validateToken?_dc=1638969746067 {}
+[2021-12-08T18:58:32.558] [INFO] log - /users/validateToken?_dc=1638970112554 {}
+[2021-12-08T18:59:22.458] [INFO] log - /users/validateToken?_dc=1638970162452 {}
+[2021-12-08T19:21:46.788] [INFO] log - /users/validateToken?_dc=1638971506781 {}
+[2021-12-08T19:23:07.550] [INFO] log - /users/validateToken?_dc=1638971587544 {}
+[2021-12-08T19:23:31.780] [INFO] log - /users/validateToken?_dc=1638971611776 {}
+[2021-12-08T19:24:37.424] [INFO] log - /users/validateToken?_dc=1638971677418 {}
+[2021-12-08T19:24:43.552] [INFO] log - /users/validateToken?_dc=1638971683547 {}
+[2021-12-08T19:25:44.842] [INFO] log - /users/validateToken?_dc=1638971744835 {}
+[2021-12-08T19:26:13.100] [INFO] log - /users/validateToken?_dc=1638971773094 {}
+[2021-12-08T19:26:29.557] [INFO] log - /users/validateToken?_dc=1638971789552 {}
+[2021-12-08T19:26:33.899] [INFO] log - /users/validateToken?_dc=1638971793893 {}
+[2021-12-08T19:26:55.943] [INFO] log - /users/validateToken?_dc=1638971815938 {}
+[2021-12-08T20:21:40.992] [INFO] log - /users/validateToken?_dc=1638975100983 {}
+[2021-12-08T20:23:10.880] [INFO] log - /users/validateToken?_dc=1638975190873 {}
+[2021-12-08T20:23:55.614] [INFO] log - /users/validateToken?_dc=1638975235609 {}
+[2021-12-08T20:24:20.678] [INFO] log - /users/validateToken?_dc=1638975260674 {}
+[2021-12-08T20:25:07.353] [INFO] log - /users/validateToken?_dc=1638975307347 {}
+[2021-12-08T20:26:44.029] [INFO] log - /users/validateToken?_dc=1638975404025 {}
+[2021-12-08T20:28:29.677] [INFO] log - /users/validateToken?_dc=1638975509673 {}
+[2021-12-08T20:29:03.273] [INFO] log - /users/validateToken?_dc=1638975543269 {}
+[2021-12-08T20:29:11.259] [INFO] log - /users/validateToken?_dc=1638975551255 {}
+[2021-12-08T20:30:21.237] [INFO] log - Application started
+[2021-12-08T20:30:23.282] [INFO] log - /users/validateToken?_dc=1638975623267 {}
+[2021-12-08T20:37:08.822] [INFO] log - /users/validateToken?_dc=1638976028817 {}
+[2021-12-08T20:38:37.101] [INFO] log - /users/validateToken?_dc=1638976117096 {}
+[2021-12-08T20:39:57.350] [INFO] log - /users/validateToken?_dc=1638976197345 {}
+[2021-12-08T20:40:43.961] [INFO] log - /users/validateToken?_dc=1638976243957 {}
+[2021-12-09T09:05:48.936] [INFO] log - Application started
+[2021-12-09T09:05:57.481] [INFO] log - /users/validateToken?_dc=1639020957471 {}
+[2021-12-09T09:35:10.551] [INFO] log - /users/validateToken?_dc=1639022710546 {}
+[2021-12-09T10:03:46.512] [INFO] log - /users/validateToken?_dc=1639024426508 {}
+[2021-12-09T10:05:17.067] [INFO] log - /users/validateToken?_dc=1639024517062 {}
+[2021-12-09T13:10:09.001] [INFO] log - /users/validateToken?_dc=1639035608982 {}
+[2021-12-09T13:27:21.088] [INFO] log - /users/validateToken?_dc=1639036641083 {}
+[2021-12-09T13:30:29.148] [INFO] log - /users/validateToken?_dc=1639036829144 {}
+[2021-12-09T13:33:55.200] [INFO] log - /users/validateToken?_dc=1639037035195 {}
+[2021-12-09T13:39:54.152] [INFO] log - /users/validateToken?_dc=1639037394145 {}
+[2021-12-09T13:40:33.425] [INFO] log - /users/validateToken?_dc=1639037433420 {}
+[2021-12-09T14:16:35.170] [INFO] log - /users/validateToken?_dc=1639039595162 {}
+[2021-12-09T14:17:47.115] [INFO] log - /users/validateToken?_dc=1639039667111 {}
+[2021-12-09T14:59:20.101] [INFO] log - /users/validateToken?_dc=1639042160094 {}
+[2021-12-09T14:59:56.867] [INFO] log - /users/validateToken?_dc=1639042196859 {}
+[2021-12-09T15:00:16.966] [INFO] log - /users/validateToken?_dc=1639042216961 {}
+[2021-12-09T15:00:20.783] [INFO] log - /users/validateToken?_dc=1639042220779 {}
+[2021-12-09T15:01:14.443] [INFO] log - /users/validateToken?_dc=1639042274434 {}
+[2021-12-09T15:12:39.143] [INFO] log - /users/validateToken?_dc=1639042959138 {}
+[2021-12-09T15:15:15.555] [INFO] log - /users/validateToken?_dc=1639043115549 {}
+[2021-12-09T15:16:07.205] [INFO] log - /users/validateToken?_dc=1639043167200 {}
+[2021-12-09T15:19:05.847] [INFO] log - /users/validateToken?_dc=1639043345839 {}
+[2021-12-09T15:20:01.673] [INFO] log - /users/validateToken?_dc=1639043401668 {}
+[2021-12-09T15:21:04.498] [INFO] log - /users/validateToken?_dc=1639043464491 {}
+[2021-12-09T15:21:39.139] [INFO] log - /users/validateToken?_dc=1639043499133 {}
+[2021-12-09T15:22:52.419] [INFO] log - /users/validateToken?_dc=1639043572414 {}
+[2021-12-09T15:23:34.917] [INFO] log - /users/validateToken?_dc=1639043614908 {}
+[2021-12-09T15:24:38.549] [INFO] log - /users/validateToken?_dc=1639043678542 {}
+[2021-12-09T15:25:00.203] [INFO] log - /users/validateToken?_dc=1639043700195 {}
+[2021-12-09T15:25:26.530] [INFO] log - /users/validateToken?_dc=1639043726522 {}
+[2021-12-09T15:26:09.989] [INFO] log - /users/validateToken?_dc=1639043769984 {}
+[2021-12-09T15:27:41.365] [INFO] log - /users/validateToken?_dc=1639043861357 {}
+[2021-12-09T15:29:10.773] [INFO] log - /users/validateToken?_dc=1639043950766 {}
+[2021-12-09T15:29:32.712] [INFO] log - /users/validateToken?_dc=1639043972707 {}
+[2021-12-09T15:31:22.585] [INFO] log - /users/validateToken?_dc=1639044082577 {}
+[2021-12-09T16:22:33.963] [INFO] log - /users/validateToken?_dc=1639047153957 {}
+[2021-12-09T16:22:43.144] [INFO] log - /users/validateToken?_dc=1639047163138 {}
+[2021-12-09T16:26:40.978] [INFO] log - /users/validateToken?_dc=1639047400974 {}
+[2021-12-09T16:30:13.974] [INFO] log - /users/validateToken?_dc=1639047613969 {}
+[2021-12-09T16:31:05.817] [INFO] log - /users/validateToken?_dc=1639047665810 {}
+[2021-12-09T21:46:30.087] [INFO] log - /users/validateToken?_dc=1639066590060 {}
+[2021-12-09T21:49:49.225] [INFO] log - /users/validateToken?_dc=1639066789221 {}
+[2021-12-09T22:32:04.569] [INFO] log - /users/validateToken?_dc=1639069324561 {}
+[2021-12-09T22:39:05.647] [INFO] log - /users/validateToken?_dc=1639069745641 {}
+[2021-12-09T22:40:15.418] [INFO] log - /users/validateToken?_dc=1639069815414 {}
+[2021-12-09T22:44:01.236] [INFO] log - /users/validateToken?_dc=1639070041226 {}
+[2021-12-09T22:51:56.835] [INFO] log - /users/validateToken?_dc=1639070516823 {}
+[2021-12-09T22:57:39.619] [INFO] log - /users/validateToken?_dc=1639070859609 {}
+[2021-12-09T22:59:35.213] [INFO] log - Application started
+[2021-12-10T07:55:44.021] [INFO] log - /users/validateToken?_dc=1639103144015 {}
+[2021-12-10T07:56:01.580] [INFO] log - Application started
+[2021-12-10T07:56:06.626] [INFO] log - /users/validateToken?_dc=1639103166616 {}
+[2021-12-10T07:57:27.896] [INFO] log - /users/validateToken?_dc=1639103247892 {}
+[2021-12-10T08:00:36.287] [INFO] log - Application started
+[2021-12-10T08:00:44.370] [INFO] log - /users/validateToken?_dc=1639103444356 {}
+[2021-12-10T08:00:57.243] [INFO] log - /users/validateToken?_dc=1639103457231 {}
+[2021-12-10T08:01:11.005] [INFO] log - Application started
+[2021-12-10T08:01:16.909] [INFO] log - /users/validateToken?_dc=1639103472381 {}
+[2021-12-10T08:01:24.149] [INFO] log - /users/validateToken?_dc=1639103484139 {}
+[2021-12-10T08:04:17.825] [INFO] log - /users/validateToken?_dc=1639103657818 {}
+[2021-12-10T08:05:48.027] [INFO] log - Application started
+[2021-12-10T08:08:06.095] [INFO] log - /users/validateToken?_dc=1639103886089 {}
+[2021-12-10T08:11:41.632] [INFO] log - /users/validateToken?_dc=1639104101625 {}
+[2021-12-10T08:12:53.104] [INFO] log - /users/validateToken?_dc=1639104173099 {}
+[2021-12-10T08:14:01.744] [INFO] log - /users/validateToken?_dc=1639104241739 {}
+[2021-12-10T08:57:05.462] [INFO] log - /users/validateToken?_dc=1639106825457 {}
+[2021-12-10T09:00:31.453] [INFO] log - /users/validateToken?_dc=1639107031447 {}
+[2021-12-10T09:01:29.890] [INFO] log - /users/validateToken?_dc=1639107089883 {}

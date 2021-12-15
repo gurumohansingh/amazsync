@@ -32,7 +32,8 @@ router.put("/update", (req, res, next) => {
     prepLaborCost: updatedata['prepLaborCost'],
     tag: Array.isArray(updatedata['tag']) ? updatedata['tag'].join(',') : updatedata['tag'],
     kit: updatedata['kit'],
-    targetDaysOnHand: updatedata['targetDaysOnHand'],
+    targetDaysInAmazon: updatedata['targetDaysInAmazon'],
+    targetDaysInWarehouse: updatedata['targetDaysInWarehouse'],
     isPartSKUOnly: updatedata['isPartSKUOnly'],
     casePackUPC: updatedata['casePackUPC'],
     EANLocal: updatedata['EANLocal'],
@@ -42,6 +43,7 @@ router.put("/update", (req, res, next) => {
     UPCLocal: updatedata['UPCLocal'],
     isActiveLocal: updatedata['isActiveLocal'],
     additionalPrepInstructions: updatedata['additionalPrepInstructions'],
+    warehouse: updatedata['warehouse']
   }
   productsService.updateProduct(req.loggedUser.username, params, updatedata['sellerSKU'])
     .then(response => {
