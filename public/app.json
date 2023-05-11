@@ -1,0 +1,205 @@
+{
+    "name": "AmazSync",
+    "namespace": "AmazSync",
+    "version": "1.0.0.0",
+    "framework": "ext",
+    "requires": [       
+        "ux",
+        "font-awesome"
+    ],
+    "indexHtmlPath": "index.html",
+  
+    "classpath": [
+        "app",
+        "${toolkit.name}/src"
+    ],   
+    "overrides": [
+        "overrides",
+        "${toolkit.name}/overrides"
+    ],   
+    "fashion": {
+        "missingParameters": "error",
+        "inliner": {
+            /**
+             * Disable resource inliner. Production builds enable this by default.
+             */
+            "enable": false
+        }
+    },   
+    "sass": {
+       "namespace": "AmazSync",
+        "etc": [
+            "sass/etc/all.scss",
+            "${toolkit.name}/sass/etc/all.scss"
+        ],
+        "var": [
+            "sass/var/all.scss",
+            "sass/var",
+            "${toolkit.name}/sass/var/all.scss",
+            "${toolkit.name}/sass/var"
+        ],
+        "src": [
+            "sass/src",
+            "${toolkit.name}/sass/src"
+        ]
+    },
+    "js": [
+        {
+            "path": "app.js",
+            "bundle": true
+        }
+    ],
+    "classic": {
+        "js": [
+            // Remove this entry to individually load sources from the framework.
+            {
+                "path": "${framework.dir}/build/ext-all-rtl-debug.js"
+            }
+        ]
+    },
+   
+    "modern": {
+        "js": [
+            // Remove this entry to individually load sources from the framework.
+            {
+                "path": "${framework.dir}/build/ext-modern-all-debug.js"
+            }
+        ]
+    },
+    "css": [
+        {
+            // this entry uses an ant variable that is the calculated
+            // value of the generated output css file for the app,
+            // defined in .sencha/app/defaults.properties
+            "path": "${build.out.css.path}",
+            "bundle": true,
+            "exclude": ["fashion"]
+        },
+        {
+            "path": "${workspace.dir}/resources/css/custom.css"
+        }
+    ],
+
+     "loader": {
+      
+         "cache": false,
+
+         "cacheParam": "_dc"
+     },
+
+    "production": {
+        "output": {
+            "appCache": {
+                "enable": false,
+                "path": "cache.appcache"
+            }
+        },
+        "loader": {
+            "cache": "${build.timestamp}"
+        },
+        "cache": {
+            "enable": true
+        },
+        "compressor": {
+            "type": "yui"
+        }
+    },
+
+    "testing": {
+    },
+
+    /**
+     * Settings specific to development builds.
+     */
+    "development": {
+        "watch": {
+            "delay": 250
+        }
+    },
+
+    "bootstrap": {
+        "base": "${app.dir}",
+
+        "manifest": "${build.id}.json",
+
+        "microloader": "bootstrap.js",
+        "css": "bootstrap.css"
+    },
+
+
+    "output": {
+        "base": "${workspace.build.dir}/${build.environment}/${app.name}",
+        "page": "index.html",
+        "manifest": "${build.id}.json",
+        "js": "${build.id}/app.js",
+        "appCache": {
+            "enable": false
+        },
+        "resources": {
+            "path": "${build.id}/resources",
+            "shared": "resources"
+        }
+    },
+
+
+    "cache": {
+        "enable": false,
+        "deltas": "${build.id}/deltas"
+    },
+
+    "appCache": {
+        /**
+         * List of items in the CACHE MANIFEST section
+         */
+        "cache": [
+            "index.html"
+        ],
+        /**
+         * List of items in the NETWORK section
+         */
+        "network": [
+            "*"
+        ],
+        /**
+         * List of items in the FALLBACK section
+         */
+        "fallback": []
+    },
+
+    /**
+     * Extra resources to be copied into the resource folder as specified in the "resources"
+     * property of the "output" object. Folders specified in this list will be deeply copied.
+     */
+    "resources": [
+        {
+            "path": "resources",
+            "output": "shared"
+        },
+        {
+            "path": "${toolkit.name}/resources"
+        },
+        {
+            "path": "${build.id}/resources"
+        }
+    ],
+
+    "archivePath": "archive/${build.id}",
+
+    "builds": {
+        "classic": {
+            "toolkit": "classic",
+            "theme": "theme-gray",
+            "sass": {
+                "generated": {
+                    "var": "classic/sass/save.scss",
+                    "src": "classic/sass/save"
+                }
+            }
+        }
+    },
+    "ignore": [
+        "(^|/)CVS(/?$|/.*?$)"
+    ],
+
+    "id": "a2e49e1e-8b81-476c-b7e9-4cb81f11a022"
+}

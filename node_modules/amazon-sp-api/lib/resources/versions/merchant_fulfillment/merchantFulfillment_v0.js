@@ -13,11 +13,11 @@ module.exports = {
       return Object.assign(req_params, {
         method:'POST',
         api_path:'/mfn/v0/eligibleShippingServices',
-        restore_rate:1
+        restore_rate:0.2
       });
     },
     getShipment:(req_params) => {
-      utils.checkParams(req_params, {
+      req_params = utils.checkAndEncodeParams(req_params, {
         path:{
           shipmentId:{
             type:'string'
@@ -31,7 +31,7 @@ module.exports = {
       });
     },
     cancelShipment:(req_params) => {
-      utils.checkParams(req_params, {
+      req_params = utils.checkAndEncodeParams(req_params, {
         path:{
           shipmentId:{
             type:'string'
@@ -45,7 +45,7 @@ module.exports = {
       });
     },
     cancelShipmentOld:(req_params) => {
-      utils.checkParams(req_params, {
+      req_params = utils.checkAndEncodeParams(req_params, {
         path:{
           shipmentId:{
             type:'string'

@@ -1,11 +1,11 @@
 const { remove } = require("winston");
 const mysql = require("../mysql"),
-     { getSuppliers, addSuppliers, deleteSuppliers, updateSuppliers, productSuppliers, updateProductSuppliers, addProductSuppliers, deleteProductSuppliers } = require("../../util/sqlquery")
+     { getSuppliers, addSuppliers, deleteSuppliers, updateSuppliers, productSuppliers, updateProductSuppliers, addProductSuppliers, deleteProductSuppliers,getProductSuppliersAll } = require("../../util/sqlquery")
 
 class suppliersService {
      getAllSuppliers(user) {
           return new Promise((resolve, reject) => {
-               mysql.query(getSuppliers, user)
+               mysql.query(getSuppliers, null)
                     .then(suppliers => resolve(suppliers))
                     .catch(err => reject(err));
           })
@@ -13,7 +13,7 @@ class suppliersService {
      addSupplier(user, supplier) {
           return new Promise((resolve, reject) => {
                supplier["user"] = user;
-               supplier['leadTime'] != "" ? new Date(supplier['leadTime']) : supplier['leadTime'];
+               supplier['DefaultLeadTimeInDays'] != "" ? new Date(supplier['DefaultLeadTimeInDays']) : supplier['DefaultLeadTimeInDays'];
                mysql.query(addSuppliers, supplier)
                     .then(supplier => resolve(supplier))
                     .catch(err => reject(err));
@@ -21,7 +21,7 @@ class suppliersService {
      }
      deleteSupplier(user, supplierId) {
           return new Promise((resolve, reject) => {
-               mysql.query(deleteSuppliers, [supplierId['supplierId'], user])
+               mysql.query(deleteSuppliers, [supplierId['supplierId']])
                     .then(supplier => resolve(supplier))
                     .catch(err => reject(err));
           })
@@ -30,8 +30,8 @@ class suppliersService {
           return new Promise((resolve, reject) => {
                var id = supplier['id'];
                delete supplier['id'];
-               supplier['leadTime'] != "" ? new Date(supplier['leadTime']) : supplier['leadTime'];
-               mysql.query(updateSuppliers, [supplier, id, user])
+               supplier['DefaultLeadTimeInDays'] != "" ? new Date(supplier['DefaultLeadTimeInDays']) : supplier['DefaultLeadTimeInDays'];
+               mysql.query(updateSuppliers, [supplier, id])
                     .then(products => resolve(products))
                     .catch(err => reject(err));
           })
@@ -39,7 +39,7 @@ class suppliersService {
 
      getProductsuppliers(user, sku) {
           return new Promise((resolve, reject) => {
-               mysql.query(productSuppliers, [user, sku])
+               mysql.query(productSuppliers, [sku])
                     .then(suppliers => resolve(suppliers))
                     .catch(err => reject(err));
           })
@@ -61,7 +61,7 @@ class suppliersService {
                var supplierID = params['supplierID'];
                delete params['productSKU'];
                delete params['supplierID'];
-               mysql.query(updateProductSuppliers, [params, user, sku, supplierID])
+               mysql.query(updateProductSuppliers, [params, sku, supplierID])
                     .then(suppliers => resolve(suppliers))
                     .catch(err => reject(err));
           })
@@ -69,12 +69,19 @@ class suppliersService {
 
      deleteProductsupplier(user, params) {
           return new Promise((resolve, reject) => {
-               mysql.query(deleteProductSuppliers, [user, params.productSKU, params.supplierID])
+               mysql.query(deleteProductSuppliers, [params.productSKU, params.supplierID])
                     .then(suppliers => resolve(suppliers))
                     .catch(err => reject(err));
           })
      }
 
+     getAllProdcutSupplier() {
+          return new Promise((resolve, reject) => {
+               mysql.query(getProductSuppliersAll, null)
+                    .then(suppliers => resolve(suppliers))
+                    .catch(err => reject(err));
+          })
+     }
 
 }
 module.exports = new suppliersService;

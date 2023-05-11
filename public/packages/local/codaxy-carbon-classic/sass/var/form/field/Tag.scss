@@ -1,0 +1,22 @@
+﻿
+$tag-field-padding: dynamic(1px 1px);
+$tag-field-item-margin: dynamic(0 2px);
+
+$tag-field-item-height: dynamic(theme-scale(18px, 12));
+     
+$tag-field-item-background-color: dynamic(adjust-color($base-color, $hue: 0deg, $saturation: 0.542%, $lightness: 7.843%));
+$tag-field-item-border-color: dynamic($border-color);   
+$tag-field-item-over-background-color: dynamic(darken($tag-field-item-background-color, 4));
+$tag-field-item-over-border-color: dynamic(adjust-color($tag-field-item-border-color, $lightness: -12%));
+$tag-field-item-selected-background-color: dynamic(adjust-color($tag-field-item-over-background-color, $lightness: -12%));
+$tag-field-item-selected-border-color: dynamic(adjust-color($tag-field-item-over-border-color, $lightness: -12%));
+$tag-field-item-selected-color: dynamic(inherit);
+$tag-field-item-close-icon-width: dynamic(11px);
+$tag-field-item-close-icon-height: dynamic(11px);
+$tag-field-item-close-icon-top: dynamic(2px);
+$tag-field-item-close-icon-right: dynamic(2px);
+$tag-field-input-field-height: dynamic(18px);
+
+// Padding to accommodate the close icon
+$tag-field-item-after-padding: dynamic(20px);
+$tag-field-item-line-height: dynamic(($form-field-height - 6));

@@ -1,0 +1,16 @@
+﻿
+a {
+    text-decoration: none;
+    &:link {
+        color: darken(#9faed2, 4);
+    }
+    &:visited {
+        color: #9faed2;
+    }
+    &:hover {
+        color: lighten(#a8b5d6, 4);
+    }
+    &:active {
+        color: darken(#9faed2, 5);
+    }
+}

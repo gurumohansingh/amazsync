@@ -1,7 +1,8 @@
-var log4js = require('log4js');
+var log4js = require('log4js'),
+  path = require('path');
 log4js.configure({
   appenders: {
-    log: { type: 'file', filename: 'log/log.log' }
+    log: { type: 'file', filename: path.join(__dirname, '/log/log.log') }
   },
   categories: {
     default: { appenders: ['log'], level: 'debug' }

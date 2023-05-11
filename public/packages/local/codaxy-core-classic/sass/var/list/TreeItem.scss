@@ -1,0 +1,68 @@
+﻿
+/** 
+ * CODAXY
+ * $treelist-border-width
+ * @var {number/list}
+ * defines treelist container border width
+*/  
+$treelist-border-width: dynamic(null);
+
+/** 
+ * CODAXY
+ * $treelist-border-color
+ * @var {color/list}
+ * defines treelist container border color
+*/  
+$treelist-border-color: dynamic(null);
+
+/** 
+ * CODAXY
+ * $treelist-item-border-style
+ * @var {string}
+ * defines treelist item border style
+*/  
+$treelist-item-border-style: dynamic(null);
+
+/** 
+ * CODAXY
+ * $treelist-item-border-width
+ * @var {number/list}
+ * defines treelist item border width
+*/
+$treelist-item-border-width: dynamic(null);
+
+/** 
+ * CODAXY
+ * $treelist-item-border-color
+ * @var {color/list}
+ * defines treelist item border color
+*/
+$treelist-item-border-color: dynamic(null);
+
+/** 
+ * CODAXY
+ * $treelist-item-selected-border-color
+ * @var {color/list}
+ * defines treelist item selected border color
+*/
+$treelist-item-selected-border-color: dynamic(null);
+
+/** 
+ * CODAXY
+ * $treelist-item-expander-border-width
+ * @var {number/list}
+ * defines treelist expanded item border width
+*/
+$treelist-item-expander-border-width: dynamic(null);
+
+/** 
+ * CODAXY
+ * $treelist-item-expander-border-color
+ * @var {color/list}
+ * defines treelist expanded item border color
+*/
+$treelist-item-expander-border-color: dynamic(null);
+
+$treelist-item-expanded-child-background-color-over: dynamic(null);
+
+$treelist-item-expanded-child-background-color-selected: dynamic(null);

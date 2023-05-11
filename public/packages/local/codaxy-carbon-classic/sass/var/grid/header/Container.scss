@@ -1,0 +1,18 @@
+﻿
+$grid-header-background-color: dynamic($base-color);
+$grid-header-border-color: dynamic($border-color);
+$grid-header-color: dynamic(darken($color, 2));
+
+$grid-header-background-gradient: dynamic(none);
+$grid-header-over-background-gradient: dynamic(color_stops(lighten($neutral-color-dark, 6) 15%, lighten($neutral-color-dark, 1)));
+
+$grid-header-over-background-color: dynamic(darken($grid-header-background-color, 5));
+$grid-header-open-background-color: dynamic(darken($grid-header-background-color, 5));
+
+$grid-header-sort-icon-spacing: dynamic(3px);
+$grid-header-padding: dynamic(theme-scale(5px, 25) 6px);
+
+$grid-header-trigger-background-color: dynamic($base-color);
+$grid-header-trigger-background-color-open: dynamic($base-color);
+
+$grid-header-sort-icon-width: dynamic(14px);

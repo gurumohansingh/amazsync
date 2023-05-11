@@ -1,0 +1,19 @@
+﻿
+$grid-column-header-font-size: dynamic(ceil($font-size * .9));
+$grid-column-header-color: darken($color, 2) !default;
+$grid-column-header-over-background-color: dynamic($neutral-color-dark);
+$grid-header-background-gradient: dynamic(null);
+$grid-column-header-focus-color: dynamic(darken($color, 2));
+$grid-column-header-focus-border-width: dynamic(0);
+$grid-header-line-height: dynamic(theme-scale(14px, 20));
+
+$grid-column-header-inner-border-color: dynamic(lighten($base-color, 4));
+
+$grid-column-header-inner-border-width: dynamic(1px 0 0 0);
+$grid-column-header-inner-border-width-sort: dynamic(0);
+
+$grid-column-trigger-inner-border-width: dynamic($grid-column-header-inner-border-width);
+$grid-column-trigger-inner-border-color: dynamic($grid-column-header-inner-border-color);
+$grid-column-trigger-border-width: dynamic(0 0 0 1px);
+$grid-column-trigger-border-color: dynamic($border-color);
+$grid-column-trigger-border-style: dynamic(solid);

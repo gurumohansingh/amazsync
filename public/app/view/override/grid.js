@@ -1,0 +1,1 @@
+Ext.override(Ext.grid.View, { enableTextSelection: true });

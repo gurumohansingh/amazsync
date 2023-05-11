@@ -1,0 +1,13 @@
+﻿
+$boundlist-item-text-color: dynamic(lighten(black, 17));
+$boundlist-border-color: dynamic($border-color);
+$boundlist-background-color: dynamic(darken($color, 2));
+
+$boundlist-item-over-border-style: dynamic(solid);
+$boundlist-item-over-border-color: dynamic(transparent);
+$boundlist-item-over-background-color: dynamic(darken($boundlist-background-color, 5));
+
+$boundlist-item-selected-border-style: dynamic(solid);
+$boundlist-item-selected-border-color: dynamic(transparent);
+$boundlist-item-selected-background-color: dynamic(darken($boundlist-item-over-background-color, 5));
+

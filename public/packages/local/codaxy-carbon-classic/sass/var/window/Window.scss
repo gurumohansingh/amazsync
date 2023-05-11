@@ -1,0 +1,29 @@
+﻿
+$window-padding: dynamic(0 4px 4px);
+
+$window-base-color: dynamic($base-color);
+$window-background-color: dynamic($base-color);
+
+$window-border-color: dynamic($border-color);
+$window-inner-border-width: dynamic(0);
+$window-border-radius: dynamic(4px);
+
+$window-header-padding: dynamic(4px 6px 6px 3px);
+$window-header-color: dynamic(darken($color, 2));
+$window-header-font-size: dynamic(ceil($font-size * .9));
+$window-header-background-color: dynamic($window-background-color);
+$window-header-inner-border-color: dynamic(rgba(white, 0.1));
+$window-header-inner-border-width: dynamic(1px 0 0 0);
+$window-force-header-border: dynamic(false);
+
+$window-body-color: dynamic(darken($color, 2));
+$window-body-background-color: dynamic($neutral-color);
+$window-body-border-color: dynamic($border-color);
+
+$window-include-border-management-rules: dynamic(true);
+$window-ignore-frame-padding: dynamic(true);
+
+$window-tool-background-image: dynamic($tool-background-image);
+$window-tools-background-color-over: dynamic(null);
+
+$window-inner-border-color: dynamic($window-header-inner-border-color);

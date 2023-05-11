@@ -1,0 +1,97 @@
+﻿/** @class Ext.button.Button */
+//
+
+$button-arrow-width: dynamic(10px);
+$button-arrow-height: dynamic(10px);
+
+
+$button-small-padding: theme-scale(2px, 10) theme-scale(4px, 10) !default;
+$button-medium-padding: theme-scale(3px, 10) theme-scale(4px, 10) !default;
+$button-large-padding: theme-scale(4px, 10) theme-scale(5px, 10) !default;
+
+$button-small-font-size: dynamic($font-size);
+$button-medium-font-size: dynamic($button-small-font-size);
+$button-large-font-size: dynamic($button-small-font-size);
+
+$button-small-border-radius: dynamic(2px);
+$button-medium-border-radius:dynamic(2px);
+$button-large-border-radius: dynamic(2px);
+
+$button-default-base-color: dynamic($base-color);
+$button-default-base-color-over: dynamic(darken($base-color, 2));
+$button-default-base-color-focus: dynamic($button-default-base-color-over);
+$button-default-base-color-pressed: dynamic(lighten($neutral-color-dark, 2));
+$button-default-base-color-disabled: dynamic(adjust-color($base-color, $lightness: 4%));
+
+$button-default-color: dynamic(darken($color, 2));
+
+$button-default-background-gradient: dynamic(null);
+$button-default-background-gradient-over: dynamic(null);
+$button-default-background-gradient-pressed: dynamic(color_stops(lighten($neutral-color-dark, 6) 15%, lighten($neutral-color-dark, 1)));
+$button-default-background-gradient-disabled: dynamic(color_stops(lighten($base-color, 6), lighten($base-color, 4)));
+
+$button-default-border-color: dynamic($border-color);
+$button-default-border-color-over: dynamic($border-color);
+$button-default-border-color-focus: dynamic($button-default-border-color-over);
+$button-default-border-color-pressed: dynamic(darken($button-default-base-color-pressed, 3));
+$button-default-border-color-disabled: dynamic(adjust-color($button-default-border-color, $lightness: 4%));
+
+$button-default-inner-border-width: dynamic(1px 0 0 0);
+$button-default-inner-border-width-focus-pressed: dynamic(1px 0 0 0);
+$button-default-inner-border-width-disabled: dynamic(0);
+$button-default-inner-border-color: dynamic(rgba(white, 0.1));
+$button-default-inner-border-color-pressed: dynamic(lighten(darken($button-default-base-color-pressed, 1), 2));
+$button-default-inner-border-color-focus-pressed: dynamic($button-default-inner-border-color-pressed);
+
+$button-toolbar-background-color: dynamic(transparent);
+$button-toolbar-background-color-over: dynamic($base-color);
+$button-toolbar-background-color-focus: dynamic($button-toolbar-background-color-over);
+$button-toolbar-background-color-pressed: dynamic(lighten($neutral-color-dark, 2));
+$button-toolbar-background-color-disabled: dynamic(transparent);
+
+$button-toolbar-border-color: dynamic(transparent);
+$button-toolbar-border-color-over: dynamic($border-color);
+$button-toolbar-border-color-focus: dynamic($button-toolbar-border-color-over);
+$button-toolbar-border-color-pressed: dynamic(darken($button-default-base-color-pressed, 3));
+$button-toolbar-border-color-disabled: dynamic(transparent);
+
+
+$button-toolbar-background-gradient: dynamic(none);
+$button-toolbar-background-gradient-over: dynamic(none);
+$button-toolbar-background-gradient-focus: dynamic(none);
+$button-toolbar-background-gradient-pressed: dynamic($button-default-background-gradient-pressed);
+$button-toolbar-background-gradient-disabled: dynamic(none);
+
+$button-toolbar-inner-border-width: dynamic(1px 0 0 0);
+$button-toolbar-inner-border-color-over: dynamic($button-default-inner-border-color);
+$button-toolbar-inner-border-color-pressed: dynamic($button-default-inner-border-color-pressed);
+$button-toolbar-inner-border-color-focus: dynamic($button-default-inner-border-color);
+$button-toolbar-inner-border-color-focus-over: dynamic($button-default-inner-border-color);
+$button-toolbar-inner-border-color-focus-pressed: dynamic($button-toolbar-inner-border-color-pressed);
+
+$button-toolbar-color: dynamic(darken($color, 2));
+$button-toolbar-color-disabled: dynamic(lighten($button-toolbar-color, 35));
+
+$segmented-toolbar-button-border-style: dynamic(solid);
+$segmented-toolbar-button-border-width: dynamic(1px);
+$segmented-toolbar-button-border-color: dynamic($button-default-border-color);
+$segmented-toolbar-button-inner-border-width: dynamic($button-toolbar-inner-border-width);
+$segmented-toolbar-button-inner-border-color: dynamic($button-default-inner-border-color);
+
+$segmented-toolbar-button-background-color-over: dynamic(darken($base-color, 2));
+
+$segmented-toolbar-button-first-border-width: dynamic(0 1px 0 0);
+$segmented-toolbar-button-first-border-color: dynamic($segmented-toolbar-button-border-color);
+$segmented-toolbar-button-middle-border-width: dynamic(0 1px 0 0);
+$segmented-toolbar-button-middle-border-color: dynamic($segmented-toolbar-button-first-border-color);
+$segmented-toolbar-button-last-border-width: dynamic(0);
+$segmented-toolbar-button-last-border-color: dynamic($segmented-toolbar-button-first-border-color);
+
+$button-opacity-disabled: dynamic(1);
+$button-inner-opacity-disabled: dynamic(0.5);
+
+$button-include-split-over-arrows: dynamic(true);
+$button-toolbar-include-split-noline-arrows: dynamic(true);
+
+$button-toolbar-plain-border-color: dynamic(transparent)
+$button-toolbar-plain-background-color: dynamic(transparent);

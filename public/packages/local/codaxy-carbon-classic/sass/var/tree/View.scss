@@ -1,0 +1,6 @@
+﻿
+$medium-tree-switch: dynamic(25);
+$large-tree-switch: dynamic(75);
+
+$tree-cell-inner-padding: dynamic(theme-scale(3px, 20) 6px theme-scale(4px, 20));
+$tree-arrows-background-image: dynamic(theme-scale-switch('tree/arrows', $medium-tree-switch 'tree/arrows-medium'));

@@ -1,0 +1,22 @@
+﻿
+$form-text-field-classic-border: dynamic(false);
+$form-toolbar-text-field-font-size: dynamic($form-field-font-size);
+$form-field-focus-background-color: dynamic(darken($color, 2));
+$form-field-focus-color: dynamic(black);
+
+$form-trigger-border-width: dynamic(0 0 0 1px);
+$form-trigger-border-color-focus: dynamic($form-field-focus-border-color);
+
+$form-trigger-border-color-over: dynamic($border-color);
+$form-trigger-background-color: dynamic($base-color);
+$form-trigger-background-color-over: dynamic(lighten($base-color, 3));
+$form-trigger-background-color-pressed: dynamic(darken($base-color, 8));
+
+$form-trigger-inner-border-width: dynamic(1px 0 0 0);
+$form-trigger-inner-border-color: dynamic(lighten($base-color, 4.2));
+$form-trigger-inner-border-color-pressed: dynamic(darken($form-trigger-background-color-pressed, 2));
+
+$form-toolbar-trigger-background-color: dynamic($form-trigger-background-color);
+
+
+

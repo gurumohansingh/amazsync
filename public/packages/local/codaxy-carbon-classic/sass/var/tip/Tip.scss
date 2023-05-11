@@ -1,0 +1,22 @@
+﻿
+$tip-base-color: dynamic(lighten($base-color, 4));
+$tip-background-color: dynamic($tip-base-color);
+
+$tip-header-color: dynamic(darken($color, 2));
+$tip-header-padding: dynamic(5px); 
+$tip-tool-spacing: dynamic(6px);
+
+$tip-body-color: dynamic(darken($color, 2));
+$tip-body-font-size: dynamic(ceil($font-size * .9));
+$tip-body-link-color: dynamic(darken($tip-body-color, 10%));
+
+$tip-error-background-color: dynamic($tip-base-color);
+$tip-error-inner-border-color: dynamic(darken(#cc3300, 13));
+$tip-error-inner-border-width: dynamic(1px);
+$tip-error-border-color: dynamic($tip-error-inner-border-color);
+$tip-error-border-radius: dynamic(4px);
+$tip-error-border-width: dynamic(1px);
+$tip-error-body-padding: dynamic(3px 3px 3px 22px);
+$tip-error-background-image-position: dynamic(2px 4px);
+
+$tip-tool-background-image: dynamic($tool-background-image);

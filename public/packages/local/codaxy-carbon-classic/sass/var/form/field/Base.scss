@@ -1,0 +1,37 @@
+﻿
+$form-field-height: dynamic(theme-scale(22px, 6));
+$form-toolbar-field-height: dynamic(theme-scale(16px, 3));
+$form-field-color: dynamic(darken($color, 2));
+
+$form-trigger-width: dynamic(18px);
+$form-trigger-border-width: dynamic(0 0 0 1px);
+$form-trigger-border-width-rtl: mirror(h, $form-trigger-border-width) !default;
+$form-trigger-background-image: dynamic('form/trigger');
+
+$form-field-background-image: dynamic(none);
+$form-field-invalid-background-image: dynamic(none);
+$form-field-background-color: dynamic(lighten($neutral-color-dark, 2));
+
+$form-field-border-color: dynamic($border-color);
+$form-field-focus-border-color: dynamic($form-field-border-color);
+$form-field-font-size: dynamic($font-size);
+$form-toolbar-field-font-size: dynamic(ceil($font-size * .9));
+$include-field-toolbar-ui: dynamic($include-default-uis) and dynamic($include-ext-toolbar-toolbar);
+
+$form-field-invalid-color: dynamic(#000);
+$form-field-invalid-background-color: dynamic(darken($color, 2));
+$form-field-invalid-border-color: dynamic(#c30);
+
+$form-text-field-focus-border-color: dynamic(darken($border-color, 1));
+
+$form-checkbox-size: dynamic(theme-scale-switch(16px, 25 16px, 75 24px));
+$form-checkbox-background-image: dynamic(theme-scale-switch('form/checkbox', 25 'form/checkbox', 75 'form/checkbox-large'));
+
+$form-radio-background-image: dynamic(theme-scale-switch('form/radio', 25 'form/radio', 75 'form/radio-large'));
+
+$form-checkbox-label-line-height: dynamic(theme-scale(16px, 11));
+
+$cell-editor-form-field-text-field-padding: dynamic(0 6px);
+$cell-editor-form-field-font-size: dynamic(theme-scale(11px, 16));
+
+

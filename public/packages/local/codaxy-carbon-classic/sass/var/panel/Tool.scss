@@ -1,0 +1,9 @@
+﻿
+$tool-size: dynamic(theme-scale-switch(17px, 25 21px, 75 25px));
+
+$tool-background-image: dynamic(theme-scale-switch('tools/tool-sprites', 25 'tools/tool-sprites-medium', 75 'tools/tool-sprites_32'));
+
+$tool-include-hover-icons: dynamic(true);
+
+
+

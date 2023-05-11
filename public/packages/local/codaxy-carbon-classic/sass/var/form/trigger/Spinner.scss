@@ -1,0 +1,10 @@
+﻿
+$spinner-toolbar-trigger-vertical-background-image: dynamic(theme-scale-switch('form/spinner', 25 'form/spinner', 75 'form/spinner-large'));
+
+$spinner-background-color: dynamic($base-color);
+$spinner-background-color-over: dynamic(lighten($base-color, 3));
+$spinner-background-color-pressed: dynamic(darken($base-color, 8));
+$spinner-inner-border-width: dynamic(1px 0 0 0);
+$spinner-inner-border-color: dynamic(lighten($base-color, 4.2));
+$spinner-inner-border-color-pressed: dynamic(darken($spinner-background-color-pressed, 2));
+$spinner-trigger-vertical-background-image: dynamic(theme-scale-switch('form/spinner', 25 'form/spinner-medium', 75 'form/spinner-large'));

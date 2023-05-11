@@ -1,0 +1,19 @@
+﻿
+$toolbar-font-size: dynamic(ceil($font-size * .9));
+$toolbar-text-font-size: dynamic(ceil($font-size * .9));
+$toolbar-background-color: dynamic($base-color);
+$toolbar-background-gradient: dynamic(null);
+$toolbar-scroller-opacity-disabled: dynamic(.5);
+
+$toolbar-text-color: dynamic(darken($color, 2));
+$toolbar-border-color: dynamic($border-color);
+$toolbar-footer-margin: dynamic(3px 0 0);
+
+$toolbar-separator-color: dynamic($border-color);
+$toolbar-separator-highlight-color: dynamic(lighten($toolbar-background-color, 4.2));
+$toolbar-separator-horizontal-border-width: dynamic(0 1px);
+$toolbar-separator-vertical-border-width: dynamic(1px 0 0 0);
+
+
+$toolbar-inner-border-width: dynamic(1px 0 0 0);
+$toolbar-inner-border-color: dynamic(lighten($toolbar-background-color, 4.2));

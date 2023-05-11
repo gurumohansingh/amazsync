@@ -1,0 +1,9 @@
+﻿
+.#{$prefix}datepicker-month {
+    .#{$prefix}btn {
+        @include box-shadow(none);
+        &.#{$prefix}btn-pressed {
+            @include box-shadow(none);
+        }
+    }
+}

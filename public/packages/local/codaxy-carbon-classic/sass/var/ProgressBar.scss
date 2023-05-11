@@ -1,0 +1,10 @@
+﻿
+$progress-height: dynamic(18px);
+$progress-background-color: dynamic($neutral-color-dark);
+$progress-bar-background-color: dynamic($neutral-color);
+$progress-bar-background-gradient: dynamic(color_stops($base-color 20%, $neutral-color 66%, lighten($neutral-color-dark, 4)));
+$progress-border-color: dynamic($border-color);
+
+$progress-text-color-back: dynamic(darken($color, 2));
+$progress-text-color-front: dynamic(darken($color, 2));
+$progress-text-font-weight: dynamic(bold);

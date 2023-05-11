@@ -1,0 +1,24 @@
+﻿
+$menu-background-color: dynamic($base-color);
+$menu-border-color: dynamic($border-color);
+
+$menu-separator-border-color: dynamic($menu-border-color);
+$menu-separator-background-color: dynamic(lighten($menu-background-color, 4.2));
+$menu-separator-size: dynamic(2px);
+
+$menu-item-active-background-color: dynamic($over-color);
+$menu-item-active-border-color: dynamic(transparent);
+$menu-item-background-gradient: dynamic(none);
+$menu-item-active-border-radius: dynamic(0);
+$menu-item-font-size: dynamic(ceil($font-size * .9));
+
+$menu-text-color: dynamic(darken($color, 2));
+$menu-item-icon-vertical-offset: dynamic(1px);
+$menu-item-text-vertical-offset: dynamic(1px);
+
+$menu-padding: dynamic(1px);
+$menu-inner-border-width: dynamic(1px 0 0 1px);
+$menu-inner-border-color: dynamic(lighten($menu-background-color, 4.2));
+
+$menu-item-text-horizontal-spacing: dynamic(theme-scale(4px, 15));
+$menu-item-icon-horizontal-spacing: dynamic(theme-scale(4px, 18));

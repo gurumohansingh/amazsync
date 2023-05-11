@@ -1,0 +1,7 @@
+﻿
+$grid-grouped-header-background-color: dynamic(darken($base-color, 2));
+$grid-grouped-title-font-size: dynamic(ceil($font-size * .9));
+$grid-grouped-title-color: dynamic(darken($color, 2));
+
+$grid-grouped-header-padding: dynamic(0 5px);
+$grid-grouped-icon-padding: dynamic(7px 7px 7px 15px);

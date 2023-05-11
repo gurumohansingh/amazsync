@@ -1,0 +1,17 @@
+{
+    changelog: [
+        {
+            version: "1.0.1",
+            changes: {
+                "Classic Toolkit": [
+                    "Panel footer background color changed.",
+                    "Invalid form field text color modified.",
+                    "Images that were creating building warnings in new CMDs were added."
+                ],
+                "Modern Toolkit": [
+
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+﻿
+$tab-border-radius: dynamic(0px);
+$tab-margin: dynamic(0);
+$tab-padding: dynamic(3px 9px);
+
+$tab-base-color: dynamic(lighten($neutral-color-dark, 3));
+$tab-base-color-over: dynamic(lighten($neutral-color-dark, 7));
+$tab-base-color-active: dynamic($base-color);
+$tab-base-color-disabled: dynamic(adjust-color($base-color, $lightness: 9%, $saturation: 15.873%));
+
+$tab-background-gradient: dynamic(null);
+$tab-background-gradient-over: dynamic(null);
+$tab-background-gradient-active: dynamic(null);
+$tab-background-gradient-disabled: dynamic(null);
+
+$tab-border-color: dynamic($border-color);
+$tab-border-width: dynamic(1px 1px 0 0);
+$tab-border-color-active: dynamic($tab-border-color);
+$tab-border-color-over: dynamic($border-color);
+$tab-border-color-disabled: dynamic($tab-base-color-disabled);
+
+$tab-color: dynamic(darken($color, 4));
+$tab-color-over: dynamic(lighten($color, 10.5));
+$tab-color-active: dynamic(darken($color, 2));
+$tab-color-disabled: dynamic(#c3b3b3);
+
+$tab-font-size: dynamic(ceil($font-size * .9));
+$tab-font-weight: dynamic(normal);
+$tab-line-height: dynamic(theme-scale(16px, 6));
+
+$tab-inner-border-color: dynamic(lighten($tab-base-color, 2.6));
+$tab-inner-border-width: dynamic(1px 0 0 0);
+$tab-inner-border-width-active: dynamic(1px 0 0 0);
+$tab-inner-border-color-active: dynamic(lighten($tab-base-color-active, 4));
+$tab-inner-border-width-over: dynamic(1px 0 0 0);
+$tab-inner-border-color-over: dynamic(lighten($tab-base-color-over, 2.6));
+
+$tab-text-opacity-disabled: dynamic(1);
+
+$tab-closable-icon-top: dynamic(2px);
+$tab-closable-icon-right: dynamic(3px);
+$tab-closable-icon-spacing: dynamic(1px);
+$tab-closable-icon-height: dynamic(11px);
+$tab-closable-icon-opacity: dynamic(0.5);
+$tab-closable-icon-opacity-disabled: dynamic(0.5);
+$tab-closable-icon-opacity-over: dynamic(0.5);
+
+$tab-plain-border-width: dynamic(1px 1px 0 0);
+$tab-first-child-border-width: dynamic(1px 1px 0 1px);
+
+$tab-closable-icon-include-hover-background-position: dynamic(true);

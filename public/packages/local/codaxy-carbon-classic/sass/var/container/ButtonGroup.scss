@@ -1,0 +1,11 @@
+﻿
+$btn-group-framed-background-color: dynamic($base-color);
+$btn-group-border-color: dynamic($border-color);
+$btn-group-inner-border-color: dynamic(rgba(white, 0.1));
+$btn-group-inner-border-width: dynamic(1px 0 0);
+$btn-group-header-color: dynamic($color);
+$btn-group-header-margin: dynamic(2px 2px 0);
+$btn-group-header-font-size: dynamic(ceil($font-size * .9));
+$btn-group-header-background-color: dynamic(darken($neutral-color, 2));
+$btn-group-header-line-height: dynamic(theme-scale(15px, 20));
+$btn-group-header-padding: dynamic(theme-scale(1px, 20) 0);

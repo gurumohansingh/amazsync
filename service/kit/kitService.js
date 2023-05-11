@@ -1,5 +1,5 @@
 const mysql = require("../mysql"),
-    { getAllKitProducts, addkitproduct, getKitProducts, deleteKitProduct, updateProductKitStatus } = require("../../util/sqlquery")
+    { getAllKitProducts, addkitproduct, getKitProducts, deleteKitProduct, updateProductKitStatus, updateKitCount, updatekitname, getKitProductsWithLocation } = require("../../util/sqlquery")
 
 class locationService {
     getAllKitProducts(sku) {
@@ -9,9 +9,15 @@ class locationService {
                 .catch(err => reject(err));
         })
     }
-    getKitProducts(sku) {
+    getKitProducts(sku, warehouseId) {
         return new Promise((resolve, reject) => {
-            mysql.query(getKitProducts, sku)
+            var dynamicQry = getKitProducts, params = sku;
+
+            if (warehouseId != "") {
+                dynamicQry = getKitProductsWithLocation;
+                params = [warehouseId, sku];
+            }
+            mysql.query(dynamicQry, params)
                 .then(products => resolve(products))
                 .catch(err => reject(err));
         })
@@ -39,6 +45,24 @@ class locationService {
         })
     }
 
+    updatekitcount(params) {
+        return new Promise((resolve, reject) => {
+            mysql.query(updateKitCount, params)
+                .then((kit) => {
+                    resolve(kit)
+                })
+                .catch(err => reject(err));
+        })
+    }
+    updatekitname(params) {
+        return new Promise((resolve, reject) => {
+            mysql.query(updatekitname, params)
+                .then((kit) => {
+                    resolve(kit)
+                })
+                .catch(err => reject(err));
+        })
+    }
     updateKitStatus(sku) {
         this.getKitProducts(sku)
             .then((kit) => {

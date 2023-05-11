@@ -1,0 +1,180 @@
+.round {
+  border-radius: 3px !important;
+}
+.formborder {
+  border: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  box-shadow: 0px 0px 3px 1px #808080;
+  border-color: #f0c14b;
+}
+.btnStack {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #cccccc;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #cccccc;
+}
+
+.btnborder {
+  border: 1px solid #ff9a00 !important;
+  border-radius: 10px !important;
+  margin-left: 1px;
+}
+.error {
+  color: #ff0000;
+  font-style: italic;
+}
+.fontmustard {
+  color: #ff9a00;
+  font-size: 18px;
+}
+.fontmustardsbigsize {
+  font-size: 22px;
+}
+.x-grid-empty {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: table !important;
+  width: 100% !important;
+  height: 99% !important;
+}
+.x-grid-empty .emptytext {
+  display: table-cell !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  color: #ff9a00;
+  font-size: 18px;
+}
+.linebreak .x-grid-cell-inner {
+  white-space: pre-line;
+  vertical-align: middle !important;
+}
+.productlistgrid .x-grid-td {
+  vertical-align: middle !important;
+  padding: 5px 0 5px 0;
+}
+.contentcenter .x-grid-td {
+  vertical-align: middle !important;
+  padding: 1px 0 1px 0;
+  border-bottom: 0.5px solid #ff9a00;
+}
+.fontcolorgreen {
+  color: #008000 !important;
+}
+.fontcolorgray {
+  color: #808080 !important;
+}
+.fontcolorlightgreen {
+  color: #808080 !important;
+}
+.fontcolorred {
+  color: #ff0000 !important;
+}
+.fontcolorAmz {
+  color: #0000ff !important;
+  cursor: pointer;
+}
+.productlistgrid .x-grid-item {
+  box-shadow: 0px 0px 5px #ff9a00;
+}
+.productlistgrid .x-grid-item:hover {
+  margin: 0.5px;
+}
+.headerbtn {
+  font-size: 22px;
+  border-radius: 15px !important;
+  font-family: "Raleway", sans-serif;
+  background-color: transparent;
+  background-image: linear-gradient(to left, #e6e6e6, #e6e6e6);
+  background-size: 0;
+  background-repeat-x: no-repeat;
+  border-image: linear-gradient(to left, #e6e6e6, #e6e6e6);
+  border-image-slice: 1;
+  transition: all 0.6s ease;
+}
+
+.headerbtn:hover {
+  background-size: 100%;
+  background-color: #ff9a00;
+}
+
+.x-action-col-icon {
+  margin: 5px !important;
+}
+.hrline {
+  border-bottom: 1px solid #ff9a00;
+}
+.m-badge {
+  border-radius: 2px;
+  padding: 1px 11px;
+  color: #fff;
+  margin-right: 6px;
+  font-size: 0.8rem;
+  min-width: 18px;
+  min-height: 18px;
+  line-height: 18px;
+  display: inline-block;
+  border: 1px solid transparent;
+  margin-left: 6px;
+}
+.detail-open-working {
+  background-color: #36a3f7 !important;
+}
+.detail-closed {
+  background-color: #c4c5d6 !important;
+}
+.detail-receiving-pastdue {
+  background-color: #ffb822 !important;
+}
+.detail-cancelled {
+  background-color: #f4516c !important;
+}
+.detail-amazon {
+  background-color: #34bfa3 !important;
+}
+.tabWizard{
+  color: #b97c00 !important;
+  font-size: 36px !important;
+}
+.importer .x-grid-td {
+  vertical-align: middle !important;
+  padding: 1px 0 1px 0;
+  border-bottom: 0.5px solid #eee4d5;
+}
+.importer .x-grid-item:hover {
+  margin: 0.5px;
+  background-color: #d7d5d5
+}
+
+.nokit{
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  font-size: 200%;
+  color: rgba(217, 83, 79, 0.7);
+}
+.cursorpointer{
+    cursor: pointer!important;
+}
+
+.msgguru {
+  position: relative;
+}
+.msgguru {
+  display: none;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
+  background-color: #fff;
+  padding: .5em;
+  min-width: 10rem;
+}
+.msgguru:hover .tooltip-content {
+  display: block;
+}

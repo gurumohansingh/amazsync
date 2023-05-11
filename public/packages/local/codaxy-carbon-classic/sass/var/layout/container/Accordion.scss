@@ -1,0 +1,17 @@
+﻿
+$accordion-header-background-color: dynamic($base-color);
+$accordion-header-color: dynamic(darken($color, 2));
+$accordion-header-over-background-color: dynamic(lighten($accordion-header-background-color, 2));
+$accordion-header-border-color: dynamic($border-color);
+$accordion-header-font-weight: dynamic(normal);
+$panel-header-padding: dynamic(4px 5px);
+
+$accordion-body-border-width: dynamic(1px 0);
+$accordion-header-border-width: dynamic(0);
+
+
+$accordion-background-color: dynamic($neutral-color);
+$accordion-tool-background-image: dynamic(theme-scale-switch('tools/tool-sprites', 25 'tools/tool-sprites-medium', 75 'tools/tool-sprites_32'));
+
+$accordion-header-inner-border-width: dynamic(1px 0 0 0);
+$accordion-header-inner-border-color: dynamic(lighten($accordion-header-background-color, 4.2));

@@ -1,0 +1,140 @@
+﻿
+@mixin _codaxy-treelist-ui (
+    $ui,
+    $ui-border-width: null,
+    $ui-border-color: null,
+    $ui-item-border-style: null,
+    $ui-item-border-width: null,
+    $ui-item-border-color: null,
+    $ui-expanded-child-background-color-over: null,
+    $ui-expanded-child-background-color-selected: null,
+    $ui-expanded-parent-float-border-width: null,
+    $ui-tool-border-style: null,
+    $ui-tool-border-width: null,
+    $ui-tool-border-color: null,
+    $ui-tool-over-background-color: null,
+    $ui-tool-expanded-item-border-color: null,
+    $ui-tool-expanded-item-border-width: null,
+    $ui-treelist-item-leaf-float-border-width: null
+) {
+    .#{$prefix}treelist-#{$ui} {
+        border-style: solid;
+        @if $ui-border-width != null { border-width: $ui-border-width }
+        @if $ui-border-color != null { border-color: $ui-border-color }
+
+        .#{$prefix}treelist-item {
+            @if $ui-item-border-style != null { border-style: $ui-item-border-style }
+            @if $ui-item-border-width != null { border-width: $ui-item-border-width }
+            @if $ui-item-border-color != null { border-color: $ui-item-border-color }
+            &.#{$prefix}treelist-item-expandable.#{$prefix}treelist-item-expanded.#{$prefix}treelist-item-floated {
+                border-width: $ui-expanded-parent-float-border-width;
+            }
+        }
+        
+        .#{$prefix}treelist-item-tool {
+            @if $ui-tool-border-style != null { border-style: $ui-tool-border-style }
+            @if $ui-tool-border-width != null { border-width: $ui-tool-border-width }
+            @if $ui-tool-border-color != null { border-color: $ui-tool-border-color }
+            &:hover {
+                @if $ui-tool-over-background-color != null { background-color: $ui-tool-over-background-color }
+            }
+        }
+
+        .#{$prefix}treelist-item-expanded {
+            & .#{$prefix}treelist-row:hover {
+                @if $ui-expanded-child-background-color-over != null { background-color: $ui-expanded-child-background-color-over }
+            }
+            .#{$prefix}treelist-item-selected > .#{$prefix}treelist-row {
+                @if $ui-expanded-child-background-color-selected != null {
+                    background-color: $ui-expanded-child-background-color-selected;
+                }
+            }
+        }
+
+        .#{$prefix}treelist-item-floated {
+            > .#{$prefix}treelist-row {
+                @if $ui-tool-over-background-color != null { background-color: $ui-tool-over-background-color }
+                border-style: solid;
+                @if $ui-tool-expanded-item-border-color != null {
+                    border-color: $ui-tool-expanded-item-border-color;
+                }
+                @if $ui-tool-expanded-item-border-width != null {
+                    border-width: $ui-tool-expanded-item-border-width;
+                }
+            }
+            > * .#{$prefix}treelist-row {
+                border-style: solid;
+                @if $ui-tool-expanded-item-border-color != null {
+                    border-color: $ui-tool-expanded-item-border-color;
+                }
+                @if $ui-tool-expanded-item-border-width != null {
+                    border-width: $ui-tool-expanded-item-border-width;
+                }
+            }
+        }
+    }
+    .#{$prefix}treelist-item-leaf.#{$prefix}treelist-item-floated {
+        @if $ui-treelist-item-leaf-float-border-width != null {
+            border-width: $ui-treelist-item-leaf-float-border-width;
+        }
+    }    
+
+    /* rtl */
+    .#{$prefix}rtl {
+
+        .#{$prefix}treelist-expander-first {
+            
+            .#{$prefix}treelist-item-expander {
+                left: 100%;
+                right: 0;
+            }
+
+            .#{$prefix}treelist-item-text {
+                @if $treelist-item-icon-width != null and $treelist-item-expander-width != null { 
+                    margin-right: $treelist-item-icon-width + $treelist-item-expander-width;
+                    margin-left: 0;
+                }
+            }
+
+            .#{$prefix}treelist-item-icon {
+                @if $treelist-item-expander-width != null {
+                    right: $treelist-item-expander-width;
+                    left: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@include _codaxy-treelist-ui (
+    $ui: default,
+    $ui-border-width: $treelist-border-width,
+    $ui-border-color: $treelist-border-color,
+    $ui-item-border-style: $treelist-item-border-style,
+    $ui-item-border-width: $treelist-item-border-width,
+    $ui-item-border-color: $treelist-item-border-color,
+    $ui-expanded-child-background-color-over: $treelist-item-expanded-child-background-color-over,
+    $ui-expanded-child-background-color-selected: $treelist-item-expanded-child-background-color-selected
+);
+
+.#{$prefix}treelist {
+    border-style: solid;
+    border-width: $treelist-border-width; 
+    border-color: $treelist-border-color; 
+
+    .#{$prefix}treelist-item {
+        border-style: $treelist-item-border-style;
+        border-width: $treelist-item-border-width;
+        border-color: $treelist-item-border-color;
+    }
+    .#{$prefix}treelist-item-expanded {
+        .#{$prefix}treelist-item {
+            border-width: $treelist-item-expander-border-width;
+            border-color: $treelist-item-expander-border-color;
+        }
+    }
+
+}

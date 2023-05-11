@@ -1,0 +1,43 @@
+﻿
+$panel-base-color: dynamic($neutral-color);
+$panel-border-color: dynamic($border-color);
+$panel-body-color: dynamic(darken($color, 2));
+
+$panel-header-border-color: dynamic($panel-border-color);
+$panel-header-background-color: dynamic($base-color);
+$panel-header-background-gradient: dynamic(none);
+$panel-header-font-size: dynamic(theme-scale(ceil($font-size * .9), 25));
+$panel-header-font-weight: dynamic(normal);
+$panel-header-color: dynamic(darken($color,3));
+$panel-header-line-height: dynamic(theme-scale(16px, 6));
+$panel-header-padding: dynamic(4px 5px);
+$panel-header-text-padding: dynamic(0 2px);
+
+$panel-header-text-shadow: dynamic(lighten(black,5) 1px 1px);
+
+$panel-header-border-width: dynamic(1px);
+$panel-header-inner-border-color: dynamic(lighten($panel-header-background-color, 4.2));
+$panel-header-inner-border-width: dynamic(1px 0 0 0);
+
+$panel-body-background-color: dynamic($panel-base-color);
+
+$panel-footer-background-color: dynamic($panel-body-background-color);
+
+$panel-frame-header-background-color: dynamic($panel-header-background-color);
+$panel-frame-header-inner-border-color: dynamic(rgba(white, 0.1));
+$panel-frame-header-inner-border-width: dynamic(1px 0 0 0);
+$panel-frame-header-border-width: dynamic(1px);
+$panel-frame-border-color: dynamic($panel-border-color);
+$panel-frame-border-radius: dynamic(2px);
+
+$panel-frame-border-width: dynamic(1px);
+$panel-ghost-opacity: dynamic(0.65);
+$panel-frame-base-color: dynamic($panel-base-color);
+$panel-frame-background-color: dynamic($panel-frame-base-color);
+$panel-frame-body-border-width: dynamic(0);
+
+$panel-header-icon-spacing: dynamic(2px);
+
+$panel-tool-spacing: dynamic(0);
+$panel-tools-background-color: dynamic(transparent);
+$panel-tool-background-image: dynamic(theme-scale-switch('tools/tool-sprites', 25 'tools/tool-sprites-medium', 75 'tools/tool-sprites_32'));

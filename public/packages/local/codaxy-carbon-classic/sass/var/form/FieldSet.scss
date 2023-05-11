@@ -1,0 +1,14 @@
+﻿
+$fieldset-header-tool-background-color-over: dynamic(transparent);
+
+$fieldset-collapse-tool-size: dynamic(theme-scale-switch(17px, 25 21px, 75 25px));
+$fieldset-header-line-height: dynamic(18px);
+$fieldset-header-color: dynamic(darken($color, 2));
+
+$fieldset-border-radius: dynamic(0);
+$fieldset-checkbox-margin: dynamic(2px 3px 1px 0);
+$fieldset-use-standard-tool-background-positions: dynamic(true);
+
+$fieldset-border-color: dynamic($border-color);
+
+

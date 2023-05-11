@@ -24,8 +24,8 @@ router.post('/login', (req, res, next) => {
 
   if (error.length == 0) {
     usersService.login(user, password)
-      .then((token) => {
-        res.json({ token: token });
+      .then((result) => {
+        res.json({ token: result.token, userRoles: result.roles, userName: result.userName });
       })
       .catch((error) => {
         res.status(400).send(error);
@@ -42,8 +42,8 @@ router.get('/validateToken', (req, res, next) => {
     res.sendStatus(401);
   }
   validateTokenByToken(token)
-    .then(() => {
-      res.json({ token: token });
+    .then((roles) => {
+      res.json(roles);
     })
     .catch((error) => {
       res.status(401).send(error);
@@ -76,4 +76,9 @@ router.post('/register', (req, res, next) => {
   }
 })
 
+router.post('/logout', (req, res, next) => {
+  const token = req.headers["authorization"];
+  req.session.destroy();
+  res.send();
+});
 module.exports = router;

@@ -4,6 +4,7 @@ const { validate } = require("../util/requestValidate");
 const settings = require("../service/settings/sellerSettings");
 const constant = require("../util/constant");
 var _ = require("lodash");
+
 router.post("/update", (req, res, next) => {
 	let setting = req.body;
 	validate(setting, ["SellerId", "MWSAuthToken", "AWSAccessKeyId", "ClientSecret", "MarketPalaceID",], res);

@@ -1,17 +1,20 @@
 const mysql = require('./mysql');
 const { jwtNewToken } = require('./requestValidate');
 const { compare, getIncrypt } = require('./security/bcrypt');
-
+const { login } = require("../util/sqlquery");
 class usersService {
     login = function (userName, password) {
         return new Promise((resolve, reject) => {
-            mysql.query(`select password,role from users where email= '${userName}'`, null)
+            mysql.query(login, [userName])
                 .then(response => {
                     if (response.length > 0) {
                         compare(password, response[0]["password"])
                             .then((checkPassword) => {
-                                const token = jwtNewToken(userName, response[0].role);
-                                resolve(token);
+                                if (checkPassword) {
+                                    const token = jwtNewToken(userName, response[0].role);
+                                    resolve({ token: token, roles: response[0].role, userName: response[0].firstname });
+                                }
+                                else { reject("Incorrect user name or password"); }
                             })
                             .catch(error => {
                                 reject("Incorrect user name or password");

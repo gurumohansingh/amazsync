@@ -2,8 +2,9 @@ var express = require("express");
 var router = express.Router();
 var log = require('../service/log');
 const suppliersService = require("../service/products/suppliersService");
+var { authorization } = require("../service/requestValidate");
 
-router.get("/", (req, res, next) => {
+router.get("/", authorization("Suppliers View"), (req, res, next) => {
      suppliersService
           .getAllSuppliers(req.loggedUser.username)
           .then((response) => {
@@ -14,7 +15,7 @@ router.get("/", (req, res, next) => {
                res.status(500).send(err);
           });
 });
-router.put("/", (req, res, next) => {
+router.put("/", authorization("Suppliers Edit"), (req, res, next) => {
      suppliersService
           .updateSupplier(req.loggedUser.username, req.body)
           .then((response) => {
@@ -27,7 +28,7 @@ router.put("/", (req, res, next) => {
           });
 });
 
-router.delete("/", (req, res, next) => {
+router.delete("/", authorization("Suppliers Delete"), (req, res, next) => {
      suppliersService
           .deleteSupplier(req.loggedUser.username, req.body)
           .then((response) => {
@@ -39,7 +40,7 @@ router.delete("/", (req, res, next) => {
           });
 });
 
-router.post("/", (req, res, next) => {
+router.post("/", authorization("Suppliers Add New"), (req, res, next) => {
      suppliersService
           .addSupplier(req.loggedUser.username, req.body)
           .then((response) => {
@@ -51,7 +52,7 @@ router.post("/", (req, res, next) => {
           });
 });
 
-router.get("/productsuppliers", (req, res, next) => {
+router.get("/productsuppliers", authorization("Product View"), (req, res, next) => {
      if (req.query.productSKU == "") {
           res.status(500).send();
      } else {
@@ -67,7 +68,7 @@ router.get("/productsuppliers", (req, res, next) => {
      }
 });
 
-router.post("/addsupplier", (req, res, next) => {
+router.post("/addsupplier", authorization("Product Edit"), (req, res, next) => {
      var params = req.body;
      if (params.productSKU == "" || params.supplierID == "") {
           res.status(500).send();
@@ -83,7 +84,7 @@ router.post("/addsupplier", (req, res, next) => {
                });
      }
 });
-router.put("/updatesupplier", (req, res, next) => {
+router.put("/updatesupplier", authorization("Product Edit"), (req, res, next) => {
      var params = req.body;
      if (params.productSKU == "" || params.supplierID == "") {
           res.status(500).send();
@@ -101,7 +102,7 @@ router.put("/updatesupplier", (req, res, next) => {
      }
 });
 
-router.post("/deletesupplier", (req, res, next) => {
+router.post("/deletesupplier", authorization("Product Edit"), (req, res, next) => {
      var params = req.body;
      if (params.productSKU == "" || params.supplierID == "") {
           res.status(500).send();

@@ -1,0 +1,69 @@
+﻿
+
+$datepicker-base-color: dynamic($base-color);
+$datepicker-background-color: dynamic($neutral-color);
+$datepicker-border-color: dynamic($border-color);
+$datepicker-next-image: dynamic('shared/right-btn');
+$datepicker-prev-image: dynamic('shared/left-btn');
+$datepicker-arrow-opacity: dynamic(.7);
+$datepicker-arrow-width: dynamic(15px);
+$datepicker-arrow-height: dynamic(15px);
+$datepicker-item-height: dynamic(20px);
+$datepicker-item-width: dynamic(25px);
+$datepicker-item-padding: dynamic(0 4px 0 0);
+$datepicker-header-padding: dynamic(3px 6px);
+$datepicker-month-button-arrow-image: dynamic('button/s-arrow-noline');
+$datepicker-month-button-color: dynamic(darken($color, 2));
+
+$datepicker-header-background-color: dynamic($datepicker-base-color); 
+$datepicker-header-background-gradient: dynamic(null);
+$datepicker-header-border-color: dynamic($border-color);
+$datepicker-header-inner-border-width: dynamic(1px 0 0 0);
+$datepicker-header-inner-border-color: dynamic(lighten($datepicker-base-color, 4.2));
+
+$datepicker-column-header-color: dynamic($datepicker-month-button-color);
+$datepicker-column-header-font-size: dynamic(10px) !default;
+$datepicker-column-header-background-color: dynamic($base-color) !default; 
+$datepicker-column-header-background-gradient: dynamic(null);
+$datepicker-column-header-border-width: dynamic(1px 0);
+$datepicker-column-header-border-color: dynamic($border-color);
+$datepicker-column-header-item-padding: dynamic(0 7px 0 0);
+
+$datepicker-footer-background-color: dynamic($datepicker-header-background-color);
+$datepicker-footer-border-color: dynamic($border-color);
+$datepicker-footer-background-gradient: dynamic(null);
+$datepicker-footer-padding: dynamic(4px 0);
+
+$datepicker-monthpicker-item-color: dynamic($datepicker-month-button-color);
+$datepicker-item-hover-background-color: dynamic($over-color);
+$datepicker-item-selected-background-color: dynamic($over-color);
+$datepicker-item-selected-border-color: dynamic($over-color); 
+$datepicker-item-selected-font-weight: dynamic(normal);
+$datepicker-item-today-background-color: dynamic($neutral-color);
+$datepicker-item-today-border-color: dynamic($over-color);
+$datepicker-item-font-size: dynamic(ceil($font-size * .9));
+$datepicker-item-prev-next-color: dynamic(#aaa);
+$datepicker-item-disabled-color: dynamic(darken($color, 5));
+
+$datepicker-footer-border-color: dynamic($datepicker-column-header-border-color);
+
+$datepicker-monthpicker-next-image: dynamic('tools/month-next');
+$datepicker-monthpicker-prev-image: dynamic('tools/month-prev');
+
+$datepicker-monthpicker-item-margin: dynamic(5px 5px 4px);
+$datepicker-monthpicker-item-height: dynamic(17px);
+
+$datepicker-monthpicker-yearnav-button-height: dynamic(17px);
+$datepicker-monthpicker-yearnav-button-width: dynamic(17px);
+
+$datepicker-monthpicker-next-background-position: dynamic(0 0);
+$datepicker-monthpicker-next-background-position-over: dynamic(0 0);
+
+$datepicker-monthpicker-prev-background-position: dynamic(0 0);
+$datepicker-monthpicker-prev-background-position-over: dynamic(0 0);
+
+$datepicker-monthpicker-yearnav-button-opacity: dynamic(0.6);
+
+$datepicker-monthpicker-small-item-margin: dynamic(2px 5px);
+
+$datepicker-item-over-background-color: dynamic($over-color);

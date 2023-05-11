@@ -11,6 +11,7 @@ exports.query = function (query, params) {
                     reject(err);
                 }
                 connection.query(query, params, function (err, rows) {
+                    //log.info("sql quey " + query, params);
                     connection.release();
                     if (!err) {
                         resolve(rows);

@@ -1,0 +1,23 @@
+﻿
+// classic cells
+$grid-row-cell-focus-border-width: dynamic(0);
+$grid-row-cell-font-size: dynamic(theme-scale(ceil($font-size * .9), 25));
+$grid-row-cell-color: dynamic(darken($color, 6));
+$grid-row-cell-line-height: dynamic(theme-scale-switch(15px, 25 17px));
+$grid-row-cell-border-color: dynamic($border-color);
+$grid-row-cell-background-color: dynamic(darken($neutral-color, 3));
+$grid-row-cell-alt-background-color: dynamic(darken($grid-row-cell-background-color, 2));
+
+$grid-row-cell-selected-background-color: dynamic(darken($over-color, 4));
+$grid-row-cell-selected-border-color: dynamic($border-color);
+$grid-row-cell-focus-background-color: dynamic(lighten($over-color, 3));
+$grid-body-background-color: dynamic($grid-row-cell-background-color);
+
+// special cells
+$grid-cell-special-background-color: dynamic($grid-row-cell-background-color);
+$grid-cell-special-over-background-color: dynamic(lighten($over-color, 8));
+
+$grid-cell-inner-padding: dynamic(theme-scale(3px, 20) 6px theme-scale(3px, 20));
+
+$grid-row-numberer-cell-background-color: dynamic($grid-row-cell-background-color);
+$grid-row-numberer-cell-selected-background-color: dynamic($grid-row-cell-selected-background-color);

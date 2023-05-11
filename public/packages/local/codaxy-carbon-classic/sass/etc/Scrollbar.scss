@@ -1,0 +1,38 @@
+﻿
+@mixin _scrollbar-webkit(
+$border-color: lighten(black, 10),
+$base-color: #343434,
+$neutral-color-dark: #1d1d1d
+) {
+	$inner-border-base-color: darken($base-color, 10);
+	.x-body {
+
+		::-webkit-scrollbar {
+			width: 14px;
+			height: 14px;
+			background-color: $neutral-color-dark;
+		}
+
+
+		::-webkit-scrollbar-thumb {
+			-webkit-border-radius: 4px;
+		
+			&:vertical {
+				border-left: 1px solid $border-color;
+				background-image: -webkit-linear-gradient(left, $inner-border-base-color, $inner-border-base-color 5%, lighten($base-color, 10) 5.3%, lighten($base-color, 4) 50%, lighten($base-color, 1));
+			}
+
+			&:horizontal {
+				border-top: 1px solid $border-color;
+				background-image: -webkit-linear-gradient(top, $inner-border-base-color, $inner-border-base-color 5%, lighten($base-color, 10) 5.3%, lighten($base-color, 4) 50%,lighten($base-color, 1));
+			}
+		}
+        ::-webkit-scrollbar-corner {			
+			background-color: darken($base-color, 2);
+			border-left: 1px solid $border-color;
+			border-top: 1px solid $border-color;
+			-webkit-box-shadow: darken($inner-border-base-color, 3) 0 1px inset;
+		}
+	}
+}
+@include _scrollbar-webkit();
