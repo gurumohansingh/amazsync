@@ -22,6 +22,10 @@ Ext.define('AmazSync.view.inventory.list.InventoryList', {
     listeners: {
         rowclick: 'opneImage'
     },
+    bbar: {
+        xtype: 'pagingtoolbar',
+        displayInfo: true
+    },
     plugins: {
         ptype: 'cellediting',
         clicksToEdit: 1,

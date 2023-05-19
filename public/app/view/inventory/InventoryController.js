@@ -17,7 +17,7 @@ Ext.define('AmazSync.view.inventory.InventoryController', {
         Ext.getStore('warehouseStore').load();
     },
 
-    applyFilter: function () {
+    applyFilter: function (field, newValue) {
         var vm = this.getViewModel(), view = this.getView();
         var warehouse = view.lookupReference('warehouse').getValue();
         var stockFilter = view.lookupReference('stockFilter').getValue()['stock'];
@@ -28,7 +28,7 @@ Ext.define('AmazSync.view.inventory.InventoryController', {
         inventoryProductListStore.clearFilter();
         var stockFilterCondition = true;
         var locationFilterCondition = true;
-        inventoryProductListStore.filterBy((record) => {
+        /*inventoryProductListStore.filterBy((record) => {
             if (stockFilter == 1)
                 stockFilterCondition = record.get('stock') > 0
             if (stockFilter == 2)
@@ -49,7 +49,18 @@ Ext.define('AmazSync.view.inventory.InventoryController', {
             else {
                 return false;
             }
-        })
+        })*/
+        if(newValue && typeof newValue !== 'object')
+            inventoryProductListStore.getProxy().setExtraParam('searchParam', newValue.trim());
+        else
+            inventoryProductListStore.getProxy().setExtraParam('searchParam', null);
+        inventoryProductListStore.load({
+            params: {
+                page: 1,
+                start: 0,
+                limit: 25                
+            }
+        });
         vm.set('totalCount', inventoryProductListStore.getCount());
     },
     updateWareHouse: function () {

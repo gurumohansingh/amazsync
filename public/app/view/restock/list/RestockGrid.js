@@ -8,6 +8,10 @@ Ext.define('AmazSync.view.restock.list.RestockGrid', {
     listeners: {
         rowclick: 'opneImage'
     },
+    bbar: {
+        xtype: 'pagingtoolbar',
+        displayInfo: true
+    },
     plugins: [{
         ptype: 'cellediting',
         clicksToEdit: 1,

@@ -97,7 +97,7 @@ Ext.define('AmazSync.view.restock.RestockViewController', {
             recommendedShipDate = view.lookupReference('recommendedShipDateOption').getValue()['recommendedShipDate'];
         var store = Ext.getStore('restockStore');
         store.clearFilter(true);
-        var stockFilterCondition = true, searchFilter = true, recommendedShipDateFilter = true;
+        /*var stockFilterCondition = true, searchFilter = true, recommendedShipDateFilter = true;
         store.filterBy((record) => {
 
             if (stockFilter == 1) {
@@ -153,6 +153,17 @@ Ext.define('AmazSync.view.restock.RestockViewController', {
                 searchFilter = record.get('itemName') && record.get('itemName').toLowerCase().includes(searchFilterValue) || record.get('sellerSKU') && record.get('sellerSKU').toLowerCase().includes(searchFilterValue) || record.get('amazonASIN') && record.get('amazonASIN').toLowerCase().includes(searchFilterValue);
             }
             return stockFilterCondition && searchFilter && recommendedShipDateFilter;
+        });*/
+        if(newValue && typeof newValue !== 'object')
+            store.getProxy().setExtraParam('searchParam', newValue.trim());
+        else
+        store.getProxy().setExtraParam('searchParam', null);
+        store.load({
+            params: {
+                page: 1,
+                start: 0,
+                limit: 25                
+            }
         });
         vm.set('totalCount', store.getCount())
     },

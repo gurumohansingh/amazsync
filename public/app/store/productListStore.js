@@ -3,6 +3,7 @@ Ext.define('AmazSync.store.productList', {
      autoLoad: false,
      alias: 'store.productList',
      storeId: 'productList',
+     pageSize: 25,
      proxy: {
           type: 'ajax',
           url: commonutil.getUrl('products/getallproduct'),

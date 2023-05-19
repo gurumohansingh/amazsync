@@ -3,11 +3,11 @@ Ext.define('AmazSync.view.products.ProductsPanelController', {
     alias: 'controller.products-productspanel',
     applyFilter: function (radio, newValue) {
         var me = this, view = me.getView();
-        var statusFilterValue = view.lookupReference('statusFilter').getValue(),
-            searchFilterValue = view.lookupReference('searchFilter').getValue().toLowerCase().trim();
+        // var statusFilterValue = view.lookupReference('statusFilter').getValue(),
+        //     searchFilterValue = view.lookupReference('searchFilter').getValue().toLowerCase().trim();
         var store = Ext.getStore('productList');
         store.clearFilter(true);
-        var statusFilter = true, searchFilter = true;
+        /*var statusFilter = true, searchFilter = true;
         store.filterBy((record) => {
             if (statusFilterValue['status'] == "All") {
                 statusFilter = true;
@@ -22,6 +22,17 @@ Ext.define('AmazSync.view.products.ProductsPanelController', {
                 searchFilter = record.get('itemName').toLowerCase().includes(searchFilterValue) || record.get('sellerSKU').toLowerCase().includes(searchFilterValue) || record.get('amazonASIN').toLowerCase().includes(searchFilterValue);
             }
             return statusFilter && searchFilter;
+        });*/
+        if(newValue && typeof newValue !== 'object')
+            store.getProxy().setExtraParam('searchParam', newValue.trim());
+        else
+            store.getProxy().setExtraParam('searchParam', null);
+        store.load({
+            params: {
+                page: 1,
+                start: 0,
+                limit: 25                
+            }
         });
         view.lookupReference('productList').getController().updateCount();
     },

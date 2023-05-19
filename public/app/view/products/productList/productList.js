@@ -19,6 +19,10 @@ Ext.define('AmazSync.view.products.productList.productList', {
     reference: 'productList',
     store: 'productList',
     plugins: 'gridfilters',
+    bbar: {
+        xtype: 'pagingtoolbar',
+        displayInfo: true
+    },
     tools: [{
         xtype: 'button',
         text: 'Add New Product',
