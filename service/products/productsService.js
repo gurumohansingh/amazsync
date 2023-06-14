@@ -1,17 +1,61 @@
 const mysql = require("../mysql"),
-     { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku } = require("../../util/sqlquery")
+     { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount } = require("../../util/sqlquery")
 const sellerSettings = require('../settings/sellerSettings');
 class productsService {
-     getAllProducts(user, amazonLiveStatus = 1) {
-          return new Promise((resolve, reject) => {
-               var where = null;
-               if (amazonLiveStatus != 2) {
-                    where = amazonLiveStatus
-               }
-               mysql.query(where ? getProductwhere : getProduct, where)
-                    .then(products => resolve(products))
-                    .catch(err => reject(err));
-          })
+     getAllProducts(searchParam, amazonLiveStatus = 1, limit = 25, offset = 0) {
+        return new Promise((resolve, reject) => {
+          let productQuery = getProduct;
+
+          let whereParams = []
+      
+          if (amazonLiveStatus != 2) {
+            productQuery = productQuery + ` where amzlive = ?`
+            whereParams.push(amazonLiveStatus);
+          }
+
+          if (searchParam) {
+            const searchQuery = productQuery.includes('where') ? " AND itemName LIKE ?" : " where itemName LIKE ?"
+            productQuery = productQuery + `${searchQuery}`
+            whereParams.push(`%${searchParam}%`);
+          }
+
+          if (limit) {
+            productQuery = productQuery + ` LIMIT ${limit}`
+            whereParams.push(limit);
+          }
+
+          if (offset) {
+            productQuery = productQuery + ` OFFSET ${offset}`
+            whereParams.push(offset);
+          }
+          
+          mysql.query(productQuery, whereParams)
+            .then(products => resolve(products))
+            .catch(err => reject(err));
+        })
+     }
+     getTotalRecordsForProductList(searchParam, amazonLiveStatus = 1) {
+      return new Promise((resolve, reject) => {
+          let productQuery = getProductCount;
+
+          let whereParams = []
+      
+          if (amazonLiveStatus != 2) {
+            productQuery = productQuery + ` where amzlive = ?`
+            whereParams.push(amazonLiveStatus);
+          }
+
+          if (searchParam) {
+            const searchQuery = productQuery.includes('where') ? " AND itemNameLocal LIKE ?" : " where itemNameLocal LIKE ?"
+            productQuery = productQuery + `${searchQuery}`
+            whereParams.push(`%${searchParam}%`);
+          }
+
+          mysql.query(productQuery, whereParams)
+                .then(products => resolve(products))
+                .catch(err => reject(err));
+      })
+     
      }
      getskuList(user) {
           return new Promise((resolve, reject) => {

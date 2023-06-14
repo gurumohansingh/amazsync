@@ -6,6 +6,7 @@ module.exports = {
     getProductwhere: `SELECT * from products where amzlive =?`,
     updateProductsLive: "update products set amzlive=0",
     getProduct: `SELECT * from products`,
+    getProductCount: `SELECT COUNT(*) as totalProducts from products`,
     getProductBySku: `SELECT * from products where sellerSKU=?`,
     getMasterSku: `SELECT sellerSKU from products where ismasterSku=1`,
     getSKU: `SELECT sellerSKU,CONCAT_WS('',sellerSKU,'-', itemName) as name FROM products`,
