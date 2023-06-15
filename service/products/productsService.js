@@ -2,7 +2,7 @@ const mysql = require("../mysql"),
      { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount } = require("../../util/sqlquery")
 const sellerSettings = require('../settings/sellerSettings');
 class productsService {
-     getAllProducts(searchParam, amazonLiveStatus = 1, limit = 25, offset = 0) {
+     getAllProducts(searchParam, amazonLiveStatus = 1, limit = 25, offset = 0, status = "") {
         return new Promise((resolve, reject) => {
           let productQuery = getProduct;
 
@@ -17,6 +17,12 @@ class productsService {
             const searchQuery = productQuery.includes('where') ? " AND itemName LIKE ?" : " where itemName LIKE ?"
             productQuery = productQuery + `${searchQuery}`
             whereParams.push(`%${searchParam}%`);
+          }
+
+          if (status) {
+            const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
+            productQuery = productQuery + `${searchQuery}`
+            whereParams.push(`%${status}%`);
           }
 
           if (limit) {
