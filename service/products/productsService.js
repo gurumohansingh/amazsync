@@ -1,8 +1,9 @@
+const UtilHandler = require("../../util");
 const mysql = require("../mysql"),
      { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount } = require("../../util/sqlquery")
 const sellerSettings = require('../settings/sellerSettings');
 class productsService {
-     getAllProducts(searchParam, amazonLiveStatus = 1, limit = 25, offset = 0, status = "") {
+     getAllProducts(searchParam, amazonLiveStatus = 1, limit = 25, offset = 0, status = "", sorting) {
         return new Promise((resolve, reject) => {
           let productQuery = getProduct;
 
@@ -25,16 +26,25 @@ class productsService {
             whereParams.push(`%${status}%`);
           }
 
+          const sortColumn = UtilHandler.separateColumn(sorting)
+
+          if (sortColumn) {
+            const order = sortColumn.specialChar === '+' ? 'ASC' : 'DESC';
+
+            productQuery = productQuery + ` ORDER BY ?? ${order}`
+            whereParams.push(sortColumn.columnName);
+          }
+
           if (limit) {
-            productQuery = productQuery + ` LIMIT ${limit}`
-            whereParams.push(limit);
+            productQuery = productQuery + ` LIMIT ?`
+            whereParams.push(parseInt(limit, 10));
           }
 
           if (offset) {
-            productQuery = productQuery + ` OFFSET ${offset}`
-            whereParams.push(offset);
+            productQuery = productQuery + ` OFFSET ?`
+            whereParams.push(parseInt(offset, 10));
           }
-          
+
           mysql.query(productQuery, whereParams)
             .then(products => resolve(products))
             .catch(err => reject(err));

@@ -5,11 +5,11 @@ var { authorization } = require("../service/requestValidate");
 const { isValidCode } = require("../util/requestValidate");
 
 router.get("/getallproduct", authorization("Product View"), async (req, res, next) => {
-  const { amazonLiveStatus, limit = 25, start = 0, searchParam, status } = req.query || {};
+  const { amazonLiveStatus, limit = 25, start = 0, searchParam, status, sorting } = req.query || {};
   let totalCount = 0;
 
   try {
-    const products = await productsService.getAllProducts(searchParam, amazonLiveStatus, limit, start, status);
+    const products = await productsService.getAllProducts(searchParam, amazonLiveStatus, limit, start, status, sorting);
     const productCountResult = await productsService.getTotalRecordsForProductList(searchParam, amazonLiveStatus);
 
     if (Array.isArray(productCountResult) && productCountResult.length) {
