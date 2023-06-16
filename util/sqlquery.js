@@ -57,6 +57,7 @@ module.exports = {
     getInventoryStock: 'select * from inventorystock where sku =? and warehouseId=?',
     updateInventoryStockBySku: 'update inventorystock set stock=?,locationid=? where sku =? and warehouseId=?',
     localInventory: 'select p1.*,t1.binlocationname,t1.warehousename, t1.warehouseId,t1.locationid,t1.stock from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId=?)t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU',
+    localInventoryCount: 'select COUNT(*) as totalLocation from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId=?)t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU',
     updateInventoryLocation: 'update inventorystock set  locationid=? where sku =? and warehouseId=?',
     removeLocationbyWarehouse: 'update inventorystock set locationid=null where warehouseId=? and locationid=?',
     updateInventoryStockEmpty: 'update inventorystock set stock=0 where id not in(?) and warehouseId=?',

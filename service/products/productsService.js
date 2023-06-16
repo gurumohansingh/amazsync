@@ -1,10 +1,12 @@
-const UtilHandler = require("../../util");
+const CommonUtil = require("../../util/common");
 const mysql = require("../mysql"),
      { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount } = require("../../util/sqlquery")
 const sellerSettings = require('../settings/sellerSettings');
 class productsService {
-     getAllProducts(searchParam, amazonLiveStatus = 1, limit = 25, offset = 0, status = "", sorting) {
+     getAllProducts(queryParams) {
         return new Promise((resolve, reject) => {
+          const { searchParam, amazonLiveStatus = 1, status = "" } = queryParams;
+
           let productQuery = getProduct;
 
           let whereParams = []
@@ -26,31 +28,16 @@ class productsService {
             whereParams.push(`%${status}%`);
           }
 
-          const sortColumn = UtilHandler.separateColumn(sorting)
-
-          if (sortColumn) {
-            const order = sortColumn.specialChar === '+' ? 'ASC' : 'DESC';
-
-            productQuery = productQuery + ` ORDER BY ?? ${order}`
-            whereParams.push(sortColumn.columnName);
-          }
-
-          if (limit) {
-            productQuery = productQuery + ` LIMIT ?`
-            whereParams.push(parseInt(limit, 10));
-          }
-
-          if (offset) {
-            productQuery = productQuery + ` OFFSET ?`
-            whereParams.push(parseInt(offset, 10));
-          }
+         productQuery = CommonUtil.createPaginationAndSortingQuery(productQuery, queryParams, whereParams)
 
           mysql.query(productQuery, whereParams)
             .then(products => resolve(products))
             .catch(err => reject(err));
         })
      }
-     getTotalRecordsForProductList(searchParam, amazonLiveStatus = 1) {
+     getTotalRecordsForProductList(queryParams) {
+      const { searchParam, amazonLiveStatus = 1, status } = queryParams || {}
+
       return new Promise((resolve, reject) => {
           let productQuery = getProductCount;
 
@@ -65,6 +52,12 @@ class productsService {
             const searchQuery = productQuery.includes('where') ? " AND itemNameLocal LIKE ?" : " where itemNameLocal LIKE ?"
             productQuery = productQuery + `${searchQuery}`
             whereParams.push(`%${searchParam}%`);
+          }
+
+          if (status) {
+            const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
+            productQuery = productQuery + `${searchQuery}`
+            whereParams.push(`%${status}%`);
           }
 
           mysql.query(productQuery, whereParams)

@@ -4,6 +4,7 @@ var locationService = require("../service/location/locationService");
 var inventoryPlannerService = require("../service/inventoryPlannerService");
 var log = require("../service/log");
 var { authorization } = require("../service/requestValidate");
+const { isValidCode } = require("../util/requestValidate");
 router.get("/getbinlocations", authorization("Locations View"), (req, res, next) => {
      locationService.getbinlocations(req.query.warehouseId)
           .then(locations => {
@@ -229,15 +230,37 @@ router.post("/updateInventory", authorization("Inventory Edit Stock"), (req, res
                res.status(500).send(err);
           })
 });
-router.get("/getlocalinventory", authorization("Inventory View"), (req, res, next) => {
-     locationService.getlocalinventory(req.query.warehouseId)
-          .then(list => {
-               res.send(list);
-          })
-          .catch(err => {
-               log.error(err);
-               res.status(500).send(err);
-          })
+router.get("/getlocalinventory", authorization("Inventory View"), async (req, res, next) => {
+  try {
+    let totalCount = 0;
+    const { start = 0, limit = 25 } = req.query;
+    const locations = await locationService.getlocalinventory(req.query)
+    const locationCount = await locationService.getLocalInventoryCount(req.query);
+
+    if (Array.isArray(locationCount) && locationCount.length) {
+      totalCount = locationCount.find(count => count)?.totalLocation || 0;
+    }
+
+    const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
+
+    res.send({
+      currentPage,
+      total: totalCount,
+      locations,
+    })
+  } catch(error) {
+    console.log("error", error)
+    res.status(isValidCode(error.code) ? error.code : 500).send(error)  
+  }
+
+  // .then(list => {
+  //      res.send(list);
+  // })
+  // .catch(err => {
+  //      log.error(err);
+  //      res.status(500).send(err);
+  // })
+
 });
 router.post("/updateBulkInventory", authorization("Inventory Edit Stock"), async (req, res, next) => {
 
