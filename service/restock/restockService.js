@@ -1,20 +1,97 @@
 const mysql = require("../mysql"),
-    { getRestockFullData, getRestockFullAllData,getRestockSku,getRestocktoGetFee } = require("../../util/sqlquery");
+    { getRestockFullData, getRestockFullAllData,getRestockSku,getRestocktoGetFee, getRestockFullDataCount } = require("../../util/sqlquery");
 const suppliersService  =require("../../service/products/suppliersService");
+const CommonUtil = require("../../util/common");
 class restockService {
-    getRestock(wareHouse, marketPlace) {
-        return new Promise(async(resolve, reject) => {
-            var sql = getRestockFullData;
-            var params = [marketPlace, wareHouse];
-            if (wareHouse == "" || wareHouse == null) {
-                var sql = getRestockFullAllData;
-                var params = [marketPlace];
-            }
-            var restock= await mysql.query(sql, params);
-             var finalrestock =await this.prepareRestock(restock);
-             resolve(finalrestock);
-        })
+    getRestock(queryParams) {
+      return new Promise(async(resolve, reject) => {
+
+        let sql = getRestockFullData;
+        const params = [];
+
+        sql = this.perpareRestockFilter(queryParams, params, sql)
+
+        sql = CommonUtil.createPaginationAndSortingQuery(sql, queryParams, params)
+
+        const restock = await mysql.query(sql, params.map(param => param.value || param)).catch(err => reject(err));
+        const finalrestock =await this.prepareRestock(restock);
+        resolve(finalrestock);
+      })
     }
+
+    getRestockCount(queryParams) {
+      return new Promise(async(resolve, reject) => {
+
+        let sql = getRestockFullDataCount;
+        const params = [];
+
+        sql = this.perpareRestockFilter(queryParams, params, sql)
+
+        const restock = await mysql.query(sql, params.map(param => param.value || param)).catch(err => reject(err));
+        const finalrestock =await this.prepareRestock(restock);
+        resolve(finalrestock);
+      })
+    }
+
+    perpareRestockFilter(queryParams, params, sql) {
+      const { marketPlace, wareHouse, stockFilter, searchParam, recommendedShipDate } = queryParams;
+
+      if (marketPlace) {
+        params.push({ key: 'r1.market_place', value: marketPlace })
+      }
+
+      if (searchParam) {
+        params.push({ key: 'p1.itemName', value: `%${searchParam}%`, isSearch: true })
+      }
+
+      if (wareHouse) {
+        params.push({ key: 'warehouse.id', value: wareHouse })
+      }
+
+      if (params.length) {
+        sql +=
+          " where " +
+          params
+            .map((param) =>
+              param.isSearch ? `${param.key} LIKE ?` : `${param.key}=?`
+            )
+            .join(" AND ");
+      }
+
+
+      if (stockFilter) {
+
+        let updatedClause = '';
+        if (Number(stockFilter) === 2) updatedClause = ' = 0';
+        if (Number(stockFilter) === 1) updatedClause = ' > 0';
+
+        if (updatedClause) sql = sql + `${params.length ? ' AND' : ' where'} invenStk.stock ${updatedClause}`
+      }
+
+      if (recommendedShipDate) {
+        let updatedClause = '';
+
+        switch(recommendedShipDate) {
+          case 'today':
+            updatedClause = 'DATE(r1.amz_recommended_order_date) = CURDATE()'
+            break;
+          case 'next7':
+            updatedClause = 'DATE(r1.amz_recommended_order_date) > CURDATE() AND DATE(r1.amz_recommended_order_date) <= CURDATE() + INTERVAL 7 DAY';
+            break;
+          case 'next14':
+            updatedClause = 'DATE(r1.amz_recommended_order_date) > CURDATE() AND DATE(r1.amz_recommended_order_date) <= CURDATE() + INTERVAL 14 DAY';
+            break;
+          case 'next30':
+            updatedClause = 'DATE(r1.amz_recommended_order_date) > CURDATE() AND DATE(r1.amz_recommended_order_date) <= CURDATE() + INTERVAL 30 DAY';
+            break;
+        }
+
+        if (updatedClause) sql = sql + `${params.length ? ' AND' : ' where'} ${updatedClause}`
+      }
+
+      return sql
+    }
+
     async prepareRestock(restock){
         var productSuppliers= await suppliersService.getAllProdcutSupplier();
         restock.forEach(element => {
