@@ -17,6 +17,7 @@ module.exports = {
     addLastSynch: 'insert into lastSyne SET ?',
     selectLastSynch: 'SELECT  * FROM `lastSyne` order by id DESC LIMIT 10',
     getSuppliers: 'select * from suppliersList',
+    getSuppliersCount: 'select COUNT(*) as totalSupplier from suppliersList',
     addSuppliers: 'INSERT INTO suppliersList SET ?',
     deleteSuppliers: 'delete from suppliersList where id=?',
     updateSuppliers: 'update suppliersList SET ? where id=?',
@@ -69,6 +70,7 @@ module.exports = {
     savePurchaseOrder: 'insert into purchase_orders set ?',
     getPurchaseOrder: 'SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders where is_virtual <1 || is_virtual is null ORDER by last_modified DESC',
     getVirtualPurchaseOrder: 'SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,warehouse,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders where is_virtual =? ORDER by last_modified DESC',
+    getVirtualPurchaseOrderCount: 'SELECT COUNT(*) FROM purchase_orders where is_virtual =? ORDER by last_modified DESC',
     getVirtualShipmentById: 'SELECT id,is_virtual,reference,warehouse,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders where is_virtual =1 and id=? ORDER by last_modified DESC',
     deletePurchaseOrder: 'DELETE  FROM purchase_orders where is_virtual is null',
     updateVirtualShipmentById: "UPDATE purchase_orders set items=? WHERE id=?",
@@ -98,5 +100,6 @@ module.exports = {
     getRestocktoGetFee: `select market_place,amz_sku,amz_current_price from restock left JOIN products on restock.amz_sku=products.sellerSKU where restock.amz_fee_estimate is null`,
     addHistory: "insert into audit(type,update_by,old_value,new_value) values(?,?,?,?)",
     getAllHistory: "select * from audit where date between ? and ? and type = ? and (old_value like ? or  new_value like ?)",
-    getProfit: `SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place=?`
+    getProfit: `SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`,
+    getProfitCount: `SELECT count(*) as totalProfits FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`
 }

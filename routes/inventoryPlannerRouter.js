@@ -24,28 +24,21 @@ router.get("/sync", async (req, res, next) => {
   };
 });
 
-router.get("/getpurchaseorder", (req, res, next) => {
-  if (req.query.type == 0|| !req.query.type  ) {
-    inventoryPlannerService
-      .getPurchaseOrder()
-      .then((response) => {
-        res.send(response);
-      })
-      .catch((err) => {
-        log.error(`getpurchaseorder ${err.message}`);
-        res.status(500).send(err);
-      });
+router.get("/getpurchaseorder", async (req, res, next) => {
+  try {
+    let result = [];
+    if (!req.query.type || req.query.type == 0) {
+      result = await inventoryPlannerService.getPurchaseOrder() 
+    } else {
+      result = await inventoryPlannerService.getVirtualShipments(req.query.type)
+    }
+
+    res.send(result);
+  } catch(error) {
+    log.error(`getpurchaseorder ${error.message}`);
+    res.status(500).send(error);
   }
-  else {
-    inventoryPlannerService.getVirtualShipments(req.query.type)
-      .then((response) => {
-        res.send(response);
-      })
-      .catch((err) => {
-        log.error(`getpurchaseorder ${err.message}`);
-        res.status(500).send(err);
-      });
-  }
+
 });
 router.post("/addvirtualshipment", async (req, res, next) => {
   var { items, sent, name, marketPlace, wareHouse } = req.body;

@@ -1,15 +1,43 @@
 const { remove } = require("winston");
 const mysql = require("../mysql"),
-     { getSuppliers, addSuppliers, deleteSuppliers, updateSuppliers, productSuppliers, updateProductSuppliers, addProductSuppliers, deleteProductSuppliers,getProductSuppliersAll } = require("../../util/sqlquery")
+     { getSuppliers, addSuppliers, deleteSuppliers, updateSuppliers, productSuppliers, updateProductSuppliers, addProductSuppliers, deleteProductSuppliers,getProductSuppliersAll, getSuppliersCount } = require("../../util/sqlquery");
+const CommonUtil = require("../../util/common");
 
 class suppliersService {
-     getAllSuppliers(user) {
-          return new Promise((resolve, reject) => {
-               mysql.query(getSuppliers, null)
-                    .then(suppliers => resolve(suppliers))
-                    .catch(err => reject(err));
-          })
-     }
+    getAllSuppliers(queryParams) {
+      return new Promise((resolve, reject) => {
+        const { searchParam } = queryParams;
+        let sqlQuery = getSuppliers;
+
+        const whereParams = []
+        if (searchParam) {
+          sqlQuery += " where supplierName LIKE ?"
+          whereParams.push(`%${searchParam}%`);
+        }
+
+        sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams);
+
+        mysql.query(sqlQuery, whereParams)
+          .then(suppliers => resolve(suppliers))
+          .catch(err => reject(err));
+      })
+    }
+    getProfitCountQuery(queryParams) {
+      return new Promise((resolve, reject) => {
+        const { searchParam } = queryParams;
+        let sqlQuery = getSuppliersCount;
+
+        const whereParams = []
+        if (searchParam) {
+          sqlQuery += " where supplierName LIKE ?"
+          whereParams.push(`%${searchParam}%`);
+        }
+
+        mysql.query(sqlQuery, whereParams)
+          .then(suppliers => resolve(suppliers))
+          .catch(err => reject(err));
+      })
+    }
      addSupplier(user, supplier) {
           return new Promise((resolve, reject) => {
                supplier["user"] = user;
