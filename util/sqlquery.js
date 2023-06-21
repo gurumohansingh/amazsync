@@ -6,6 +6,17 @@ module.exports = {
     getProductwhere: `SELECT * from products where amzlive =?`,
     updateProductsLive: "update products set amzlive=0",
     getProduct: `SELECT * from products`,
+    getProductByPurchaseOrder: `SELECT p.*
+    FROM purchase_orders po
+    CROSS JOIN JSON_TABLE(
+        po.items,
+        "$[*]"
+        COLUMNS (
+            sku VARCHAR(255) PATH "$.sku"
+        )
+    ) AS jt
+    JOIN products p ON jt.sku = p.sellerSku
+    WHERE po.id IN (?)`,
     getProductCount: `SELECT COUNT(*) as totalProducts from products`,
     getProductBySku: `SELECT * from products where sellerSKU=?`,
     getMasterSku: `SELECT sellerSKU from products where ismasterSku=1`,
@@ -69,8 +80,9 @@ module.exports = {
     updateRoles: 'update users set  role=? where email=?',
     savePurchaseOrder: 'insert into purchase_orders set ?',
     getPurchaseOrder: 'SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders where is_virtual <1 || is_virtual is null ORDER by last_modified DESC',
+    getPurchaseOrderCount: 'SELECT COUNT(*) as totalOrders FROM purchase_orders where is_virtual <1 || is_virtual is null',
     getVirtualPurchaseOrder: 'SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,warehouse,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders where is_virtual =? ORDER by last_modified DESC',
-    getVirtualPurchaseOrderCount: 'SELECT COUNT(*) FROM purchase_orders where is_virtual =? ORDER by last_modified DESC',
+    getVirtualPurchaseOrderCount: 'SELECT COUNT(*) as totalOrders FROM purchase_orders where is_virtual =? ORDER by last_modified DESC',
     getVirtualShipmentById: 'SELECT id,is_virtual,reference,warehouse,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders where is_virtual =1 and id=? ORDER by last_modified DESC',
     deletePurchaseOrder: 'DELETE  FROM purchase_orders where is_virtual is null',
     updateVirtualShipmentById: "UPDATE purchase_orders set items=? WHERE id=?",

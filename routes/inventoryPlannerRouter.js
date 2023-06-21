@@ -26,14 +26,30 @@ router.get("/sync", async (req, res, next) => {
 
 router.get("/getpurchaseorder", async (req, res, next) => {
   try {
-    let result = [];
+    let orders = [];
+    let totalOrderCount = 0
+    let totalCount = 0;
+    const { start = 0, limit = 25 } = req.query;
+
     if (!req.query.type || req.query.type == 0) {
-      result = await inventoryPlannerService.getPurchaseOrder() 
+      orders = await inventoryPlannerService.getPurchaseOrder(req.query) 
+      totalOrderCount = await inventoryPlannerService.getPurchaseOrderCount(req.query) 
     } else {
-      result = await inventoryPlannerService.getVirtualShipments(req.query.type)
+      orders = await inventoryPlannerService.getVirtualShipments(req.query)
+      totalOrderCount = await inventoryPlannerService.getVirtualShipmentsCount(req.query)
     }
 
-    res.send(result);
+    if (Array.isArray(totalOrderCount) && totalOrderCount.length) {
+      totalCount = totalOrderCount.find(count => count)?.totalOrders || 0;
+    }
+
+    const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
+  
+    res.send({
+      currentPage,
+      total: totalCount,
+      orders,
+    })
   } catch(error) {
     log.error(`getpurchaseorder ${error.message}`);
     res.status(500).send(error);

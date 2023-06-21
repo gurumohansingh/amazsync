@@ -1,6 +1,6 @@
 const CommonUtil = require("../../util/common");
 const mysql = require("../mysql"),
-     { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount } = require("../../util/sqlquery")
+     { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount, getProductByPurchaseOrder } = require("../../util/sqlquery")
 const sellerSettings = require('../settings/sellerSettings');
 class productsService {
      getAllProducts(queryParams) {
@@ -103,6 +103,13 @@ class productsService {
                     .then(products => resolve(products))
                     .catch(err => reject(err));
           })
+     }
+     getFullProductsByPurchaseOrder(params) {
+      return new Promise((resolve, reject) => {
+        mysql.query(getProductByPurchaseOrder, [params])
+          .then(products => resolve(products))
+          .catch(err => reject(err));
+      })
      }
      getMastersku() {
           return new Promise((resolve, reject) => {
