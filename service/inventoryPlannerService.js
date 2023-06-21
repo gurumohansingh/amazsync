@@ -198,15 +198,23 @@ class inventoryPlannerService {
   }
   async getPurchaseOrder(queryParams) {
     return new Promise((resolve, reject) => {
-      const { sorting } = queryParams;
+      const { sorting, searchParam } = queryParams;
 
       let sqlQuery = getPurchaseOrder;
+      const whereParams = [];
+
+      if (searchParam) {
+        sqlQuery += " where is_virtual <1 || is_virtual is null AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
+        whereParams.push(`%${searchParam}%`);
+        whereParams.push(`%${searchParam}%`);
+      } else {
+        sqlQuery += " where is_virtual <1 || is_virtual is null ORDER by last_modified DESC"
+      }
 
       if (sorting) {
         sqlQuery.replace('ORDER by last_modified DESC', '')
       }
 
-      const whereParams = [];
       sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams)
 
       mysql
@@ -244,11 +252,21 @@ class inventoryPlannerService {
     });
   }
 
-  async getPurchaseOrderCount() {
+  async getPurchaseOrderCount(queryParams) {
     return new Promise((resolve, reject) => {
+      const { searchParam } = queryParams;
+
+      let sqlQuery = getPurchaseOrderCount;
+      const whereParams = [];
+
+      if (searchParam) {
+        sqlQuery += " AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
+        whereParams.push(`%${searchParam}%`);
+        whereParams.push(`%${searchParam}%`);
+      }
 
       mysql
-        .query(getPurchaseOrderCount)
+        .query(sqlQuery, whereParams)
         .then(async (shipments) => {
           resolve(shipments);
         })
@@ -258,13 +276,19 @@ class inventoryPlannerService {
     }); 
   }
   async getVirtualShipments(queryParams) {
-    const { type, sorting } = queryParams;
+    const { type, sorting, searchParam } = queryParams;
 
     let whereParams = []
     let sqlQuery = getVirtualPurchaseOrder;
 
-    if (type) {
-      whereParams.push(type)
+    whereParams.push(type)
+
+    if (searchParam) {
+      sqlQuery += " where is_virtual =? AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
+      whereParams.push(`%${searchParam}%`);
+      whereParams.push(`%${searchParam}%`);
+    } else {
+      sqlQuery += " where is_virtual =? ORDER by last_modified DESC"
     }
 
     if (sorting) {
@@ -307,9 +331,20 @@ class inventoryPlannerService {
   }
 
   async getVirtualShipmentsCount(queryParams) {
-    const { type } = queryParams;
+    const { type, searchParam } = queryParams;
 
-    const virtualShipments = await mysql.query(getVirtualPurchaseOrderCount, type);
+    let sqlQuery = getVirtualPurchaseOrderCount;
+
+    const whereParams = [];
+    whereParams.push(type);
+
+    if (searchParam) {
+      sqlQuery += " AND remoteId LIKE ? OR reference LIKE ?"
+      whereParams.push(`%${searchParam}%`);
+      whereParams.push(`%${searchParam}%`);
+    }
+
+    const virtualShipments = await mysql.query(sqlQuery, whereParams);
   
     return virtualShipments;
   }

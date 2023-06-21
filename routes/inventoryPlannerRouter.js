@@ -51,6 +51,7 @@ router.get("/getpurchaseorder", async (req, res, next) => {
       orders,
     })
   } catch(error) {
+    console.log(error);
     log.error(`getpurchaseorder ${error.message}`);
     res.status(500).send(error);
   }
