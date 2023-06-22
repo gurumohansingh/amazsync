@@ -36,6 +36,11 @@ Ext.define('AmazSync.view.virtualShipments.VirtualShipmentsGrid', {
         dataIndex: 'qty_to_send_amz'
     }, {
         text: 'CASE',
-        dataIndex: 'casePackQuantity'
+        dataIndex: 'casePackQuantity',
+        renderer: (value, metaData, record) => {
+            const qtyToSend = record.get('qty_to_send_amz');
+            if (value > qtyToSend) return qtyToSend;
+            return value;
+        }
     }]
 });
