@@ -42,6 +42,8 @@ class restockService {
 
       if (searchParam) {
         params.push({ key: 'p1.itemName', value: `%${searchParam}%`, isSearch: true })
+        params.push({ key: 'p1.amazonASIN', value: `%${searchParam}%`, isSearch: true })
+        params.push({ key: 'p1.sellerSKU', value: `%${searchParam}%`, isSearch: true })
       }
 
       if (wareHouse) {
@@ -49,15 +51,26 @@ class restockService {
       }
 
       if (params.length) {
-        sql +=
-          " where " +
-          params
-            .map((param) =>
-              param.isSearch ? `${param.key} LIKE ?` : `${param.key}=?`
-            )
-            .join(" AND ");
-      }
-
+        const searchParams = params.filter((param) => param.isSearch);
+        const nonSearchParams = params.filter((param) => !param.isSearch);
+      
+        if (searchParams.length) {
+          sql +=
+            " where " +
+            searchParams
+              .map((param) => `${param.key} LIKE ?`)
+              .join(" OR ");
+        }
+      
+        if (nonSearchParams.length) {
+          const operator = searchParams.length ? " AND " : " where ";
+          sql +=
+            operator +
+            nonSearchParams
+              .map((param) => `${param.key}=?`)
+              .join(" AND ");
+        }
+      }      
 
       if (stockFilter) {
 

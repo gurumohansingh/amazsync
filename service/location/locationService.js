@@ -110,7 +110,9 @@ class locationService {
         }
 
         if (searchParam) {
-          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ?"
+          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
+          whereParams.push(`%${searchParam}%`);
+          whereParams.push(`%${searchParam}%`);
           whereParams.push(`%${searchParam}%`);
         }
 
@@ -155,7 +157,9 @@ class locationService {
         }
 
         if (searchParam) {
-          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ?"
+          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
+          whereParams.push(`%${searchParam}%`);
+          whereParams.push(`%${searchParam}%`);
           whereParams.push(`%${searchParam}%`);
         }
         
