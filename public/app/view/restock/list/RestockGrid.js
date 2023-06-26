@@ -410,8 +410,8 @@ Ext.define('AmazSync.view.restock.list.RestockGrid', {
                 type: 'number'
             },
         }, {
-            text: 'Recommended Order Qty',
-            tooltip: 'Recommended Order Qty',
+            text: 'Recommended Ship Qty',
+            tooltip: 'Recommended Ship Qty',
             dataIndex: 'amz_recommended_order_qty',
             width: 180,
             filter: {
@@ -419,8 +419,8 @@ Ext.define('AmazSync.view.restock.list.RestockGrid', {
             },
         }, {
             xtype: 'datecolumn',
-            text: 'Recommended Order Date',
-            tooltip: 'Recommended Order Date',
+            text: 'Recommended Ship Date',
+            tooltip: 'Recommended Ship Date',
             dataIndex: 'amz_recommended_order_date',
             width: 180,
             //format: 'd M, Y g: i a',
