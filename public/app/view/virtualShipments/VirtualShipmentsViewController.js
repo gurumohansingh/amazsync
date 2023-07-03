@@ -19,8 +19,10 @@ Ext.define('AmazSync.view.virtualShipments.VirtualShipmentsViewController', {
             return false
         }
         virtualShipmentStore.each((record) => {
+            let castPackQuantity = record.get('casePackQuantity');
+            if (castPackQuantity > record.get('qty_to_send_amz')) castPackQuantity = qtyToSend;
 
-            sku.push({ sku: record.get('amz_sku'),masterSKU:record.get('masterSKU'), sent: record.get('qty_to_send_amz'), casePackQuantity: record.get('casePackQuantity') });
+            sku.push({ sku: record.get('amz_sku'),masterSKU:record.get('masterSKU'), sent: record.get('qty_to_send_amz'), casePackQuantity: castPackQuantity });
             totalShipments += +record.get('qty_to_send_amz');
         })
         
