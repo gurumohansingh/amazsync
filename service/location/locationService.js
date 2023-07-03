@@ -1,7 +1,8 @@
+const CommonUtil = require("../../util/common");
 const mysql = require("../mysql"),
     { getBinLocations, getWarehouse, addWarehouse, updateWarehouse, deleteWarehouse, addBinLocation, updateBinLocation,
         deleteBinLocation, validateBilocation, removeproductlocation, updateInventoryLocation, updateInventoryStock, addInventoryStock, 
-        updateInventoryStockNoMaster,getInventoryStock, localInventory } = require("../../util/sqlquery");
+        updateInventoryStockNoMaster,getInventoryStock, localInventory, localInventoryCount } = require("../../util/sqlquery");
 const csv = require('csvtojson');
 class locationService {
     getbinlocations(warehouseId) {
@@ -98,11 +99,96 @@ class locationService {
         })
     }
     getlocalinventory(params) {
-        return new Promise((resolve, reject) => {
-            mysql.query(localInventory, params)
-                .then(list => resolve(list))
-                .catch(err => reject(err));
-        })
+      return new Promise((resolve, reject) => {
+        let localInventoryQuery = localInventory;
+        const { warehouseId, searchParam, stockFilter, locationFilter } = params || {}
+
+        let whereParams = []
+
+        if (warehouseId) {
+          whereParams.push(warehouseId)
+        }
+
+        if (searchParam) {
+          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
+          whereParams.push(`%${searchParam}%`);
+          whereParams.push(`%${searchParam}%`);
+          whereParams.push(`%${searchParam}%`);
+        }
+
+        if (stockFilter) {
+          let whereClause = ' AND'
+          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+
+          let updatedClause = '';
+          if (Number(stockFilter) === 2) updatedClause = ' = 0';
+          if (Number(stockFilter) === 1) updatedClause = ' > 0';
+          
+          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.stock ${updatedClause}`
+        }
+
+        if (locationFilter) {
+          let whereClause = ' AND'
+          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+
+          let updatedClause = '';
+          if (Number(locationFilter) === 2) updatedClause = ' is null';
+          if (Number(locationFilter) === 1) updatedClause = ' is not null';
+          
+          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.binlocationname ${updatedClause}`
+        }
+
+        localInventoryQuery = CommonUtil.createPaginationAndSortingQuery(localInventoryQuery, params, whereParams)
+        
+        mysql.query(localInventoryQuery, whereParams)
+          .then(list => resolve(list))
+          .catch(err => reject(err));
+      })
+    }
+    getLocalInventoryCount(params) {
+      return new Promise((resolve, reject) => {
+        let localInventoryQuery = localInventoryCount;
+        const { warehouseId, searchParam, stockFilter, locationFilter } = params || {}
+
+        let whereParams = []
+
+        if (warehouseId) {
+          whereParams.push(warehouseId)
+        }
+
+        if (searchParam) {
+          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
+          whereParams.push(`%${searchParam}%`);
+          whereParams.push(`%${searchParam}%`);
+          whereParams.push(`%${searchParam}%`);
+        }
+        
+        if (stockFilter) {
+          let whereClause = ' AND'
+          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+
+          let updatedClause = '';
+          if (Number(stockFilter) === 2) updatedClause = ' = 0';
+          if (Number(stockFilter) === 1) updatedClause = ' > 0';
+          
+          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.stock ${updatedClause}`
+        }
+
+        if (locationFilter) {
+          let whereClause = ' AND'
+          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+
+          let updatedClause = '';
+          if (Number(locationFilter) === 2) updatedClause = ' is null';
+          if (Number(locationFilter) === 1) updatedClause = ' is not null';
+          
+          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.binlocationname ${updatedClause}`
+        }
+
+        mysql.query(localInventoryQuery, whereParams)
+          .then(list => resolve(list))
+          .catch(err => reject(err));
+      })
     }
     getInventoryStock(params) {
         return new Promise((resolve, reject) => {

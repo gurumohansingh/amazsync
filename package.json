@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "amazon-mws": "0.0.27",
@@ -29,6 +30,7 @@
     "morgan": "~1.9.1",
     "mws-api": "^3.0.0",
     "mysql": "^2.18.1",
+    "nodemon": "^2.0.22",
     "string-format": "^2.0.0",
     "url": "^0.11.0",
     "winston": "^3.3.3",

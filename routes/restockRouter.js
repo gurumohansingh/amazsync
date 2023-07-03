@@ -4,15 +4,34 @@ var reStockService = require("../service/restock/restockService");
 var log = require("../service/log");
 var { authorization } = require("../service/requestValidate");
 
-router.get("/", /*authorization("Locations View"),*/(req, res, next) => {
-     reStockService.getRestock(req.query.wareHouse, req.query.marketPlace)
-          .then(restock => {
-               res.send(restock);
-          })
-          .catch(err => {
-               log.error(err);
-               res.status(500).send(err);
-          })
-});
+router.get(
+  "/",
+  /*authorization("Locations View"),*/ async (req, res, next) => {
+    try {
+      let totalCount = 0;
+      const { start = 0, limit = 25 } = req.query;
+
+      const inventories = await reStockService.getRestock(req.query)
+      const inventoriesCount = await reStockService.getRestockCount(req.query)
+  
+      if (Array.isArray(inventoriesCount) && inventoriesCount.length) {
+        totalCount = inventoriesCount.find(count => count)?.totalInventories || 0;
+      }
+  
+      const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
+  
+      res.send({
+        currentPage,
+        total: totalCount,
+        inventories,
+      })
+    } catch(error) {
+      console.log(error);
+      log.error(error);
+      res.status(500).send(error);
+    }
+
+  }
+);
 
 module.exports = router;

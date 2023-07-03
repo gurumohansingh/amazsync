@@ -24,28 +24,38 @@ router.get("/sync", async (req, res, next) => {
   };
 });
 
-router.get("/getpurchaseorder", (req, res, next) => {
-  if (req.query.type == 0|| !req.query.type  ) {
-    inventoryPlannerService
-      .getPurchaseOrder()
-      .then((response) => {
-        res.send(response);
-      })
-      .catch((err) => {
-        log.error(`getpurchaseorder ${err.message}`);
-        res.status(500).send(err);
-      });
+router.get("/getpurchaseorder", async (req, res, next) => {
+  try {
+    let orders = [];
+    let totalOrderCount = 0
+    let totalCount = 0;
+    const { start = 0, limit = 25 } = req.query;
+
+    if (!req.query.type || req.query.type == 0) {
+      orders = await inventoryPlannerService.getPurchaseOrder(req.query) 
+      totalOrderCount = await inventoryPlannerService.getPurchaseOrderCount(req.query) 
+    } else {
+      orders = await inventoryPlannerService.getVirtualShipments(req.query)
+      totalOrderCount = await inventoryPlannerService.getVirtualShipmentsCount(req.query)
+    }
+
+    if (Array.isArray(totalOrderCount) && totalOrderCount.length) {
+      totalCount = totalOrderCount.find(count => count)?.totalOrders || 0;
+    }
+
+    const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
+  
+    res.send({
+      currentPage,
+      total: totalCount,
+      orders,
+    })
+  } catch(error) {
+    console.log(error);
+    log.error(`getpurchaseorder ${error.message}`);
+    res.status(500).send(error);
   }
-  else {
-    inventoryPlannerService.getVirtualShipments(req.query.type)
-      .then((response) => {
-        res.send(response);
-      })
-      .catch((err) => {
-        log.error(`getpurchaseorder ${err.message}`);
-        res.status(500).send(err);
-      });
-  }
+
 });
 router.post("/addvirtualshipment", async (req, res, next) => {
   var { items, sent, name, marketPlace, wareHouse } = req.body;

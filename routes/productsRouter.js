@@ -2,15 +2,31 @@ var express = require("express");
 var router = express.Router();
 const productsService = require("../service/products/productsService");
 var { authorization } = require("../service/requestValidate");
+const { isValidCode } = require("../util/requestValidate");
 
-router.get("/getallproduct", authorization("Product View"), (req, res, next) => {
-  productsService.getAllProducts(req.loggedUser.username, req.query['amazonLiveStatus'])
-    .then(response => {
-      res.send(response);
+router.get("/getallproduct", authorization("Product View"), async (req, res, next) => {
+  let totalCount = 0;
+  const { start, limit } = req.query;
+
+  try {
+    const products = await productsService.getAllProducts(req.query);
+    const productCountResult = await productsService.getTotalRecordsForProductList(req.query);
+
+    if (Array.isArray(productCountResult) && productCountResult.length) {
+      totalCount = productCountResult.find(count => count)?.totalProducts || 0;
+    }
+
+    const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
+
+    res.send({
+      currentPage,
+      total: totalCount,
+      products,
     })
-    .catch(err => {
-      res.status(500).send(err);
-    })
+
+  } catch(error) {
+    res.status(isValidCode(error.code) ? error.code : 500).send(error)
+  }
 });
 
 router.get("/skulist", authorization("Product View"), (req, res, next) => {

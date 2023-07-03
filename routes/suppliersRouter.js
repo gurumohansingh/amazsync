@@ -3,17 +3,31 @@ var router = express.Router();
 var log = require('../service/log');
 const suppliersService = require("../service/products/suppliersService");
 var { authorization } = require("../service/requestValidate");
+const { isValidCode } = require("../util/requestValidate");
 
-router.get("/", authorization("Suppliers View"), (req, res, next) => {
-     suppliersService
-          .getAllSuppliers(req.loggedUser.username)
-          .then((response) => {
-               res.send(response);
-          })
-          .catch((err) => {
-               log.error(`suppliersRouter ${err.message}`);
-               res.status(500).send(err);
-          });
+router.get("/", authorization("Suppliers View"), async (req, res, next) => {
+  try {
+    let totalCount = 0;
+    const { start = 0, limit = 25 } = req.query;
+    const suppliers = await suppliersService.getAllSuppliers(req.query)
+    const supplierCount = await suppliersService.getProfitCountQuery(req.query)
+
+    if (Array.isArray(supplierCount) && supplierCount.length) {
+      totalCount = supplierCount.find(count => count)?.totalSupplier || 0;
+    }
+
+    const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
+
+    res.send({
+      currentPage,
+      total: totalCount,
+      suppliers,
+    })
+  } catch (error) {
+    console.log("error", error)
+    log.error(`suppliersRouter ${error.message}`);
+    res.status(isValidCode(error.code) ? error.code : 500).send(error)  
+  }
 });
 router.put("/", authorization("Suppliers Edit"), (req, res, next) => {
      suppliersService
