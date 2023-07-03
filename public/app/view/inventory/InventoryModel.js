@@ -4,7 +4,7 @@ Ext.define('AmazSync.view.inventory.InventoryModel', {
     data: {
         name: 'AmazSync',
         defaultWarehouse: null,
-        stockFilter: { stock: 3 },
+        stockFilter: { stock: 1 },
         searchFilter: '',
         totalCount: 0,
         locationFilter: { location: 3 }
