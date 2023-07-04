@@ -24,6 +24,7 @@ module.exports = {
     addProduct: 'insert into products(sellerId,user,itemName,sellerSKU,status,itemNote,dateAdded,amazonASIN,productId,productIdType,amzlive) VALUES (?)',
     updateProduct: 'update products set amzlive=1,itemName=?,status=?,itemNote=?,productId=?,productIdType=? where sellerId=? and sellerSKU=?',
     updateProductDetailsbyId: 'update products set 	amazonOversized=?, imageUrl=?,imageHeight=?,imageWidth=?,packageDimensions=?,dimensions=?,lastUpdateFromAmazon=CURRENT_TIMESTAMP() where sellerSKU=?',
+    updateProductDetailsbyASIN: 'update products set 	amazonOversized=?, imageUrl=?,imageHeight=?,imageWidth=?,packageDimensions=?,dimensions=?,lastUpdateFromAmazon=CURRENT_TIMESTAMP() where amazonASIN=?',
     updateFNSKU: 'update products set amazonFNSKU=? where sellerId=? and sellerSKU=?',
     addLastSynch: 'insert into lastSyne SET ?',
     selectLastSynch: 'SELECT  * FROM `lastSyne` order by id DESC LIMIT 10',

@@ -25,8 +25,8 @@ router.get("/nanosync", (req, res, next) => {
 		})
 });
 
-router.get("/sync/:sku", (req, res, next) => {
-	mwssyncService.getMatchingProductForIdSingle(req.loggedUser.username, req.params.sku)
+router.get("/sync/:asin", (req, res, next) => {
+	mwssyncService.getMatchingProductForIdSingle(req.loggedUser.username, req.params.asin)
 		.then(response => {
 			res.send("Updated Successfully");
 		})
