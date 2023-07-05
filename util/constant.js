@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = {
     SELLERSETTINGGROUP: 'sellerSettingGroup',
     IDTYPE: 'SellerSKU',
@@ -17,5 +19,6 @@ module.exports = {
     INVENTORY_PLANNER: 'inventoryPlanner',
     INVENTORY_PLANNER_SERVICE_URL: 'https://app.inventory-planner.com/api/v1/purchase-orders',
     MARKETPLACE_ID_US: "ATVPDKIKX0DER",
-    MARKETPLACE_ID_CA: "A2EUQ1WTGCTBG2"
+    MARKETPLACE_ID_CA: "A2EUQ1WTGCTBG2",
+    productDefault: () => ["","","","",false,"",false,false,false,"","","","",0,"","","","","","","","","","",moment().format("YYYY-MM-DD HH:mm:ss"),"","","",false,0,0,0,"","","","","",0,0,"",""]
 }

@@ -13,6 +13,7 @@ const mwsService = require("../mws/mwsService"),
     getRestockData,
     addRestock,
     updateRestock,
+    addProductFromSync,
   } = require("../../util/sqlquery"),
   log = require("../log"),
   historyService = require("../../service/history/historyService"),
@@ -21,6 +22,7 @@ const mwsService = require("../mws/mwsService"),
 const inventoryPlannerService = require("../../service/inventoryPlannerService");
 const { configure } = require("winston");
 const { capitalizeFirstLetter } = require("../../helper");
+const moment = require("moment");
 
 class mwsSyncService {
   async updateInvetory(user) {
@@ -86,9 +88,10 @@ class mwsSyncService {
           );
 
         log.info(
-          `Total products  ${latestDataAvail.length} for reportid ${latestDataAvail}`
+          `Total products  ${latestDataAvail.length} for reportid`
         );
 
+        
         const savedProductsList = await mysql.query(getProduct, null);
 
         const latestDataOnly = await this.filterNewSkuData(
@@ -120,6 +123,7 @@ class mwsSyncService {
     let totalupdateList = [],
       totalAddList = 0;
     var config = await mwsService.getConfig(user);
+    let bulkInsertData = []
     try {
       serverProducts.forEach((product) => {
         var found = DBProducts.filter((item) => {
@@ -163,6 +167,7 @@ class mwsSyncService {
             JSON.stringify(oldValue),
             JSON.stringify(newValue)
           );
+
           mysql
             .query(updateProduct, updateList)
             .then((sqlResponse) => {
@@ -181,12 +186,13 @@ class mwsSyncService {
             product["seller-sku"],
             product["status"] || "",
             product["item-note"] || "",
-            product["open-date"] || "",
+            product["open-date"] ? moment(product["open-date"]).format("YYYY-MM-DD HH:mm:ss") : moment().format("YYYY-MM-DD HH:mm:ss"),
             product["asin1"] || "",
             product["product-id"] || "",
             product["product-id-type"] || "",
             1,
           ];
+
           var newValue = {
             sellerId: config.SellerId,
             user: user,
@@ -207,20 +213,21 @@ class mwsSyncService {
             null,
             JSON.stringify(newValue)
           );
-          mysql
-            .query(addProduct, [newList])
-            .then((sqlResponse) => {
-              // log.info(`Total added products ${sqlResponse.affectedRows}`);
-            })
-            .catch((error) => {
-              log.error(`Error while adding  products ${error}`);
-            });
+          
+          bulkInsertData.push([
+            ...newList,
+            ...constant.productDefault(),
+          ])
         }
       });
 
       log.info(`Adding new products ${totalAddList}`);
       log.info(`Adding new products ${totalAddList}`);
       log.info(`Updating products ${totalupdateList.length}`);
+
+      if (bulkInsertData.length) {
+        await this.batchInsertDatainDB(bulkInsertData);
+      }
       // if (newList.length > 0) {
       //      mysql.query(addProduct, newList)
       //           .then(sqlResponse => {
@@ -233,7 +240,46 @@ class mwsSyncService {
       return { newProducts: totalAddList, updatedProducts: totalupdateList };
     } catch (error) {
       log.info(`Exception on updating/adding products ${error}`);
+      throw error
     }
+  }
+
+  async batchInsertDatainDB(bulkData) {
+    try {
+      log.info("Bulk insert started!");
+
+      const chunks = []; 
+  
+      const chunkSize = 100;   
+      
+      for (let i = 0; i < bulkData.length; i += chunkSize) {
+        chunks.push(bulkData.slice(i, i + chunkSize));
+      }
+      
+      for (const chunk of chunks) {
+        log.info(`bulk inserting ${chunk.length} records`)
+        await this.insertData(addProductFromSync, chunk);
+      }
+  
+      log.info("Bulk insert completed successfully!");
+  
+    } catch (error) {
+      log.error(`Error while adding products: ${error}`);
+      throw error
+    }
+  }
+  
+  async insertData(query, data) {
+    return new Promise((resolve, reject) => {
+      mysql.query(query, [data], (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          log.info('Data inserted successfully');
+          resolve();
+        }
+      })
+    })
   }
 
   async getMatchingProductForId(user, savedProductsList = []) {
