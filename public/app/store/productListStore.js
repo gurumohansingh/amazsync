@@ -9,7 +9,8 @@ Ext.define('AmazSync.store.productList', {
           url: commonutil.getUrl('products/getallproduct'),
           reader: {
                type: 'json',
-               rootProperty: 'users'
+               rootProperty: 'products',
+               totalProperty: 'total'
           }
      }
 });

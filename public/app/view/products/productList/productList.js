@@ -19,9 +19,9 @@ Ext.define('AmazSync.view.products.productList.productList', {
     reference: 'productList',
     store: 'productList',
     plugins: 'gridfilters',
-    bbar: {
+    bbar: {        
         xtype: 'pagingtoolbar',
-        displayInfo: true
+        displayInfo: true,        
     },
     tools: [{
         xtype: 'button',
@@ -48,12 +48,6 @@ Ext.define('AmazSync.view.products.productList.productList', {
         handler: 'nanoUpdateInventory',
         bind: {
             hidden: '{roleSyncInventoryView}'
-        }
-    },
-    {
-        xtype: 'label',
-        bind: {
-            html: '<span>Total Products: {totalCount}</span>',
         }
     }],
     titlePosition: 3,
