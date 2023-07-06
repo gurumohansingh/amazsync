@@ -91,11 +91,16 @@ class mwsSyncService {
           `Total products  ${latestDataAvail.length} for reportid`
         );
 
+        const skuList = latestDataAvail.map(product => product['seller-sku']);
+
+        const prepFetched = await sellingPartnerAPIService.getPrepInstruction(skuList);
+
+        const lastestData = this.setPrepInsideProducts(latestDataAvail, prepFetched)
         
         const savedProductsList = await mysql.query(getProduct, null);
 
         const latestDataOnly = await this.filterNewSkuData(
-          latestDataAvail,
+          lastestData,
           savedProductsList
         );
         //newSkuList: newSkuList, dbSkuList: dbSkuList
@@ -119,6 +124,23 @@ class mwsSyncService {
     });
   }
 
+  setPrepInsideProducts(products, prepsInstructions) {
+    if (!prepsInstructions.length || !products.length) {
+      return products;
+    } 
+
+    products.forEach(product => {
+      const prepInst = prepsInstructions.find(inst => inst.SellerSKU === product['seller-sku'])
+
+      if (!prepInst) {
+        return;
+      }
+
+      product['prepInstruction'] = prepInst?.PrepInstructionList?.join(',') || ''
+    })
+    return products;
+  }
+
   async synchProductWithDB(serverProducts, DBProducts = [], user) {
     let totalupdateList = [],
       totalAddList = 0;
@@ -132,6 +154,7 @@ class mwsSyncService {
         if (found && found.length > 0) {
           //itemName=?,status=?,itemNote=?,productId=?,productIdType=?,sellerId,sellerSKU
           var updateList = [
+            product["prepInstruction"] || "",
             product["item-name"],
             product["status"],
             product["item-note"],
@@ -150,6 +173,7 @@ class mwsSyncService {
             productIdType: found[0]["productIdType"],
             sellerId: found[0]["sellerId"],
             sellerSKU: found[0]["sellerSKU"],
+            amazonPrepInstructions: found[0]["amazonPrepInstructions"],
           };
           var newValue = {
             itemName: product["item-name"],
@@ -159,6 +183,7 @@ class mwsSyncService {
             productIdType: product["product-id-type"],
             sellerId: config.SellerId,
             sellerSKU: product["seller-sku"],
+            amazonPrepInstructions: product["prepInstruction"],
           };
 
           historyService.addHistory(
@@ -180,6 +205,7 @@ class mwsSyncService {
           //sellerId,user,imageUrl,itemName,sellerSKU,status,itemNote,dateAdded,amazonASIN,productId,productIdType
           totalAddList++;
           var newList = [
+            product['prepInstruction'] || "",
             config.SellerId,
             user,
             product["item-name"] || "",
@@ -203,6 +229,7 @@ class mwsSyncService {
             dateAdded: product["open-date"] || "",
             amazonASIN: product["asin1"] || "",
             productId: product["product-id"] || "",
+            amazonPrepInstructions: product['prepInstruction'],
             productIdType: product["product-id-type"] || 0,
             amzlive: 1,
           };
