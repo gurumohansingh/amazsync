@@ -31,7 +31,7 @@ Ext.define('AmazSync.view.products.ProductsPanel', {
             labelAlign: 'left',
             name: 'sreachBy',
             emptyText: 'Search by Name, SKU, ASIN',
-            reference: 'searchFilter',
+            reference: 'searchByTextFilter',
             bind: {
                 value: '{searchFilter}'
             },
@@ -105,6 +105,7 @@ Ext.define('AmazSync.view.products.ProductsPanel', {
                 labelAlign: 'left',
                 fieldLabel: 'Inventory Type',
                 labelWidth: 120,
+                reference:'inventoryTypeFilter',
                 defaults: {
                     name: 'liveonamazon',
                     margin: '0 0 0 10px',
@@ -113,7 +114,7 @@ Ext.define('AmazSync.view.products.ProductsPanel', {
                     value: '{livestatusFilter}'
                 },
                 listeners: {
-                    change: 'applyLiveFilter'
+                    change: 'applyFilter'
                 },
                 items: [
                     {
