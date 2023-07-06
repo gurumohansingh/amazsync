@@ -53,7 +53,9 @@ class sellingPartnerAPIService {
 
       const reportDocuments = await Promise.all(promises);
 
-      return reportDocuments;
+      const flatDocuments = reportDocuments.flat();
+      log.info(flatDocuments.length)
+      return flatDocuments;
     } catch (error) {
       log.error(
         "Error fetching report documents using Selling Partner API:",
@@ -87,7 +89,7 @@ class sellingPartnerAPIService {
       const response = await sellingPartner.callAPI({
         operation: "getCatalogItem",
         path: {
-          asin,
+          asin: "B0774Z3LVV",
         },
         query: {
           marketplaceIds: config.MarketPalaceID,
@@ -96,6 +98,26 @@ class sellingPartnerAPIService {
       });
   
       log.info(JSON.stringify(response));
+      return response;
+    } catch (error) {
+      log.error(error);
+      throw error;
+    }
+  }
+  
+  async getPrepInstruction(sellerSKUs) {
+    log.info("Getting getPrep instruction against", JSON.stringify(sellerSKUs));
+    try {
+  
+      const response = await sellingPartner.callAPI({
+        operation: "getPrepInstructions",
+        query: {
+          SellerSKUList: sellerSKUs,
+          ShipToCountryCode: "CA",
+        },  
+      });
+  
+      log.info("Getting getPrep instruction completed");
       return response;
     } catch (error) {
       log.error(error);
