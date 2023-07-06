@@ -189,7 +189,7 @@ class mwsSyncService {
             product["open-date"] ? moment(product["open-date"]).format("YYYY-MM-DD HH:mm:ss") : moment().format("YYYY-MM-DD HH:mm:ss"),
             product["asin1"] || "",
             product["product-id"] || "",
-            product["product-id-type"] || "",
+            product["product-id-type"] || 0,
             1,
           ];
 
@@ -203,7 +203,7 @@ class mwsSyncService {
             dateAdded: product["open-date"] || "",
             amazonASIN: product["asin1"] || "",
             productId: product["product-id"] || "",
-            productIdType: product["product-id-type"] || "",
+            productIdType: product["product-id-type"] || 0,
             amzlive: 1,
           };
 
@@ -259,6 +259,7 @@ class mwsSyncService {
       for (const chunk of chunks) {
         log.info(`bulk inserting ${chunk.length} records`)
         await this.insertData(addProductFromSync, chunk);
+        log.info(`bulk inserting ${chunk.length} records completed`)
       }
   
       log.info("Bulk insert completed successfully!");
@@ -270,16 +271,7 @@ class mwsSyncService {
   }
   
   async insertData(query, data) {
-    return new Promise((resolve, reject) => {
-      mysql.query(query, [data], (error, response) => {
-        if (error) {
-          reject(error);
-        } else {
-          log.info('Data inserted successfully');
-          resolve();
-        }
-      })
-    })
+    return mysql.query(query, [data])
   }
 
   async getMatchingProductForId(user, savedProductsList = []) {
@@ -322,7 +314,7 @@ class mwsSyncService {
                 imageUrl = "",
                 imageHeight = "",
                 imageWidth = "",
-                oversize = null;
+                oversize = "";
               if (
                 detail["PackageDimensions"] &&
                 detail["PackageDimensions"].Weight
