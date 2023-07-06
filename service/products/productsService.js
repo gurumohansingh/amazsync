@@ -17,8 +17,10 @@ class productsService {
           }
 
           if (searchParam) {
-            const searchQuery = productQuery.includes('where') ? " AND itemName LIKE ?" : " where itemName LIKE ?"
+            const searchQuery = (productQuery.includes('where') ? " AND " : " where ")  + "itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?"
             productQuery = productQuery + `${searchQuery}`
+            whereParams.push(`%${searchParam}%`);
+            whereParams.push(`%${searchParam}%`);
             whereParams.push(`%${searchParam}%`);
           }
 
@@ -49,8 +51,12 @@ class productsService {
           }
 
           if (searchParam) {
-            const searchQuery = productQuery.includes('where') ? " AND itemNameLocal LIKE ?" : " where itemNameLocal LIKE ?"
+          const searchQuery =
+            (productQuery.includes("where") ? " AND " : " where ") +
+            "itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?";
             productQuery = productQuery + `${searchQuery}`
+            whereParams.push(`%${searchParam}%`);
+            whereParams.push(`%${searchParam}%`);
             whereParams.push(`%${searchParam}%`);
           }
 
