@@ -106,19 +106,31 @@ class sellingPartnerAPIService {
   }
   
   async getPrepInstruction(sellerSKUs) {
-    log.info("Getting getPrep instruction against", JSON.stringify(sellerSKUs));
-    try {
+    const batchSize = 50; // Set the batch size as per your requirements
+    const totalSKUs = sellerSKUs.length;
+    const result = [];
   
-      const response = await sellingPartner.callAPI({
-        operation: "getPrepInstructions",
-        query: {
-          SellerSKUList: sellerSKUs,
-          ShipToCountryCode: "CA",
-        },  
-      });
+    log.info("Getting getPrep instruction against", totalSKUs, `Total batches will be ${Math.ceil(totalSKUs / batchSize)}`);
+  
+    try {
+      for (let i = 0; i < totalSKUs; i += batchSize) {
+        const batchSKUs = sellerSKUs.slice(i, i + batchSize);
+  
+        const response = await sellingPartner.callAPI({
+          operation: "getPrepInstructions",
+          query: {
+            SellerSKUList: batchSKUs,
+            ShipToCountryCode: "US",
+          },
+        });
+  
+        result.push(...(response?.SKUPrepInstructionsList || []));
+  
+        log.info(`Fetched batch ${i / batchSize + 1}`);
+      }
   
       log.info("Getting getPrep instruction completed");
-      return response;
+      return result;
     } catch (error) {
       log.error(error);
       throw error;
