@@ -197,8 +197,10 @@ Ext.define('AmazSync.view.inventory.list.InventoryListController', {
             productData['packageWeight'] = packageWeight['Value'];
         }
         else {
-
-            productData['packageWeight'] = "N/A";
+            if (!packageWeight && !Ext.isEmpty(productData['dimensions'])) {
+                const parsedDimension = JSON.parse(productData['dimensions']);
+                productData['packageWeight'] = parsedDimension['Weight'] ? parsedDimension['Weight'].Value : 0;
+            } else productData['packageWeight'] = "N/A";
         }
 
         productData['isActive'] = productData['isActive'] == 1 ? "Yes" : "No";
