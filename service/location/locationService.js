@@ -105,9 +105,7 @@ class locationService {
 
         let whereParams = []
 
-        if (warehouseId) {
-          whereParams.push(warehouseId)
-        }
+        whereParams.push(warehouseId || 1)
 
         if (searchParam) {
           localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
@@ -152,10 +150,8 @@ class locationService {
 
         let whereParams = []
 
-        if (warehouseId) {
-          whereParams.push(warehouseId)
-        }
-
+        whereParams.push(warehouseId || 1)
+ 
         if (searchParam) {
           localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
           whereParams.push(`%${searchParam}%`);
