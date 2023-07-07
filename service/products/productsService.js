@@ -1,4 +1,5 @@
 const CommonUtil = require("../../util/common");
+const log = require("../log");
 const mysql = require("../mysql"),
      { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount, getProductByPurchaseOrder } = require("../../util/sqlquery")
 const sellerSettings = require('../settings/sellerSettings');
@@ -24,10 +25,10 @@ class productsService {
             whereParams.push(`%${searchParam}%`);
           }
 
-          if (status) {
+          if (status && status != 'All') {
             const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
             productQuery = productQuery + `${searchQuery}`
-            whereParams.push(`%${status}%`);
+            whereParams.push(status);
           }
 
          productQuery = CommonUtil.createPaginationAndSortingQuery(productQuery, queryParams, whereParams)
