@@ -113,5 +113,7 @@ module.exports = {
     addHistory: "insert into audit(type,update_by,old_value,new_value) values(?,?,?,?)",
     getAllHistory: "select * from audit where date between ? and ? and type = ? and (old_value like ? or  new_value like ?)",
     getProfit: `SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`,
-    getProfitCount: `SELECT count(*) as totalProfits FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`
+    getProfitCount: `SELECT count(*) as totalProfits FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`,
+    insertFilterPresets: `insert into filterPresets(userId, filterQuery, tabName, presetName) values(?)`,
+    getUserByID: `Select * from users where ID = ?`
 }

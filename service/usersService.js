@@ -1,7 +1,7 @@
 const mysql = require('./mysql');
 const { jwtNewToken } = require('./requestValidate');
 const { compare, getIncrypt } = require('./security/bcrypt');
-const { login } = require("../util/sqlquery");
+const { login, getUserByID } = require("../util/sqlquery");
 class usersService {
     login = function (userName, password) {
         return new Promise((resolve, reject) => {
@@ -59,5 +59,8 @@ class usersService {
             }
         })
     }
+  findById(id) {
+    return mysql.query(getUserByID, [id])
+  }
 }
 module.exports = new usersService;
