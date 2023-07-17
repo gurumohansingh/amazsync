@@ -1,42 +1,51 @@
+const { convertQueryToMySqlQuery } = require("../../util/common");
 const { isValidCode } = require("../../util/requestValidate");
-const { insertFilterPresets } = require("../../util/sqlquery");
+const {
+  insertFilterPresets,
+  getFilterByTabName,
+} = require("../../util/sqlquery");
 const log = require("../log");
-const usersService = require("../usersService");
-const mysql = require('../mysql');
+const mysql = require("../mysql");
 class FilterBuilder {
-  static async saveFilterPreset(req, res) {
-    const filterPreset = req.body || {};
+  static async getFilters(req, res) {
+    const { tabName } = req.body;
+
+    if (!tabName) {
+      return res.status(400).json({ error: "Tab Name is required." });
+    }
     try {
-      FilterBuilder.validateFilterBody(filterPreset);
+      const result = await mysql.query(getFilterByTabName, [
+        tabName,
+        req.loggedUser.userId,
+      ]);
+
+      res.status(200).json({ filters: result });
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  }
+  static async saveFilterPreset(req, res) {
+    const { tabName, presetName, tableName, filterQuery } = req.body;
+
+    try {
+      FilterBuilder.validateFilterBody({
+        tabName,
+        presetName,
+        tableName,
+        filterQuery,
+      });
+      let convertedQuery = convertQueryToMySqlQuery(tableName, filterQuery);
+
       const queryParams = [];
-      if (filterPreset.userId) {
-
-        const user = await usersService.findById(filterPreset.userId);
-        
-        log.info(user);
-        if (!Array.isArray(user) || !user.length) {
-          throw {
-            code: 400,
-            msg: "User doesn't exist"
-          }
-        }
-
-        queryParams.push(filterPreset.userId)
+      if (req.loggedUser.userId) {
+        queryParams.push(req.loggedUser.userId);
       }
 
-      if (filterPreset.filterQuery) {
-        queryParams.push(filterPreset.filterQuery)
-      }
+      queryParams.push(convertedQuery, tabName, presetName);
 
-      if (filterPreset.tabName) {
-        queryParams.push(filterPreset.tabName)
-      }
+      await mysql.query(insertFilterPresets, [queryParams]);
 
-      queryParams.push(filterPreset.presetName)
-
-      await mysql.query(insertFilterPresets, [queryParams])
-
-      res.send({ message: "Filter saved successfully."})
+      res.send({ message: "Filter saved successfully." });
     } catch (error) {
       log.error("saveFilterPreset:: error while saving filter", error);
 
@@ -47,18 +56,23 @@ class FilterBuilder {
     }
   }
 
-  static validateFilterBody({ userId, filterQuery, tabName }) {
-    if (!userId) {
-      throw {
-        code: 400,
-        msg: "User details missing while inserting filter preset",
-      };
-    }
-
+  static validateFilterBody({ filterQuery, presetName, tabName, tableName }) {
     if (!filterQuery) {
       throw {
         code: 400,
         msg: "Filter Query not provided while inserting filter preset",
+      };
+    }
+    if (!tableName) {
+      throw {
+        code: 400,
+        msg: "Table Name not provided while inserting filter preset",
+      };
+    }
+    if (!presetName) {
+      throw {
+        code: 400,
+        msg: "Preset Name not provided while inserting filter preset",
       };
     }
 
@@ -69,8 +83,6 @@ class FilterBuilder {
       };
     }
   }
-
-  
 }
 
 module.exports = FilterBuilder;
