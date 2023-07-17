@@ -142,7 +142,7 @@ Ext.define('AmazSync.view.products.productList.productListController', {
     synchSku: function (grid, rowIndex, colIndex) {
         var me = this, view = me.getView(), store = view.getStore();
         var product = store.getAt(rowIndex);
-        commonutil.apiCall(`mws/sync/${product.get('sellerSKU')}`, commonutil.GET, null, view)
+        commonutil.apiCall(`mws/sync/${product.get('amazonASIN')}`, commonutil.GET, null, view)
             .then((res) => {
                 Ext.toast('Updated Successfully');
                 //productSuppliersStore.reload();

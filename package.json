@@ -27,6 +27,7 @@
     "json2csv": "^5.0.7",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.3.0",
+    "moment": "^2.29.4",
     "morgan": "~1.9.1",
     "mws-api": "^3.0.0",
     "mysql": "^2.18.1",
