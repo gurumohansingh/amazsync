@@ -3,7 +3,9 @@ Ext.define('AmazSync.store.productList', {
      autoLoad: false,
      alias: 'store.productList',
      storeId: 'productList',
-     pageSize: 25,
+     pageSize: 100,
+     remoteSort:true,
+     remoteFilter : true, 
      proxy: {
           type: 'ajax',
           url: commonutil.getUrl('products/getallproduct'),
