@@ -89,7 +89,7 @@ class sellingPartnerAPIService {
       const response = await sellingPartner.callAPI({
         operation: "getCatalogItem",
         path: {
-          asin: "B0774Z3LVV",
+          asin,
         },
         query: {
           marketplaceIds: config.MarketPalaceID,
