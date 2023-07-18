@@ -120,3 +120,1146 @@
 [2023-04-21T21:13:33.449] [INFO] log - /users/validateToken?_dc=1682091813446 {}
 [2023-04-21T21:13:53.010] [INFO] log - /users/validateToken?_dc=1682091833007 {}
 [2023-04-21T21:14:57.666] [INFO] log - /users/validateToken?_dc=1682091897663 {}
+[2023-07-17T17:50:00.137] [INFO] log - Application started
+[2023-07-17T19:02:20.104] [INFO] log - Application started
+[2023-07-17T19:06:33.109] [INFO] log - Application started
+[2023-07-17T19:07:56.657] [INFO] log - Application started
+[2023-07-17T19:08:22.030] [INFO] log - Application started
+[2023-07-17T19:08:37.288] [INFO] log - Application started
+[2023-07-18T12:34:15.119] [INFO] log - Application started
+[2023-07-18T12:43:13.401] [INFO] log - Application started
+[2023-07-18T12:43:22.561] [INFO] log - Application started
+[2023-07-18T12:43:29.686] [INFO] log - Application started
+[2023-07-18T12:43:35.297] [INFO] log - Application started
+[2023-07-18T12:43:52.719] [INFO] log - Application started
+[2023-07-18T12:44:02.902] [INFO] log - Application started
+[2023-07-18T12:44:57.132] [INFO] log - Application started
+[2023-07-18T12:44:58.241] [INFO] log - Application started
+[2023-07-18T12:45:07.978] [INFO] log - Application started
+[2023-07-18T12:47:38.437] [INFO] log - Application started
+[2023-07-18T12:47:39.409] [INFO] log - Application started
+[2023-07-18T12:47:56.815] [INFO] log - Application started
+[2023-07-18T12:48:38.583] [INFO] log - /users/validateToken?_dc=1689666518570 {}
+[2023-07-18T13:17:47.740] [INFO] log - Application started
+[2023-07-18T13:17:50.913] [INFO] log - Application started
+[2023-07-18T13:17:57.508] [INFO] log - /users/validateToken?_dc=1689668277505 {}
+[2023-07-18T13:18:20.557] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-18T13:23:37.822] [INFO] log - Application started
+[2023-07-18T13:26:02.743] [INFO] log - Application started
+[2023-07-18T13:26:20.635] [INFO] log - Application started
+[2023-07-18T13:26:21.672] [INFO] log - Application started
+[2023-07-18T13:26:28.717] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'undefined LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'undefined LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT * from products ORDER BY undefined undefined LIMIT 100 OFFSET 0'
+}
+[2023-07-18T13:26:29.553] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'undefined LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'undefined LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: 'SELECT * from products ORDER BY undefined undefined LIMIT 100 OFFSET 0'
+}
+[2023-07-18T13:27:22.104] [INFO] log - Application started
+[2023-07-18T13:27:56.091] [INFO] log - Application started
+[2023-07-18T13:28:41.705] [INFO] log - Application started
+[2023-07-18T13:28:54.710] [INFO] log - Application started
+[2023-07-18T13:28:56.219] [INFO] log - Application started
+[2023-07-18T13:29:41.607] [INFO] log - Application started
+[2023-07-18T13:29:46.524] [INFO] log - Application started
+[2023-07-18T13:29:49.771] [INFO] log - Application started
+[2023-07-18T13:30:06.676] [INFO] log - Application started
+[2023-07-18T13:30:12.477] [INFO] log - Application started
+[2023-07-18T13:33:39.304] [INFO] log - Application started
+[2023-07-18T13:33:55.878] [INFO] log - Application started
+[2023-07-18T13:33:59.321] [INFO] log - Application started
+[2023-07-18T13:35:05.890] [INFO] log - Application started
+[2023-07-18T13:35:16.489] [INFO] log - Application started
+[2023-07-18T13:35:53.233] [INFO] log - Application started
+[2023-07-18T13:36:28.193] [INFO] log - Application started
+[2023-07-18T13:37:06.645] [INFO] log - Application started
+[2023-07-18T13:37:09.058] [INFO] log - Application started
+[2023-07-18T13:37:13.063] [INFO] log - Application started
+[2023-07-18T13:38:12.334] [INFO] log - Application started
+[2023-07-18T13:38:44.375] [INFO] log - Application started
+[2023-07-18T13:38:46.092] [INFO] log - Application started
+[2023-07-18T13:38:47.072] [INFO] log - Application started
+[2023-07-18T13:39:00.590] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %%'' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %%'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %%'"
+}
+[2023-07-18T13:39:03.446] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %Active%'' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %Active%'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %Active%'"
+}
+[2023-07-18T13:39:24.602] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %Incomplete,Active%'' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %Incomplete,Active%'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in %Incomplete,Active%'"
+}
+[2023-07-18T13:40:26.248] [INFO] log - Application started
+[2023-07-18T13:40:32.805] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET 100' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET 100' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET 100"
+}
+[2023-07-18T13:40:33.640] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Active'' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Active'' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Active'"
+}
+[2023-07-18T13:40:35.602] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Activ' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Activ' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Active'"
+}
+[2023-07-18T13:41:06.949] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Activ' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Activ' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Active'"
+}
+[2023-07-18T13:41:08.209] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Activ' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Activ' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET ' WHERE status in Incomplete,Inactive,Active'"
+}
+[2023-07-18T13:42:19.798] [INFO] log - Application started
+[2023-07-18T13:42:44.073] [INFO] log - Application started
+[2023-07-18T13:42:47.955] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET 100' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' WHERE sellerSKU like %sss%' OFFSET 100' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC LIMIT ' WHERE sellerSKU like %sss%' OFFSET 100"
+}
+[2023-07-18T13:44:21.046] [INFO] log - Application started
+[2023-07-18T13:46:35.535] [INFO] log - Application started
+[2023-07-18T13:46:46.943] [INFO] log - Application started
+[2023-07-18T13:46:56.606] [INFO] log - Application started
+[2023-07-18T13:47:03.612] [INFO] log - Application started
+[2023-07-18T13:47:29.263] [INFO] log - Application started
+[2023-07-18T13:47:39.998] [INFO] log - Application started
+[2023-07-18T13:47:43.934] [INFO] log - Application started
+[2023-07-18T13:47:53.925] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(where sellerSKU like '%sss%') LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(where sellerSKU like '%sss%') LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC(where sellerSKU like '%sss%') LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:47:54.667] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(where sellerSKU like '%sss%')(where status in 'Incomplete', 'Inactive', 'Active' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(where sellerSKU like '%sss%')(where status in 'Incomplete', 'Inactive', 'Active' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC(where sellerSKU like '%sss%')(where status in 'Incomplete', 'Inactive', 'Active') LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:47:56.524] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(where sellerSKU like '%sss%')(where status in 'Incomplete', 'Inactive', 'extMod' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(where sellerSKU like '%sss%')(where status in 'Incomplete', 'Inactive', 'extMod' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC(where sellerSKU like '%sss%')(where status in 'Incomplete', 'Inactive', 'extModel1206-1', 'Active') LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:48:16.640] [INFO] log - Application started
+[2023-07-18T13:49:05.131] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sellerSKU like '%sss%'  LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sellerSKU like '%sss%'  LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC where sellerSKU like '%sss%'  LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:49:06.039] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sellerSKU like '%sss%'  where status in 'Incomplete', 'Inactive', 'extMode' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sellerSKU like '%sss%'  where status in 'Incomplete', 'Inactive', 'extMode' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC where sellerSKU like '%sss%'  where status in 'Incomplete', 'Inactive', 'extModel1206-1', 'Active'  LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:49:47.079] [INFO] log - Application started
+[2023-07-18T13:49:51.127] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sellerSKU like '%sss%'  LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where sellerSKU like '%sss%'  LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products ORDER BY sellerSKU DESC where sellerSKU like '%sss%'  LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:50:21.378] [INFO] log - Application started
+[2023-07-18T13:50:26.195] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where status in '(Incomplete,Inactive,extModel1206-1,Active)'  ORDER BY sellerSK' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where status in '(Incomplete,Inactive,extModel1206-1,Active)'  ORDER BY sellerSK' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products where sellerSKU like '%sss%'  where status in '(Incomplete,Inactive,extModel1206-1,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:52:21.391] [INFO] log - Application started
+[2023-07-18T13:53:04.251] [INFO] log - Application started
+[2023-07-18T13:53:26.113] [INFO] log - Application started
+[2023-07-18T13:53:39.833] [INFO] log - Application started
+[2023-07-18T13:53:45.775] [INFO] log - Application started
+[2023-07-18T13:54:14.256] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''(Incomplete,Inactive,extModel1206-1,Active)'  ORDER BY sellerSKU DESC LIMIT 100' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''(Incomplete,Inactive,extModel1206-1,Active)'  ORDER BY sellerSKU DESC LIMIT 100' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products WHERE status in '(Incomplete,Inactive,extModel1206-1,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:55:10.409] [INFO] log - Application started
+[2023-07-18T13:55:16.799] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''(Incomplete,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''(Incomplete,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products WHERE status in '(Incomplete,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:55:49.658] [INFO] log - Application started
+[2023-07-18T13:55:54.476] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''(Incomplete,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''(Incomplete,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products WHERE status in '(Incomplete,Active)'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:57:28.260] [INFO] log - Application started
+[2023-07-18T13:57:31.329] [INFO] log - Application started
+[2023-07-18T13:57:37.510] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Incomplete', 'Inactive', 'Active'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Incomplete', 'Inactive', 'Active'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products WHERE status in 'Incomplete', 'Inactive', 'Active'  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0"
+}
+[2023-07-18T13:58:07.309] [INFO] log - Application started
+[2023-07-18T13:59:59.569] [INFO] log - Application started
+[2023-07-18T14:00:08.207] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:08.209] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:08.218] [INFO] log - sql quey SELECT * from products ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [ 100, 0 ]
+[2023-07-18T14:00:08.230] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:13.857] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:13.859] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:13.893] [INFO] log - sql quey SELECT * from products WHERE status in (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [ [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ], 100, 0 ]
+[2023-07-18T14:00:13.899] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:27.456] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:27.459] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:27.479] [INFO] log - sql quey SELECT * from products WHERE status in (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [ [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ], 100, 0 ]
+[2023-07-18T14:00:27.486] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:30.842] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:30.845] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:30.911] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:30.916] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:57.102] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:57.104] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:57.162] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:57.165] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:58.339] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:58.340] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:58.385] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:58.389] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:58.785] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:58.787] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:58.834] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:58.838] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:58.941] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:58.943] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:58.988] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:58.991] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:59.092] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:59.093] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:59.137] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:59.141] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:59.246] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:59.260] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:59.309] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:59.314] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:00:59.566] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:59.567] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:00:59.609] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%ada%',
+  100,
+  0
+]
+[2023-07-18T14:00:59.613] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:01:11.120] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:01:11.121] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:01:11.159] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%sss%',
+  100,
+  0
+]
+[2023-07-18T14:01:11.162] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:01:15.736] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:01:15.737] [INFO] log - sql quey select role,firstname,password from users where email=? and enable=1 gurumohansingh@gmail.com
+[2023-07-18T14:01:15.780] [INFO] log - sql quey SELECT * from products WHERE status in (?)  AND sellerSKU like (?)  ORDER BY sellerSKU DESC LIMIT ? OFFSET ? [
+  [ 'Incomplete', 'Inactive', 'extModel1231-1', 'Active' ],
+  '%sss%',
+  100,
+  100
+]
+[2023-07-18T14:01:15.785] [INFO] log - sql quey SELECT COUNT(*) as totalProducts from products []
+[2023-07-18T14:01:28.457] [INFO] log - Application started
+[2023-07-18T14:01:31.656] [INFO] log - Application started
+[2023-07-18T14:03:11.471] [INFO] log - Application started
+[2023-07-18T14:03:18.309] [INFO] log - Application started
+[2023-07-18T14:03:28.269] [INFO] log - Application started
+[2023-07-18T14:03:40.714] [INFO] log - Application started
+[2023-07-18T14:04:41.721] [INFO] log - Application started
+[2023-07-18T14:05:49.227] [INFO] log - Application started
+[2023-07-18T14:06:06.825] [INFO] log - Application started
+[2023-07-18T14:06:18.543] [INFO] log - Application started
+[2023-07-18T14:06:50.950] [INFO] log - Application started
+[2023-07-18T14:06:55.413] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where status in ('Inactive', 'Active')  ORDER BY sellerSKU DESC LIMIT 100 OFFSET' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where status in ('Inactive', 'Active')  ORDER BY sellerSKU DESC LIMIT 100 OFFSET' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products where (itemNameLocal LIKE '%ss%' OR sellerSKU LIKE '%ss%' OR amazonASIN LIKE '%ss%') where status in ('Inactive', 'Active')  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0"
+}
+[2023-07-18T14:06:56.332] [ERROR] log - Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where status in ('Inactive', 'Active')  AND sellerSKU like ('%sss%')  ORDER BY s' at line 1
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_PARSE_ERROR',
+  errno: 1064,
+  sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where status in ('Inactive', 'Active')  AND sellerSKU like ('%sss%')  ORDER BY s' at line 1",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT * from products where (itemNameLocal LIKE '%ss%' OR sellerSKU LIKE '%ss%' OR amazonASIN LIKE '%ss%') where status in ('Inactive', 'Active')  AND sellerSKU like ('%sss%')  ORDER BY sellerSKU DESC LIMIT 100 OFFSET 0"
+}
+[2023-07-18T14:07:22.307] [INFO] log - Application started
+[2023-07-18T14:08:55.180] [INFO] log - Application started
+[2023-07-18T15:55:34.002] [INFO] log - Application started
+[2023-07-18T15:55:43.845] [INFO] log - /users/validateToken?_dc=1689677743841 {}

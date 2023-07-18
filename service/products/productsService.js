@@ -1,77 +1,127 @@
 const CommonUtil = require("../../util/common");
-const log = require("../log");
-const mysql = require("../mysql"),
-     { getProduct, getSKU, updateProductUI, getProductBySku, getProductwhere, addProductImporter, getMasterSku, getProductCount, getProductByPurchaseOrder } = require("../../util/sqlquery")
+const mysql = require("../mysql");
+const { getProduct, getSKU, updateProductUI, getProductBySku, addProductImporter, getMasterSku, getProductCount, getProductByPurchaseOrder } = require("../../util/sqlquery");
 const sellerSettings = require('../settings/sellerSettings');
 class productsService {
      getAllProducts(queryParams) {
-        return new Promise((resolve, reject) => {
-          const { searchParam, amazonLiveStatus = 1, status = "" } = queryParams;
+          return new Promise((resolve, reject) => {
+               const { searchParam, amazonLiveStatus = 1, status = "", sort, filter } = queryParams;
 
-          let productQuery = getProduct;
+               const parsedSort = JSON.parse(sort || "[]")
+               const parsedFilter = JSON.parse(filter || "[]")
 
-          let whereParams = []
-      
-          if (amazonLiveStatus != 2) {
-            productQuery = productQuery + ` where amzlive = ?`
-            whereParams.push(amazonLiveStatus);
-          }
+               let productQuery = getProduct;
 
-          if (searchParam) {
-            const searchQuery = (productQuery.includes('where') ? " AND " : " where ")  + "(itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?)"
-            productQuery = productQuery + `${searchQuery}`
-            whereParams.push(`%${searchParam}%`);
-            whereParams.push(`%${searchParam}%`);
-            whereParams.push(`%${searchParam}%`);
-          }
+               const whereParams = []
 
-          if (status && status != 'All') {
-            const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
-            productQuery = productQuery + `${searchQuery}`
-            whereParams.push(status);
-          }
+               if (amazonLiveStatus != 2) {
+                    productQuery += ` where amzlive = ?`
+                    whereParams.push(amazonLiveStatus);
+               }
 
-         productQuery = CommonUtil.createPaginationAndSortingQuery(productQuery, queryParams, whereParams)
+               if (searchParam) {
+                    const searchQuery = `${productQuery.includes('where') ? " AND " : " where "}(itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?)`
+                    productQuery += searchQuery
+                    whereParams.push(`%${searchParam}%`);
+                    whereParams.push(`%${searchParam}%`);
+                    whereParams.push(`%${searchParam}%`);
+               }
 
-          mysql.query(productQuery, whereParams)
-            .then(products => resolve(products))
-            .catch(err => reject(err));
-        })
+               if (status && status != 'All') {
+                    const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
+                    productQuery += `${searchQuery}`
+                    whereParams.push(status);
+               }
+
+               parsedFilter.forEach((item, idx) => {
+                    const { operator, value, property } = item
+                    if (!value) {
+                         return;
+                    }
+
+                    const query = ` ${idx > 0 || productQuery.includes('where') ? 'AND' : 'where'} ${property} ${operator} (?) `
+                    if (operator === "like") {
+                         whereParams.push(`%${value}%`)
+                    } else {
+                         whereParams.push(value)
+                    }
+                    productQuery += query
+
+               })
+
+               if (parsedSort.length) {
+                    const sortQuery = ` ORDER BY ${parsedSort[0].property} ${parsedSort[0].direction}`
+                    productQuery += sortQuery;
+               }
+
+               productQuery = CommonUtil.createPaginationAndSortingQuery(productQuery, queryParams, whereParams)
+
+               mysql.query(productQuery, whereParams)
+                    .then(products => resolve(products))
+                    .catch(err => reject(err));
+          })
      }
      getTotalRecordsForProductList(queryParams) {
-      const { searchParam, amazonLiveStatus = 1, status } = queryParams || {}
+          const { searchParam, amazonLiveStatus = 1, status, sort, filter } = queryParams || {}
 
-      return new Promise((resolve, reject) => {
-          let productQuery = getProductCount;
 
-          let whereParams = []
-      
-          if (amazonLiveStatus != 2) {
-            productQuery = productQuery + ` where amzlive = ?`
-            whereParams.push(amazonLiveStatus);
-          }
+          const parsedSort = JSON.parse(sort || "[]")
+          const parsedFilter = JSON.parse(filter || "[]")
 
-          if (searchParam) {
-          const searchQuery =
-            (productQuery.includes("where") ? " AND " : " where ") +
-            "(itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?)";
-            productQuery = productQuery + `${searchQuery}`
-            whereParams.push(`%${searchParam}%`);
-            whereParams.push(`%${searchParam}%`);
-            whereParams.push(`%${searchParam}%`);
-          }
+          return new Promise((resolve, reject) => {
+               let productQuery = getProductCount;
 
-          if (status && status != 'All') {
-            const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
-            productQuery = productQuery + `${searchQuery}`
-            whereParams.push(status);
-          }
+               let whereParams = []
 
-          mysql.query(productQuery, whereParams)
-                .then(products => resolve(products))
-                .catch(err => reject(err));
-      })
-     
+               if (amazonLiveStatus != 2) {
+                    productQuery = productQuery + ` where amzlive = ? `
+                    whereParams.push(amazonLiveStatus);
+               }
+
+               if (searchParam) {
+                    const searchQuery =
+                         (productQuery.includes("where") ? " AND " : " where ") +
+                         "(itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?)";
+                    productQuery = productQuery + `${searchQuery}`
+                    whereParams.push(`% ${searchParam} % `);
+                    whereParams.push(`% ${searchParam} % `);
+                    whereParams.push(`% ${searchParam} % `);
+               }
+
+               if (status && status != 'All') {
+                    const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
+                    productQuery = productQuery + `${searchQuery}`
+                    whereParams.push(status);
+               }
+
+
+
+               parsedFilter.forEach((item, idx) => {
+                    const { operator, value, property } = item
+                    if (!value) {
+                         return;
+                    }
+
+                    const query = ` ${idx > 0 || productQuery.includes('where') ? 'AND' : 'where'} ${property} ${operator} (?) `
+                    if (operator === "like") {
+                         whereParams.push(`%${value}%`)
+                    } else {
+                         whereParams.push(value)
+                    }
+                    productQuery += query
+
+               })
+
+               if (parsedSort.length) {
+                    const sortQuery = ` ORDER BY ${parsedSort[0].property} ${parsedSort[0].direction}`
+                    productQuery += sortQuery;
+               }
+
+               mysql.query(productQuery, whereParams)
+                    .then(products => resolve(products))
+                    .catch(err => reject(err));
+          })
+
      }
      getskuList(user) {
           return new Promise((resolve, reject) => {
@@ -112,11 +162,11 @@ class productsService {
           })
      }
      getFullProductsByPurchaseOrder(params) {
-      return new Promise((resolve, reject) => {
-        mysql.query(getProductByPurchaseOrder, [params])
-          .then(products => resolve(products))
-          .catch(err => reject(err));
-      })
+          return new Promise((resolve, reject) => {
+               mysql.query(getProductByPurchaseOrder, [params])
+                    .then(products => resolve(products))
+                    .catch(err => reject(err));
+          })
      }
      getMastersku() {
           return new Promise((resolve, reject) => {
