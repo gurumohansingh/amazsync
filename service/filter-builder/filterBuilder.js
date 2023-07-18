@@ -4,7 +4,6 @@ const {
   insertFilterPresets,
   getFilterByTabName,
 } = require("../../util/sqlquery");
-const log = require("../log");
 const mysql = require("../mysql");
 class FilterBuilder {
   static async getFilters(req, res) {
@@ -24,6 +23,7 @@ class FilterBuilder {
       res.status(500).json({ error: e.message });
     }
   }
+
   static async saveFilterPreset(req, res) {
     const { tabName, presetName, tableName, filterQuery } = req.body;
 
@@ -38,17 +38,18 @@ class FilterBuilder {
 
       const queryParams = [];
       if (req.loggedUser.userId) {
-        queryParams.push(req.loggedUser.userId);
+        queryParams.push(
+          req.loggedUser.userId,
+          convertedQuery,
+          tabName,
+          presetName
+        );
       }
-
-      queryParams.push(convertedQuery, tabName, presetName);
 
       await mysql.query(insertFilterPresets, [queryParams]);
 
       res.send({ message: "Filter saved successfully." });
     } catch (error) {
-      log.error("saveFilterPreset:: error while saving filter", error);
-
       res.status(isValidCode(error.code) ? error.code : 500).send({
         message: error.msg || "Something went wrong while saving filter",
         success: false,
