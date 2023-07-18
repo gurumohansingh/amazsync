@@ -354,7 +354,7 @@ Ext.define('AmazSync.view.products.productList.productList', {
             {
                 text: 'Amazon Prep Instructions',
                 tooltip: 'Amazon Prep Instructions',
-                dataIndex: '',
+                dataIndex: 'amazonPrepInstructions',
                 filter: {
                     type: 'string'
                 }

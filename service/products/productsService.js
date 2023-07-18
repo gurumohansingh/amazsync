@@ -18,7 +18,7 @@ class productsService {
           }
 
           if (searchParam) {
-            const searchQuery = (productQuery.includes('where') ? " AND " : " where ")  + "itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?"
+            const searchQuery = (productQuery.includes('where') ? " AND " : " where ")  + "(itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?)"
             productQuery = productQuery + `${searchQuery}`
             whereParams.push(`%${searchParam}%`);
             whereParams.push(`%${searchParam}%`);
@@ -54,17 +54,17 @@ class productsService {
           if (searchParam) {
           const searchQuery =
             (productQuery.includes("where") ? " AND " : " where ") +
-            "itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?";
+            "(itemNameLocal LIKE ? OR sellerSKU LIKE ? OR amazonASIN LIKE ?)";
             productQuery = productQuery + `${searchQuery}`
             whereParams.push(`%${searchParam}%`);
             whereParams.push(`%${searchParam}%`);
             whereParams.push(`%${searchParam}%`);
           }
 
-          if (status) {
+          if (status && status != 'All') {
             const searchQuery = productQuery.includes('where') ? " AND status=?" : " where status=?"
             productQuery = productQuery + `${searchQuery}`
-            whereParams.push(`%${status}%`);
+            whereParams.push(status);
           }
 
           mysql.query(productQuery, whereParams)
