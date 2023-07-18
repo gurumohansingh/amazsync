@@ -1,9 +1,20 @@
-const express = require('express');
-const FilterBuilder = require('../service/filter-builder/FilterBuilder');
+const express = require("express");
+const FilterBuilder = require("../service/filter-builder/filterBuilder");
 const router = express.Router();
-const { authorization } = require("../service/requestValidate");
+const { authorization, validateToken } = require("../service/requestValidate");
 
-router.post('/save', authorization('Product View'), FilterBuilder.saveFilterPreset);
-router.post('/get/:page', authorization('Product View'), FilterBuilder.saveFilterPreset);
+router.get(
+  "/",
+  authorization("Product View"),
+  validateToken,
+  FilterBuilder.getFilters
+);
+
+router.post(
+  "/save",
+  authorization("Product View"),
+  validateToken,
+  FilterBuilder.saveFilterPreset
+);
 
 module.exports = router;
