@@ -35,7 +35,7 @@ class productsService {
 
                parsedFilter.forEach((item, idx) => {
                     const { operator, value, property } = item
-                    if (!value) {
+                    if (!value || value?.length === 0) {
                          return;
                     }
 
@@ -98,7 +98,7 @@ class productsService {
 
                parsedFilter.forEach((item, idx) => {
                     const { operator, value, property } = item
-                    if (!value) {
+                    if (!value || value?.length === 0) {
                          return;
                     }
 
