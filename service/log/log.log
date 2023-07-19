@@ -3099,3 +3099,9 @@
   index: 0,
   sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
 }
+[2023-07-19T15:41:46.829] [INFO] log - Application started
+[2023-07-19T15:41:51.461] [INFO] log - /users/validateToken?_dc=1689763311457 {}
+[2023-07-19T15:42:11.232] [INFO] log - Application started
+[2023-07-19T15:42:17.910] [INFO] log - /users/validateToken?_dc=1689763337895 {}
+[2023-07-19T15:45:42.188] [INFO] log - Application started
+[2023-07-19T15:45:43.292] [INFO] log - Application started
