@@ -10,7 +10,7 @@ Ext.define('AmazSync.store.restockStore', {
           url: commonutil.getUrl('restock'),
           reader: {
                type: 'json',
-               rootProperty: ''
+               rootProperty: 'inventories'
           }
      }
 });

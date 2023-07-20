@@ -198,7 +198,9 @@ class inventoryPlannerService {
   }
   async getPurchaseOrder(queryParams) {
     return new Promise((resolve, reject) => {
-      const { sorting, searchParam } = queryParams;
+      const { sorting, searchParam, sort } = queryParams;
+
+      const parsedSort = JSON.parse(sort || "[]")
 
       let sqlQuery = getPurchaseOrder;
       const whereParams = [];
@@ -213,6 +215,13 @@ class inventoryPlannerService {
 
       if (sorting) {
         sqlQuery.replace('ORDER by last_modified DESC', '')
+      }
+
+      const unknownColumns = ['import']
+
+      if (parsedSort.length && !unknownColumns.includes(parsedSort[0].property)) {
+        const sortQuery = sqlQuery.includes('ORDER') ? `, ${parsedSort[0].property} ${parsedSort[0].direction}` : ` ORDER BY ${parsedSort[0].property} ${parsedSort[0].direction}`
+        sqlQuery += sortQuery;
       }
 
       sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams)
@@ -273,7 +282,7 @@ class inventoryPlannerService {
         .catch((error) => {
           reject(error);
         });
-    }); 
+    });
   }
   async getVirtualShipments(queryParams) {
     const { type, sorting, searchParam } = queryParams;
@@ -345,7 +354,7 @@ class inventoryPlannerService {
     }
 
     const virtualShipments = await mysql.query(sqlQuery, whereParams);
-  
+
     return virtualShipments;
   }
 
@@ -386,8 +395,7 @@ class inventoryPlannerService {
       reference: shipmentName,
       remoteId:
         shipmentName +
-        `-${
-          current.getMonth() + 1
+        `-${current.getMonth() + 1
         }-${current.getDate()}-${current.getFullYear()}`,
       status: "Active",
       created_date: new Date(),
