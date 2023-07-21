@@ -40,14 +40,14 @@ class restockService {
     const parsedSort = JSON.parse(sort || "[]")
     const parsedFilter = JSON.parse(filter || "[]")
 
-    if (marketPlace) {
-      params.push({ key: 'r1.market_place', value: marketPlace })
-    }
-
     if (searchParam) {
       params.push({ key: 'p1.itemName', value: `%${searchParam}%`, isSearch: true })
       params.push({ key: 'p1.amazonASIN', value: `%${searchParam}%`, isSearch: true })
       params.push({ key: 'p1.sellerSKU', value: `%${searchParam}%`, isSearch: true })
+    }
+
+    if (marketPlace) {
+      params.push({ key: 'r1.market_place', value: marketPlace })
     }
 
     if (wareHouse) {
