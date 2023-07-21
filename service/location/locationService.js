@@ -1,8 +1,8 @@
 const CommonUtil = require("../../util/common");
 const mysql = require("../mysql"),
     { getBinLocations, getWarehouse, addWarehouse, updateWarehouse, deleteWarehouse, addBinLocation, updateBinLocation,
-        deleteBinLocation, validateBilocation, removeproductlocation, updateInventoryLocation, updateInventoryStock, addInventoryStock, 
-        updateInventoryStockNoMaster,getInventoryStock, localInventory, localInventoryCount } = require("../../util/sqlquery");
+        deleteBinLocation, validateBilocation, removeproductlocation, updateInventoryLocation, updateInventoryStock, addInventoryStock,
+        updateInventoryStockNoMaster, getInventoryStock, localInventory, localInventoryCount } = require("../../util/sqlquery");
 const csv = require('csvtojson');
 class locationService {
     getbinlocations(warehouseId) {
@@ -99,92 +99,114 @@ class locationService {
         })
     }
     getlocalinventory(params) {
-      return new Promise((resolve, reject) => {
-        let localInventoryQuery = localInventory;
-        const { warehouseId, searchParam, stockFilter, locationFilter } = params || {}
+        return new Promise((resolve, reject) => {
+            let localInventoryQuery = localInventory;
+            const { warehouseId, searchParam, stockFilter, locationFilter, sort } = params || {}
+            const parsedSort = JSON.parse(sort || "[]");
 
-        let whereParams = []
+            let whereParams = []
 
-        whereParams.push(warehouseId || 1)
+            whereParams.push(warehouseId || 1)
 
-        if (searchParam) {
-          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
-          whereParams.push(`%${searchParam}%`);
-          whereParams.push(`%${searchParam}%`);
-          whereParams.push(`%${searchParam}%`);
-        }
+            if (searchParam) {
+                localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
+                whereParams.push(`%${searchParam}%`);
+                whereParams.push(`%${searchParam}%`);
+                whereParams.push(`%${searchParam}%`);
+            }
 
-        if (stockFilter) {
-          let whereClause = ' AND'
-          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+            if (stockFilter) {
+                let whereClause = ' AND'
+                if (!localInventoryQuery.includes('where')) whereClause = ' where'
 
-          let updatedClause = '';
-          if (Number(stockFilter) === 2) updatedClause = ' = 0';
-          if (Number(stockFilter) === 1) updatedClause = ' > 0';
-          
-          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.stock ${updatedClause}`
-        }
+                let updatedClause = '';
+                if (Number(stockFilter) === 2) updatedClause = ' = 0';
+                if (Number(stockFilter) === 1) updatedClause = ' > 0';
 
-        if (locationFilter) {
-          let whereClause = ' AND'
-          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+                if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.stock ${updatedClause}`
+            }
 
-          let updatedClause = '';
-          if (Number(locationFilter) === 2) updatedClause = ' is null';
-          if (Number(locationFilter) === 1) updatedClause = ' is not null';
-          
-          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.binlocationname ${updatedClause}`
-        }
+            if (locationFilter) {
+                const whereClause = localInventoryQuery.includes('where') ? ' AND' : ' where'
 
-        localInventoryQuery = CommonUtil.createPaginationAndSortingQuery(localInventoryQuery, params, whereParams)
-        
-        mysql.query(localInventoryQuery, whereParams)
-          .then(list => resolve(list))
-          .catch(err => reject(err));
-      })
+                const updatedClause = Number(locationFilter) === 1 ? ' is not null' : Number(locationFilter) === 2 ? ' is null' : '';
+
+                if (updatedClause) localInventoryQuery += `${whereClause} t1.binlocationname ${updatedClause}`
+            }
+
+            const columnMapper = {
+                itemNameLocal: "p1.itemNameLocal",
+                kit: "p1.kit",
+                sellerSKU: "p1.sellerSKU",
+                status: "p1.status",
+                masterSku: "p1.masterSku",
+                dateAdded: "p1.dateAdded",
+                amazonASIN: "p1.amazonASIN",
+                amazonOversized: "p1.amazonOversized",
+                hazmat: "p1.hazmat",
+                itemNote: "p1.itemNote",
+                amazonFNSKU: "p1.amazonFNSKU",
+                tag: "p1.tag",
+                targetDaysInWarehouse: "p1.targetDaysInWarehouse",
+                targetDaysInAmazon: "p1.targetDaysInAmazon",
+                timeStamp: "p1.timeStamp",
+                warehousename: "t1.warehousename",
+                binlocationname: "t1.binlocationname",
+            }
+
+            if (parsedSort.length && columnMapper[parsedSort[0].property]) {
+                localInventoryQuery += ` ORDER BY ${columnMapper[parsedSort[0].property]} ${parsedSort[0].direction}`
+            }
+
+            localInventoryQuery = CommonUtil.createPaginationAndSortingQuery(localInventoryQuery, params, whereParams)
+
+            mysql.query(localInventoryQuery, whereParams)
+                .then(list => resolve(list))
+                .catch(err => reject(err));
+        })
     }
     getLocalInventoryCount(params) {
-      return new Promise((resolve, reject) => {
-        let localInventoryQuery = localInventoryCount;
-        const { warehouseId, searchParam, stockFilter, locationFilter } = params || {}
+        return new Promise((resolve, reject) => {
+            let localInventoryQuery = localInventoryCount;
+            const { warehouseId, searchParam, stockFilter, locationFilter } = params || {}
 
-        let whereParams = []
+            let whereParams = []
 
-        whereParams.push(warehouseId || 1)
- 
-        if (searchParam) {
-          localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
-          whereParams.push(`%${searchParam}%`);
-          whereParams.push(`%${searchParam}%`);
-          whereParams.push(`%${searchParam}%`);
-        }
-        
-        if (stockFilter) {
-          let whereClause = ' AND'
-          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+            whereParams.push(warehouseId || 1)
 
-          let updatedClause = '';
-          if (Number(stockFilter) === 2) updatedClause = ' = 0';
-          if (Number(stockFilter) === 1) updatedClause = ' > 0';
-          
-          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.stock ${updatedClause}`
-        }
+            if (searchParam) {
+                localInventoryQuery = localInventoryQuery + " where p1.itemName LIKE ? OR p1.amazonASIN LIKE ? OR p1.sellerSKU LIKE ?"
+                whereParams.push(`%${searchParam}%`);
+                whereParams.push(`%${searchParam}%`);
+                whereParams.push(`%${searchParam}%`);
+            }
 
-        if (locationFilter) {
-          let whereClause = ' AND'
-          if (!localInventoryQuery.includes('where')) whereClause = ' where'
+            if (stockFilter) {
+                let whereClause = ' AND'
+                if (!localInventoryQuery.includes('where')) whereClause = ' where'
 
-          let updatedClause = '';
-          if (Number(locationFilter) === 2) updatedClause = ' is null';
-          if (Number(locationFilter) === 1) updatedClause = ' is not null';
-          
-          if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.binlocationname ${updatedClause}`
-        }
+                let updatedClause = '';
+                if (Number(stockFilter) === 2) updatedClause = ' = 0';
+                if (Number(stockFilter) === 1) updatedClause = ' > 0';
 
-        mysql.query(localInventoryQuery, whereParams)
-          .then(list => resolve(list))
-          .catch(err => reject(err));
-      })
+                if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.stock ${updatedClause}`
+            }
+
+            if (locationFilter) {
+                let whereClause = ' AND'
+                if (!localInventoryQuery.includes('where')) whereClause = ' where'
+
+                let updatedClause = '';
+                if (Number(locationFilter) === 2) updatedClause = ' is null';
+                if (Number(locationFilter) === 1) updatedClause = ' is not null';
+
+                if (updatedClause) localInventoryQuery = localInventoryQuery + `${whereClause} t1.binlocationname ${updatedClause}`
+            }
+
+            mysql.query(localInventoryQuery, whereParams)
+                .then(list => resolve(list))
+                .catch(err => reject(err));
+        })
     }
     getInventoryStock(params) {
         return new Promise((resolve, reject) => {

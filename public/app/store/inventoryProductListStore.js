@@ -4,6 +4,7 @@ Ext.define('AmazSync.store.inventoryProductListStore', {
      alias: 'store.inventoryProductListStore',
      storeId: 'inventoryProductListStore',
      pageSize: 25,
+     remoteSort: true,
      proxy: {
           type: 'ajax',
           url: commonutil.getUrl('location/getlocalinventory'),

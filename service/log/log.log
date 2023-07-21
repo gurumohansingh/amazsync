@@ -3399,3 +3399,641 @@
   index: 0,
   sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
 }
+[2023-07-21T08:25:11.237] [INFO] log - Application started
+[2023-07-21T08:25:19.897] [INFO] log - /users/validateToken?_dc=1689909919895 {}
+[2023-07-21T08:26:00.165] [INFO] log - Application started
+[2023-07-21T08:27:35.095] [INFO] log - Application started
+[2023-07-21T08:27:37.610] [INFO] log - /users/validateToken?_dc=1689910057604 {}
+[2023-07-21T08:27:51.890] [INFO] log - Application started
+[2023-07-21T08:28:18.078] [INFO] log - Application started
+[2023-07-21T08:28:20.897] [INFO] log - /users/validateToken?_dc=1689910100894 {}
+[2023-07-21T08:30:20.370] [INFO] log - Application started
+[2023-07-21T08:30:44.415] [INFO] log - Application started
+[2023-07-21T08:30:57.381] [INFO] log - Application started
+[2023-07-21T08:31:34.467] [INFO] log - Application started
+[2023-07-21T08:31:57.353] [INFO] log - Application started
+[2023-07-21T08:32:03.365] [INFO] log - Application started
+[2023-07-21T08:32:22.857] [INFO] log - Application started
+[2023-07-21T08:32:41.952] [INFO] log - Application started
+[2023-07-21T08:32:53.635] [INFO] log - Application started
+[2023-07-21T08:33:17.010] [INFO] log - Application started
+[2023-07-21T08:34:57.776] [INFO] log - Application started
+[2023-07-21T08:35:58.749] [INFO] log - Application started
+[2023-07-21T08:40:14.207] [INFO] log - Application started
+[2023-07-21T08:41:02.178] [INFO] log - Application started
+[2023-07-21T08:41:14.241] [INFO] log - Application started
+[2023-07-21T08:41:21.862] [INFO] log - Application started
+[2023-07-21T08:41:45.775] [INFO] log - Application started
+[2023-07-21T08:42:05.094] [INFO] log - Application started
+[2023-07-21T08:42:15.385] [INFO] log - Application started
+[2023-07-21T08:42:18.682] [INFO] log - Application started
+[2023-07-21T08:43:39.416] [INFO] log - Application started
+[2023-07-21T08:44:04.718] [INFO] log - Application started
+[2023-07-21T08:46:38.099] [INFO] log - Application started
+[2023-07-21T08:47:06.617] [INFO] log - Application started
+[2023-07-21T08:48:15.884] [INFO] log - Application started
+[2023-07-21T08:48:26.414] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 't1.name' in 'order clause'
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 't1.name' in 'order clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "select p1.*,t1.binlocationname,t1.warehousename, t1.warehouseId,t1.locationid,t1.stock from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId='2')t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU ORDER BY t1.name ASC LIMIT 25 OFFSET 0"
+}
+[2023-07-21T08:48:26.964] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 't1.name' in 'order clause'
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 't1.name' in 'order clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "select p1.*,t1.binlocationname,t1.warehousename, t1.warehouseId,t1.locationid,t1.stock from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId='2')t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU ORDER BY t1.name ASC LIMIT 25 OFFSET 0"
+}
+[2023-07-21T08:48:28.126] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 't1.name' in 'order clause'
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 't1.name' in 'order clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "select p1.*,t1.binlocationname,t1.warehousename, t1.warehouseId,t1.locationid,t1.stock from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId='2')t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU ORDER BY t1.name ASC LIMIT 25 OFFSET 0"
+}
+[2023-07-21T08:48:44.525] [INFO] log - Application started
+[2023-07-21T08:48:54.215] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 't1.name' in 'order clause'
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 't1.name' in 'order clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "select p1.*,t1.binlocationname,t1.warehousename, t1.warehouseId,t1.locationid,t1.stock from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId='2')t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU ORDER BY t1.name ASC LIMIT 25 OFFSET 0"
+}
+[2023-07-21T08:49:03.086] [INFO] log - Application started
+[2023-07-21T08:58:49.670] [INFO] log - Application started
+[2023-07-21T08:59:39.097] [INFO] log - Application started
+[2023-07-21T08:59:54.818] [INFO] log - Application started
+[2023-07-21T09:00:15.127] [INFO] log - Application started
+[2023-07-21T09:01:21.196] [INFO] log - Application started
+[2023-07-21T09:01:24.291] [INFO] log - Application started
+[2023-07-21T09:02:03.617] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:02:53.378] [INFO] log - Application started
+[2023-07-21T09:02:56.695] [INFO] log - /users/validateToken?_dc=1689912176690 {}
+[2023-07-21T09:02:59.231] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:03:00.397] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:03:01.352] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:03:32.787] [INFO] log - Application started
+[2023-07-21T09:03:35.590] [ERROR] log - Error: ER_MIX_OF_GROUP_FUNC_AND_FIELDS: In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'amznsync.suppliers.productSKU'; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_MIX_OF_GROUP_FUNC_AND_FIELDS',
+  errno: 1140,
+  sqlMessage: "In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'amznsync.suppliers.productSKU'; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:04:36.813] [INFO] log - Application started
+[2023-07-21T09:04:46.308] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:07:18.731] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:09:12.095] [ERROR] log - Error: ER_WRONG_FIELD_WITH_GROUP: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_WRONG_FIELD_WITH_GROUP',
+  errno: 1055,
+  sqlMessage: "Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'amznsync.suppliers.inboundShippingCost' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by",
+  sqlState: '42000',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:10:09.094] [INFO] log - Application started
+[2023-07-21T09:10:16.906] [INFO] log - Application started
+[2023-07-21T09:12:26.786] [INFO] log - Application started
+[2023-07-21T09:13:39.236] [INFO] log - Application started
+[2023-07-21T09:17:22.883] [INFO] log - Application started
+[2023-07-21T09:17:42.204] [INFO] log - Application started
+[2023-07-21T09:17:56.046] [INFO] log - Application started
+[2023-07-21T09:18:50.617] [INFO] log - Application started
+[2023-07-21T09:20:24.296] [INFO] log - Application started
+[2023-07-21T09:20:59.186] [INFO] log - Application started
+[2023-07-21T09:21:02.198] [INFO] log - Application started
+[2023-07-21T09:21:07.941] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 'cost' in 'order clause'
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 'cost' in 'order clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' ORDER BY cost ASC LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:21:49.013] [INFO] log - Application started
+[2023-07-21T09:22:02.322] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 'profit' in 'order clause'
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 'profit' in 'order clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' ORDER BY profit ASC LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:24:33.705] [INFO] log - Application started
+[2023-07-21T09:24:45.050] [ERROR] log - Error: ER_BAD_FIELD_ERROR: Unknown column 'roi' in 'order clause'
+    at Query.Sequence._packetToError (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:47:14)
+    at Query.ErrorPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Query.js:79:18)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12)
+    at readableAddChunk (node:internal/streams/readable:289:9)
+    at Socket.Readable.push (node:internal/streams/readable:228:10)
+    at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+    --------------------
+    at Protocol._enqueue (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:144:48)
+    at PoolConnection.query (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:198:25)
+    at /Users/dev/Projects/NodeJs/amazsync/service/mysql.js:13:28
+    at Ping.onOperationComplete (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Pool.js:110:5)
+    at Ping.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Ping._callback (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:488:16)
+    at Ping.Sequence.end (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:83:24)
+    at Ping.Sequence.OkPacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/sequences/Sequence.js:92:8)
+    at Protocol._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:291:23)
+    at Parser._parsePacket (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:433:10)
+    at Parser.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Parser.js:43:10)
+    at Protocol.write (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/Users/dev/Projects/NodeJs/amazsync/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:315:12) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: "Unknown column 'roi' in 'order clause'",
+  sqlState: '42S22',
+  index: 0,
+  sql: "SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU where restock.market_place='US' ORDER BY roi ASC LIMIT 25 OFFSET 0"
+}
+[2023-07-21T09:25:10.681] [INFO] log - Application started
+[2023-07-21T09:26:46.165] [INFO] log - Application started
+[2023-07-21T09:26:49.822] [INFO] log - /users/validateToken?_dc=1689913609816 {}
+[2023-07-21T09:27:01.997] [INFO] log - Application started
+[2023-07-21T09:27:23.280] [INFO] log - Application started
+[2023-07-21T09:27:26.462] [INFO] log - /users/validateToken?_dc=1689913646457 {}
+[2023-07-21T09:28:08.373] [INFO] log - Application started
+[2023-07-21T09:28:55.171] [INFO] log - Application started
+[2023-07-21T09:29:06.982] [INFO] log - Application started
+[2023-07-21T09:29:13.227] [INFO] log - /users/validateToken?_dc=1689913753224 {}

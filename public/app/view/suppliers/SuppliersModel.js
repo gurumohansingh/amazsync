@@ -8,6 +8,7 @@ Ext.define('AmazSync.view.suppliers.SuppliersModel', {
     stores: {
         suppierStore: {
             autoLoad: true,
+            remoteSort: true,
             fields: [{
                 name: 'totalPackcost', type: 'number',
                 convert: function (v, rec) {
