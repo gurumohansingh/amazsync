@@ -64,7 +64,6 @@ class FilterBuilder {
         tabName,
         filterQuery,
         queryType,
-        warehouseId,
       });
 
       const queryParams = [];

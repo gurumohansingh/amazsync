@@ -71,8 +71,15 @@ class CommonUtil {
       .replace(/ or /g, " OR ")
       .replace(/= null/g, "IS NULL")
       .replace(/<> null/g, "IS NOT NULL");
-
-    return `${baseQuery} WHERE ${sqlString}`;
+    if (
+      tabName === "inventory" ||
+      tabName === "profit" ||
+      tabName === "restock"
+    ) {
+      return `SELECT * FROM (${baseQuery}) AS subquery WHERE ${sqlString}`;
+    } else {
+      return `${baseQuery} WHERE ${sqlString}`;
+    }
   }
 
   static getBaseQuery(tab, type) {
