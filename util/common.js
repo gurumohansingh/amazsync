@@ -1,3 +1,13 @@
+const {
+  getProduct,
+  getSuppliers,
+  getRestockFullData,
+  getProfit,
+  localInventory,
+  getPurchaseOrder,
+  getVirtualPurchaseOrder,
+} = require("./sqlquery");
+
 class CommonUtil {
   static createPaginationAndSortingQuery(query, params, whereClause) {
     if (!query || !params) return query;
@@ -25,6 +35,7 @@ class CommonUtil {
 
     return query;
   }
+
   static separateColumn(str) {
     if (!str) return null;
 
@@ -37,9 +48,14 @@ class CommonUtil {
     }
     return null;
   }
-  static convertQueryToMySqlQuery(tableName, inputQuery) {
+
+  static convertQueryToMySqlQuery({ tabName, filterQuery, queryType }) {
+    let baseQuery = this.getBaseQuery(tabName, queryType);
+
+    baseQuery = baseQuery.replace(/\n\s*/g, " ");
+
     // Replace the operators and functions with their SQL equivalents
-    let sqlString = inputQuery
+    let sqlString = filterQuery
       .replace(/ ne /g, "<>")
       .replace(/ eq /g, "=")
       .replace(/ lt /g, "<")
@@ -56,7 +72,27 @@ class CommonUtil {
       .replace(/= null/g, "IS NULL")
       .replace(/<> null/g, "IS NOT NULL");
 
-    return `SELECT * FROM ${tableName} WHERE ${sqlString}`;
+    return `${baseQuery} WHERE ${sqlString}`;
+  }
+
+  static getBaseQuery(tab, type) {
+    if (tab === "product") {
+      return getProduct;
+    } else if (tab === "suppliers") {
+      return getSuppliers;
+    } else if (tab === "restock") {
+      return getRestockFullData;
+    } else if (tab === "profit") {
+      return getProfit;
+    } else if (tab === "inventory") {
+      return localInventory;
+    } else if (tab === "shipment") {
+      if (!type || type == 0) {
+        return getPurchaseOrder;
+      } else {
+        return getVirtualPurchaseOrder;
+      }
+    }
   }
 }
 
