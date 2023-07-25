@@ -4,7 +4,7 @@ const {
   insertFilterPresets,
   getFilterByTabName,
   getFilterByPresetName,
-  getFillerQueryById,
+  getFilterQueryById,
 } = require("../../util/sqlquery");
 const mysql = require("../mysql");
 class FilterBuilder {
@@ -30,7 +30,7 @@ class FilterBuilder {
   }
 
   async getFilterQuery(queryParams) {
-    const query = await mysql.query(getFillerQueryById, [queryParams]);
+    const query = await mysql.query(getFilterQueryById, [queryParams]);
     if (!query || query.length === 0) {
       throw {
         code: 404,
@@ -41,7 +41,12 @@ class FilterBuilder {
   }
 
   static async saveFilterPreset(req, res) {
-    const { tabName, presetName, filterQuery, queryType } = req.body;
+    const {
+      tabName,
+      presetName,
+      filterQuery,
+      queryType /*queryType is for 'shipment' tab  to appropriately select baseQuery(same as shipment router)*/,
+    } = req.body;
 
     try {
       FilterBuilder.validateFilterBody({

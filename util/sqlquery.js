@@ -156,6 +156,6 @@ module.exports = {
     "SELECT * FROM filterPresets WHERE tabName = ? AND userId = ?",
   getFilterByPresetName:
     "SELECT * FROM filterPresets WHERE tabName = ? AND userId = ? AND presetName = ? LIMIT 0, 1",
-  getFillerQueryById:
+  getFilterQueryById:
     "SELECT filterQuery FROM filterPresets WHERE id = ? AND userId = ? LIMIT 0, 1",
 };

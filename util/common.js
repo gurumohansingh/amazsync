@@ -76,6 +76,7 @@ class CommonUtil {
       tabName === "profit" ||
       tabName === "restock"
     ) {
+      // convert baseQuery to subquery for the custom filters to work correctly.
       return `SELECT * FROM (${baseQuery}) AS subquery WHERE ${sqlString}`;
     } else {
       return `${baseQuery} WHERE ${sqlString}`;
