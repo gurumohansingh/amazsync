@@ -21,8 +21,11 @@ class FilterBuilder {
       ]);
 
       res.status(200).json({ filters: result });
-    } catch (e) {
-      res.status(500).json({ error: e.message });
+    } catch (error) {
+      res.status(isValidCode(error.code) ? error.code : 500).send({
+        message: error.message || "Something went wrong while getting filters",
+        success: false,
+      });
     }
   }
 
