@@ -1,12 +1,14 @@
-const { convertQueryToMySqlQuery } = require("../../util/common");
+const CommonUtil = require("../../util/common");
 const { isValidCode } = require("../../util/requestValidate");
 const {
   insertFilterPresets,
   getFilterByTabName,
+  getFilterByPresetName,
+  getFilterQueryById,
 } = require("../../util/sqlquery");
 const mysql = require("../mysql");
 class FilterBuilder {
-  static async getFilters(req, res) {
+  static async getAllFilters(req, res) {
     const { tabName } = req.body;
 
     if (!tabName) {
@@ -19,24 +21,61 @@ class FilterBuilder {
       ]);
 
       res.status(200).json({ filters: result });
-    } catch (e) {
-      res.status(500).json({ error: e.message });
+    } catch (error) {
+      res.status(isValidCode(error.code) ? error.code : 500).send({
+        message: error.message || "Something went wrong while getting filters",
+        success: false,
+      });
     }
   }
 
+  async getFilterQuery(queryParams) {
+    const query = await mysql.query(getFilterQueryById, [queryParams]);
+    if (!query || query.length === 0) {
+      throw {
+        code: 404,
+        msg: "No Filter Preset found.",
+      };
+    }
+    return query[0];
+  }
+
   static async saveFilterPreset(req, res) {
-    const { tabName, presetName, tableName, filterQuery } = req.body;
+    const {
+      tabName,
+      presetName,
+      filterQuery,
+      queryType /*queryType is for 'shipment' tab  to appropriately select baseQuery(same as shipment router)*/,
+    } = req.body;
 
     try {
       FilterBuilder.validateFilterBody({
         tabName,
         presetName,
-        tableName,
         filterQuery,
       });
-      let convertedQuery = convertQueryToMySqlQuery(tableName, filterQuery);
+      //checking id record with presetName is already present
+      const result = await mysql.query(getFilterByPresetName, [
+        tabName,
+        req.loggedUser.userId,
+        presetName,
+      ]);
+      //throw an error if preset already present.
+      if (result && result.length > 0) {
+        throw {
+          code: 400,
+          msg: "Filter by this presetName already present.",
+        };
+      }
+
+      let convertedQuery = CommonUtil.convertQueryToMySqlQuery({
+        tabName,
+        filterQuery,
+        queryType,
+      });
 
       const queryParams = [];
+
       if (req.loggedUser.userId) {
         queryParams.push(
           req.loggedUser.userId,
@@ -57,19 +96,14 @@ class FilterBuilder {
     }
   }
 
-  static validateFilterBody({ filterQuery, presetName, tabName, tableName }) {
+  static validateFilterBody({ filterQuery, presetName, tabName }) {
     if (!filterQuery) {
       throw {
         code: 400,
         msg: "Filter Query not provided while inserting filter preset",
       };
     }
-    if (!tableName) {
-      throw {
-        code: 400,
-        msg: "Table Name not provided while inserting filter preset",
-      };
-    }
+
     if (!presetName) {
       throw {
         code: 400,

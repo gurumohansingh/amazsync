@@ -7,7 +7,7 @@ router.get(
   "/",
   authorization("Product View"),
   validateToken,
-  FilterBuilder.getFilters
+  FilterBuilder.getAllFilters
 );
 
 router.post(
