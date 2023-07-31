@@ -20,5 +20,13 @@ module.exports = {
     INVENTORY_PLANNER_SERVICE_URL: 'https://app.inventory-planner.com/api/v1/purchase-orders',
     MARKETPLACE_ID_US: "ATVPDKIKX0DER",
     MARKETPLACE_ID_CA: "A2EUQ1WTGCTBG2",
-    productDefault: () => ["","","","",false,"",false,false,false,"","","","",0,"","","","","","","","","","",moment().format("YYYY-MM-DD HH:mm:ss"),"","",false,0,0,0,"","","","","",0,0,"",""]
+    productDefault: () => ["", "", "", "", false, "", false, false, false, "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", moment().format("YYYY-MM-DD HH:mm:ss"), "", "", false, 0, 0, 0, "", "", "", "", "", 0, 0, "", ""],
+    queryOperatorMapper: {
+        like: "LIKE",
+        gt: ">",
+        lt: "<",
+        gte: ">=",
+        lte: "<=",
+        in: "IN"
+    }
 }

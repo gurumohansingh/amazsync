@@ -1,43 +1,50 @@
 const { remove } = require("winston");
 const mysql = require("../mysql"),
-     { getSuppliers, addSuppliers, deleteSuppliers, updateSuppliers, productSuppliers, updateProductSuppliers, addProductSuppliers, deleteProductSuppliers,getProductSuppliersAll, getSuppliersCount } = require("../../util/sqlquery");
+     { getSuppliers, addSuppliers, deleteSuppliers, updateSuppliers, productSuppliers, updateProductSuppliers, addProductSuppliers, deleteProductSuppliers, getProductSuppliersAll, getSuppliersCount } = require("../../util/sqlquery");
 const CommonUtil = require("../../util/common");
 
 class suppliersService {
-    getAllSuppliers(queryParams) {
-      return new Promise((resolve, reject) => {
-        const { searchParam } = queryParams;
-        let sqlQuery = getSuppliers;
+     getAllSuppliers(queryParams) {
+          return new Promise((resolve, reject) => {
+               const { searchParam, sort } = queryParams;
+               let sqlQuery = getSuppliers;
 
-        const whereParams = []
-        if (searchParam) {
-          sqlQuery += " where supplierName LIKE ?"
-          whereParams.push(`%${searchParam}%`);
-        }
+               const parsedSort = JSON.parse(sort || "[]");
 
-        sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams);
+               const whereParams = []
+               if (searchParam) {
+                    sqlQuery += " where supplierName LIKE ?"
+                    whereParams.push(`%${searchParam}%`);
+               }
 
-        mysql.query(sqlQuery, whereParams)
-          .then(suppliers => resolve(suppliers))
-          .catch(err => reject(err));
-      })
-    }
-    getProfitCountQuery(queryParams) {
-      return new Promise((resolve, reject) => {
-        const { searchParam } = queryParams;
-        let sqlQuery = getSuppliersCount;
+               if (parsedSort.length) {
+                    const { property, direction } = parsedSort[0]
+                    sqlQuery += ` ORDER BY ${property} ${direction}`
+               }
 
-        const whereParams = []
-        if (searchParam) {
-          sqlQuery += " where supplierName LIKE ?"
-          whereParams.push(`%${searchParam}%`);
-        }
+               sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams);
 
-        mysql.query(sqlQuery, whereParams)
-          .then(suppliers => resolve(suppliers))
-          .catch(err => reject(err));
-      })
-    }
+               mysql.query(sqlQuery, whereParams)
+                    .then(suppliers => resolve(suppliers))
+                    .catch(err => reject(err));
+          })
+     }
+     getProfitCountQuery(queryParams) {
+          return new Promise((resolve, reject) => {
+               const { searchParam } = queryParams;
+               let sqlQuery = getSuppliersCount;
+
+               const whereParams = []
+               if (searchParam) {
+                    sqlQuery += " where supplierName LIKE ?"
+                    whereParams.push(`%${searchParam}%`);
+               }
+
+               mysql.query(sqlQuery, whereParams)
+                    .then(suppliers => resolve(suppliers))
+                    .catch(err => reject(err));
+          })
+     }
      addSupplier(user, supplier) {
           return new Promise((resolve, reject) => {
                supplier["user"] = user;

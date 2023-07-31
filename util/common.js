@@ -19,17 +19,17 @@ class CommonUtil {
     if (sortColumn) {
       const order = sortColumn.specialChar === "+" ? "ASC" : "DESC";
 
-      query = query + ` ORDER BY ?? ${order}`;
+      query += ` ORDER BY ?? ${order}`
       whereClause.push(sortColumn.columnName);
     }
 
     if (limit) {
-      query = query + ` LIMIT ?`;
+      query += ` LIMIT ?`
       whereClause.push(parseInt(limit, 10));
     }
 
     if (offset) {
-      query = query + ` OFFSET ?`;
+      query += ` OFFSET ?`
       whereClause.push(parseInt(offset, 10));
     }
 

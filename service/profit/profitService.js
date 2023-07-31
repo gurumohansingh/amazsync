@@ -5,7 +5,8 @@ const mysql = require("../mysql"),
 class profitService {
   getProfit(queryParams) {
     return new Promise((resolve, reject) => {
-      const { marketPlace, searchParam } = queryParams;
+      const { marketPlace, searchParam, sort } = queryParams;
+      const parsedSort = JSON.parse(sort || "[]")
 
       let sql = getProfit;
       let params = []
@@ -26,6 +27,16 @@ class profitService {
               param.isSearch ? `${param.key} LIKE ?` : `${param.key}=?`
             )
             .join(" AND ");
+      }
+
+      const columnMapper = {
+        cost: "costPerUnit",
+      }
+      const notAvailable = ["profit", "roi"]
+
+      if (parsedSort.length && !notAvailable.includes(parsedSort[0].property)) {
+        const property = columnMapper[parsedSort[0].property] ?? parsedSort[0].property
+        sql += ` ORDER BY ${property} ${parsedSort[0].direction}`
       }
 
       sql = CommonUtil.createPaginationAndSortingQuery(sql, queryParams, params)
@@ -67,6 +78,6 @@ class profitService {
         .catch((err) => reject(err));
     });
   }
-  
+
 }
 module.exports = new profitService();

@@ -2,8 +2,9 @@ const mysql = require("../mysql"),
   { getRestockFullData, getRestockFullAllData, getRestockSku, getRestocktoGetFee, getRestockFullDataCount } = require("../../util/sqlquery");
 const suppliersService = require("../../service/products/suppliersService");
 const CommonUtil = require("../../util/common");
+const constants = require("../../util/constant");
 class restockService {
-  getRestock(queryParams) {
+  getRestock(queryParams = {}) {
     return new Promise(async (resolve, reject) => {
 
       let sql = getRestockFullData;
@@ -34,7 +35,10 @@ class restockService {
   }
 
   perpareRestockFilter(queryParams, params, sql) {
-    const { marketPlace, wareHouse, stockFilter, searchParam, recommendedShipDate } = queryParams;
+    const { marketPlace, wareHouse, stockFilter, searchParam, recommendedShipDate, filter, sort } = queryParams;
+
+    const parsedSort = JSON.parse(sort || "[]")
+    const parsedFilter = JSON.parse(filter || "[]")
 
     if (searchParam) {
       params.push({ key: 'p1.itemName', value: `%${searchParam}%`, isSearch: true })
@@ -102,6 +106,64 @@ class restockService {
       if (updatedClause) sql = sql + `${params.length ? ' AND' : ' where'} ${updatedClause}`
     }
 
+    const { queryOperatorMapper } = constants
+    const productFilter = ["amazonASIN", "itemNameLocal", "kit", "casePackQuantity", "masterSKU", "amazonFNSKU"];
+    const warehouseFilter = ["warehousename"];
+    const locationFilter = ["locationname"];
+    const inventoryStockFilter = ["stock"]
+    const notAvailable = ["cost_per_unit", "profit", "productRoi", "productRoi7", "productRoi30", "productRoi90"]
+
+    parsedFilter.forEach((item, idx) => {
+      const { operator, value, property } = item
+
+      if (!value || value?.length === 0) {
+        return;
+      }
+
+      const actualOperator = queryOperatorMapper?.[operator] ?? operator
+      let actualProperty = notAvailable.includes(property) ? undefined : property
+      if (productFilter.includes(property)) {
+        actualProperty = `p1.${property}`
+      } else if (warehouseFilter.includes(property)) {
+        actualProperty = `warehouse.name`
+      } else if (locationFilter.includes(property)) {
+        actualProperty = `bl.name`
+      } else if (inventoryStockFilter.includes(property)) {
+        actualProperty = `invenStk.${property}`
+      }
+
+      const query = ` ${idx > 0 || sql.includes('where') ? 'AND' : 'where'} ${actualProperty} ${actualOperator} (?) `
+
+      if (operator === "like") {
+        params.push(`%${value}%`)
+      } else {
+        params.push(value)
+      }
+      sql += query
+
+    })
+
+    if (parsedSort.length) {
+      const obj = parsedSort?.[0]
+      if (obj) {
+        const { property, direction } = obj
+
+        let actualProperty = notAvailable.includes(property) ? undefined : property
+
+        if (productFilter.includes(property)) {
+          actualProperty = `p1.${property}`
+        } else if (warehouseFilter.includes(property)) {
+          actualProperty = `warehouse.name`
+        } else if (locationFilter.includes(property)) {
+          actualProperty = `bl.name`
+        } else if (inventoryStockFilter.includes(property)) {
+          actualProperty = `invenStk.${property}`
+        }
+        if (actualProperty) {
+          sql += `ORDER BY ${actualProperty} ${direction}`;
+        }
+      }
+    }
     return sql
   }
 

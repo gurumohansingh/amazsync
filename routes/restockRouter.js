@@ -13,19 +13,19 @@ router.get(
 
       const inventories = await reStockService.getRestock(req.query)
       const inventoriesCount = await reStockService.getRestockCount(req.query)
-  
+
       if (Array.isArray(inventoriesCount) && inventoriesCount.length) {
         totalCount = inventoriesCount.find(count => count)?.totalInventories || 0;
       }
-  
+
       const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
-  
+
       res.send({
         currentPage,
         total: totalCount,
         inventories,
       })
-    } catch(error) {
+    } catch (error) {
       console.log(error);
       log.error(error);
       res.status(500).send(error);
