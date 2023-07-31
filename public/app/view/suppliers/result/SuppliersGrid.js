@@ -15,6 +15,10 @@ Ext.define('AmazSync.view.suppliers.result.SuppliersGrid', {
     titlePosition: 3,
     padding: 5,
     rowLines: false,
+    bbar: {        
+        xtype: 'pagingtoolbar',
+        displayInfo: true,        
+    },
     //forceFit: true,
     tools: [{
         iconCls: 'x-fa fa-sync fontcolorgreen',
@@ -36,7 +40,10 @@ Ext.define('AmazSync.view.suppliers.result.SuppliersGrid', {
         xtype: 'textfield',
         emptyText: 'Search',
         listeners: {
-            change: 'applySearch'
+            change: {
+                fn:'applySearch',
+                buffer:750
+            }
         },
         triggers: {
             clear: {

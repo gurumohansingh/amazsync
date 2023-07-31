@@ -1,23 +1,21 @@
 
 Ext.define('AmazSync.view.inventory.list.InventoryList', {
     extend: 'Ext.grid.Panel',
-    xtype: 'inventoryList',
+    alias: 'widget.inventoryList',
     requires: [
         'AmazSync.view.inventory.list.InventoryListController',
         'AmazSync.view.inventory.list.InventoryListModel'
-    ],
-
+    ],    
     controller: 'inventory-list-inventorylist',
     viewModel: {
         type: 'inventory-list-inventorylist'
     },
-    cls: 'productlistgrid',
     reference: 'inventoryList',
     store: 'inventoryProductListStore',
     padding: 5,
+    scrollable: true,
     rowLines: false,
     titlePosition: 2,
-    rowLines: false,
     selModel: 'cellmodel',
     listeners: {
         rowclick: 'opneImage'
@@ -43,17 +41,8 @@ Ext.define('AmazSync.view.inventory.list.InventoryList', {
         enableTextSelection: true,
         emptyText: '<span class="emptytext">No product found</span>',
         textAlight: 'center',
-        preserveScrollOnRefresh: true,
-        preserveScrollOnReload: true
     },
-    titlePosition: 0,
-    tools: [
-        {
-            xtype: 'label',
-            bind: {
-                html: '<span>Total Products: {totalCount}</span>',
-            }
-        }],
+    titlePosition: 0,   
     columns: {
         defaults: {
             align: 'center',

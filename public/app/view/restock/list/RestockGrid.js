@@ -48,14 +48,7 @@ Ext.define('AmazSync.view.restock.list.RestockGrid', {
         tooltip: 'Create Shipment',
         handler: 'createShipment',
         margin: '0 0 0 10px'
-    },
-    {
-        xtype: 'label',
-        bind: {
-            html: '<span>Total Products: {totalCount}</span>',
-        }
     }],
-    preventHeaders: true,
     columns: [
         {
             text: 'Image',

@@ -8,13 +8,8 @@ Ext.define('AmazSync.view.suppliers.SuppliersController', {
 
     applySearch: function (searchbox, value) {
         var store = this.getViewModel().getStore('suppierStore');
-        store.clearFilter();
-        if (Ext.isEmpty(value)) {
-            return false;
-        }
-        store.filterBy((rec) => {
-            return rec.get('supplierName').indexOf(value) > -1 || rec.get('city').indexOf(value) > -1;
-        })
+       store.getProxy().setExtraParams({searchParam:value})
+       store.load();
     },
 
     submit: function (btn) {

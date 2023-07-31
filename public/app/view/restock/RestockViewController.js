@@ -8,19 +8,6 @@ Ext.define('AmazSync.view.restock.RestockViewController', {
         Ext.getStore('warehouseStore').load();
         vm.set('defaultWarehouse', localStorage.getItem('sellerskuLastWareHouse'));
     },
-    loadRestock: function (combo, newValue) {
-        var me = this, view = me.getView(), vm = me.getViewModel();
-        var marketPlace = view.lookupReference('marketPlace').getValue(),
-            wareHouse = view.lookupReference('warehouse').getValue(),
-            restockStore = Ext.getStore('restockStore');
-        if (!Ext.isEmpty(marketPlace)) {
-            restockStore.getProxy().setExtraParams({ wareHouse: wareHouse, marketPlace: marketPlace });
-            restockStore.load((records) => {
-                vm.set('totalCount', records.length);
-                me.applyFilter();
-            });
-        }
-    },
 
     opneImage: function (grid, record, element, rowIndex, e, eOpts) {
 
@@ -91,81 +78,16 @@ Ext.define('AmazSync.view.restock.RestockViewController', {
     },
 
     applyFilter: function (radio, newValue) {
+        
         var me = this, view = me.getView(), vm = me.getViewModel();
         var stockFilter = view.lookupReference('stockFilter').getValue()['stock'],
             searchFilterValue = view.lookupReference('searchFilter').getValue().toLowerCase().trim(),
-            recommendedShipDate = view.lookupReference('recommendedShipDateOption').getValue()['recommendedShipDate'];
+            recommendedShipDate = view.lookupReference('recommendedShipDateOption').getValue()['recommendedShipDate'],
+            marketPlace = view.lookupReference('marketPlace').getValue(),
+            wareHouse = view.lookupReference('warehouse').getValue();
         var store = Ext.getStore('restockStore');
-        store.clearFilter(true);
-        /*var stockFilterCondition = true, searchFilter = true, recommendedShipDateFilter = true;
-        store.filterBy((record) => {
-
-            if (stockFilter == 1) {
-                stockFilterCondition = record.get('stock') > 0
-                if (!Ext.isEmpty(record.get('masterSKU'))) {
-                    var masterRecord = store.queryRecords('sellerSKU', record.get('masterSKU'));
-                    if (masterRecord.length > 0) {
-                        stockFilterCondition = masterRecord[0].get('stock') > 0
-                    }
-                }
-            }
-            
-            if (stockFilter == 2) {
-                stockFilterCondition = record.get('stock') == 0 || Ext.isEmpty(record.get('stock'))
-                if (!Ext.isEmpty(record.get('masterSKU'))) {
-                    var masterRecord = store.queryRecords('sellerSKU', record.get('masterSKU'));
-                    if (masterRecord.length > 0) {
-                        stockFilterCondition = masterRecord[0].get('stock') == 0 || Ext.isEmpty(masterRecord[0].get('stock'));
-                    }
-                }
-            }
-
-            if (recommendedShipDate != "All" && !Ext.isEmpty(record.get('amz_recommended_order_date'))) {
-
-                var recDate = new Date(record.get('amz_recommended_order_date'));
-                var today = new Date();
-
-                if (recommendedShipDate == "today") {
-                    recommendedShipDateFilter = (Ext.Date.diff(today, recDate, 'd') <= 0);
-                }
-
-                if (recommendedShipDate == "next7") {
-                    recommendedShipDateFilter = (Ext.Date.diff(today, recDate, 'd') <= 7);
-                }
-
-                if (recommendedShipDate == "next14") {
-                    recommendedShipDateFilter = (Ext.Date.diff(today, recDate, 'd') <= 14);
-                }
-
-                if (recommendedShipDate == "next30") {
-                    recommendedShipDateFilter = (Ext.Date.diff(today, recDate, 'd') <= 30);
-                }
-
-            }
-            if (recommendedShipDate != "All" && Ext.isEmpty(record.get('amz_recommended_order_date'))) {
-                recommendedShipDateFilter = false;
-            }
-
-            if (searchFilterValue.trim() == "") {
-                searchFilter = true;
-            }
-            else {
-                searchFilter = record.get('itemName') && record.get('itemName').toLowerCase().includes(searchFilterValue) || record.get('sellerSKU') && record.get('sellerSKU').toLowerCase().includes(searchFilterValue) || record.get('amazonASIN') && record.get('amazonASIN').toLowerCase().includes(searchFilterValue);
-            }
-            return stockFilterCondition && searchFilter && recommendedShipDateFilter;
-        });*/
-        if(newValue && typeof newValue !== 'object')
-            store.getProxy().setExtraParam('searchParam', newValue.trim());
-        else
-        store.getProxy().setExtraParam('searchParam', null);
-        store.load({
-            params: {
-                page: 1,
-                start: 0,
-                limit: 25                
-            }
-        });
-        vm.set('totalCount', store.getCount())
+        store.getProxy().setExtraParams({ marketPlace: marketPlace, wareHouse: wareHouse, stockFilter: stockFilter, searchParam: searchFilterValue, recommendedShipDate: recommendedShipDate });
+        store.load();
     },
 
     onRecordSelect: function (grid, record, index, eOpts) {

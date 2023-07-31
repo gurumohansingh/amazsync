@@ -18,50 +18,16 @@ Ext.define('AmazSync.view.inventory.InventoryController', {
     },
 
     applyFilter: function (field, newValue) {
+        debugger
         var vm = this.getViewModel(), view = this.getView();
         var warehouse = view.lookupReference('warehouse').getValue();
         var stockFilter = view.lookupReference('stockFilter').getValue()['stock'];
         var locationFilter = view.lookupReference('locationFilter').getValue()['location'];
         var searchFilter = view.lookupReference('searchFilter').getValue().toLowerCase().trim();
-
         var inventoryProductListStore = Ext.getStore('inventoryProductListStore');
-        inventoryProductListStore.clearFilter();
-        var stockFilterCondition = true;
-        var locationFilterCondition = true;
-        /*inventoryProductListStore.filterBy((record) => {
-            if (stockFilter == 1)
-                stockFilterCondition = record.get('stock') > 0
-            if (stockFilter == 2)
-                stockFilterCondition = record.get('stock') == 0 || Ext.isEmpty(record.get('stock'))
-
-            if (locationFilter == 1)
-                locationFilterCondition = !Ext.isEmpty(record.get('binlocationname'))
-            if (locationFilter == 2)
-                locationFilterCondition = Ext.isEmpty(record.get('binlocationname'))
-
-            if ((record.get('itemName').toLowerCase().includes(searchFilter)
-                || record.get('sellerSKU').toLowerCase().includes(searchFilter)
-                || record.get('amazonASIN').toLowerCase().includes(searchFilter))
-                && stockFilterCondition && locationFilterCondition
-            ) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        })*/
-        if(newValue && typeof newValue !== 'object')
-            inventoryProductListStore.getProxy().setExtraParam('searchParam', newValue.trim());
-        else
-            inventoryProductListStore.getProxy().setExtraParam('searchParam', null);
-        inventoryProductListStore.load({
-            params: {
-                page: 1,
-                start: 0,
-                limit: 25                
-            }
-        });
-        vm.set('totalCount', inventoryProductListStore.getCount());
+        inventoryProductListStore.getProxy().setExtraParams({searchParam:searchFilter,warehouseId:warehouse,stockFilter:stockFilter,locationFilter:locationFilter});
+        inventoryProductListStore.load()
+       
     },
     updateWareHouse: function () {
         var me = this;

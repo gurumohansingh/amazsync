@@ -46,7 +46,7 @@ Ext.define('AmazSync.view.products.productList.suppliers.SupplierList', {
                 anyMatch: true,
                 forceSelection: true,
                 transform: 'stateSelect',
-                queryMode: 'local',
+                queryMode: 'remote',
                 valueField: 'id',
                 selectOnFocus: true,
                 triggerAction: 'all',

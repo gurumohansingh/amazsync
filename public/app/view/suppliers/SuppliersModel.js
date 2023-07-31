@@ -20,12 +20,16 @@ Ext.define('AmazSync.view.suppliers.SuppliersModel', {
             }],
             method: 'GET',
             type: 'ajaxStore',
+            pageSize: 100,
+            remoteSort:true,
+            remoteFilter : true, 
             proxy: {
                 type: 'ajax',
                 url: commonutil.getUrl('supplier'),
                 reader: {
                     type: 'json',
-                    rootProperty: 'users'
+                    rootProperty: 'suppliers',
+                    totalProperty:'total'
                 }
             }
         },

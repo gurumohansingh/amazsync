@@ -3,7 +3,9 @@ Ext.define('AmazSync.store.purchaseOrderStore', {
      autoLoad: false,
      alias: 'store.purchaseOrderStore',
      storeId: 'purchaseOrderStore',
-     remoteSort: true,
+     pageSize: 100,
+     remoteSort:true,
+     remoteFilter : true,
      proxy: {
           type: 'ajax',
           url: commonutil.getUrl('shipment/getpurchaseorder'),

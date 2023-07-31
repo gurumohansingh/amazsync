@@ -3,14 +3,16 @@ Ext.define('AmazSync.store.suppierStore', {
      autoLoad: true,
      alias: 'store.suppierStore',
      storeId: 'suppierStore',
-     remoteSort: true,
-     remoteFilter: true,
+     pageSize: 100,
+     remoteFilter : true,
+     buffered: true,
      proxy: {
           type: 'ajax',
           url: commonutil.getUrl('supplier'),
           reader: {
                type: 'json',
-               rootProperty: ''
+               rootProperty: 'suppliers',
+               totalProperty:'total'
           }
      }
 });

@@ -34,7 +34,7 @@ Ext.define('AmazSync.view.restock.RestockView', {
                 data: [{ name: 'USA', value: 'US' }, { name: 'Canada', value: 'CA' }]
             },
             listeners: {
-                change: 'loadRestock'
+                change: 'applyFilter'
             },
         }, {
             xtype: 'combo',
@@ -54,7 +54,7 @@ Ext.define('AmazSync.view.restock.RestockView', {
                 value: '{defaultWarehouse}'
             },
             listeners: {
-                change: 'loadRestock',
+                change: 'applyFilter',
                 afterRender: 'setRecentWarehouse'
             },
             triggers: {

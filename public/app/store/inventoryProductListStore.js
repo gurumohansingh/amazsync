@@ -3,18 +3,17 @@ Ext.define('AmazSync.store.inventoryProductListStore', {
      autoLoad: false,
      alias: 'store.inventoryProductListStore',
      storeId: 'inventoryProductListStore',
-     pageSize: 25,
+     pageSize: 100,
+     remoteSort:true,
+     remoteFilter : true, 
      remoteSort: true,
      proxy: {
           type: 'ajax',
           url: commonutil.getUrl('location/getlocalinventory'),
           reader: {
                type: 'json',
-               rootProperty: ''
+               rootProperty: 'locations',
+               totalProperty:'total'
           }
      },
-     // sorters: [{
-     //      property: 'binlocationname',
-     //      direction: 'DESC'
-     // }]
 });

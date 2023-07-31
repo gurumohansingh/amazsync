@@ -3,14 +3,16 @@ Ext.define('AmazSync.store.restockStore', {
      autoLoad: false,
      alias: 'store.restockStore',
      storeId: 'restockStore',
-     remoteSort: true,
-     remoteFilter: true,
+     pageSize: 100,
+     remoteSort:true,
+     remoteFilter : true,
      proxy: {
           type: 'ajax',
           url: commonutil.getUrl('restock'),
           reader: {
                type: 'json',
-               rootProperty: 'inventories'
+               rootProperty: 'inventories',
+               totalProperty:'total'
           }
      }
 });

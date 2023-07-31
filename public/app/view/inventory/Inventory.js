@@ -107,8 +107,7 @@ Ext.define('AmazSync.view.inventory.Inventory', {
         }, {
             xtype: 'inventoryList',
             region: 'center',
-            margin: '10px 0 0 0',
-            scrollable: true
+            margin: '10px 0 0 0'
         }
     ]
 });
