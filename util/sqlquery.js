@@ -7,17 +7,7 @@ module.exports = {
   getProductwhere: `SELECT * from products where amzlive =?`,
   updateProductsLive: "update products set amzlive=0",
   getProduct: `SELECT * from products`,
-  getProductByPurchaseOrder: `SELECT p.*
-    FROM purchase_orders po
-    CROSS JOIN JSON_TABLE(
-        po.items,
-        "$[*]"
-        COLUMNS (
-            sku VARCHAR(255) PATH "$.sku"
-        )
-    ) AS jt
-    JOIN products p ON jt.sku = p.sellerSku
-    WHERE po.id IN (?)`,
+  getProductByPurchaseOrder: `SELECT p.* FROM purchase_orders po CROSS JOIN JSON_TABLE(po.items, "$[*]" COLUMNS (sku VARCHAR(255) PATH "$.sku")) AS jt JOIN products p ON jt.sku = p.sellerSku WHERE po.id IN (?)`,
   getProductCount: `SELECT COUNT(*) as totalProducts from products`,
   getProductBySku: `SELECT * from products where sellerSKU=?`,
   getMasterSku: `SELECT sellerSKU from products where ismasterSku=1`,
@@ -124,24 +114,13 @@ module.exports = {
   getShipmentByShipmentId:
     "select  status from purchase_orders WHERE remoteId=?",
   getShipmentByName: "select  id from purchase_orders WHERE LOWER(reference)=?",
-
   getTableColumns: "SHOW COLUMNS FROM ??",
-
   addRestock: "insert into restock SET ?",
   updateRestock: "update restock SET ? where amz_sku=? and market_place=?",
   deleteRestock: "delete restock where azm_sku=? and market_place=?",
   getRestockData: "select * from restock",
-  getRestockFullData: `select r1.*, bl.name as locationname,warehouse.name as warehousename,invenStk.stock,p1.masterSKU,p1.casePackQuantity,p1.amazonASIN,p1.amazonFNSKU, p1.imageUrl,p1.imageHeight,p1.imageWidth,p1.sellerSKU,p1.itemName,p1.itemNameLocal,p1.kit,p1.reshippingCost,p1.prepMaterialCost,p1.prepLaborCost from restock r1
-                            left join products p1 on r1.amz_sku = p1.sellerSKU
-                            left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku
-                            left JOIN binlocation bl on invenStk.locationid = bl.id
-                            left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
-  getRestockFullDataCount: `select count(*) as totalInventories from restock r1
-                            left join products p1 on r1.amz_sku = p1.sellerSKU
-                            left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku
-                            left JOIN binlocation bl on invenStk.locationid = bl.id
-                            left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
-
+  getRestockFullData: `select r1.*, bl.name as locationname,warehouse.name as warehousename,invenStk.stock,p1.masterSKU,p1.casePackQuantity,p1.amazonASIN,p1.amazonFNSKU, p1.imageUrl,p1.imageHeight,p1.imageWidth,p1.sellerSKU,p1.itemName,p1.itemNameLocal,p1.kit,p1.reshippingCost,p1.prepMaterialCost,p1.prepLaborCost from restock r1 left join products p1 on r1.amz_sku = p1.sellerSKU left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku left JOIN binlocation bl on invenStk.locationid = bl.id left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
+  getRestockFullDataCount: `select count(*) as totalInventories from restock r1 left join products p1 on r1.amz_sku = p1.sellerSKU left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku left JOIN binlocation bl on invenStk.locationid = bl.id left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
   getRestockSku: `select market_place,amz_sku,amz_current_price from restock left JOIN products on restock.amz_sku=products.sellerSKU where products.status='Active'`,
   getRestocktoGetFee: `select market_place,amz_sku,amz_current_price from restock left JOIN products on restock.amz_sku=products.sellerSKU where restock.amz_fee_estimate is null`,
   addHistory:
