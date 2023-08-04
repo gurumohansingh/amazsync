@@ -99,9 +99,43 @@ class spApiSyncService {
                 }
             }
         }
+        const yearly = async function () {
+
+            for (var i = 0; i < skus.length; i++) {
+
+                try {
+                    var updateMatrix = {};
+                    var sku = skus[i];
+                    var marketPlace = constant.MARKETPLACE_ID_US;
+
+                    if (sku['market_place'].toUpperCase() == "CA") {
+                        marketPlace = constant.MARKETPLACE_ID_CA
+                    }
+
+                    var response = await sellingPartnerOperationsService.getOrderMetricsYearly(marketPlace, sku['amz_sku']);
+
+
+                    if (response) {
+                        updateMatrix["amz_units_ordered365"] = response[0].unitCount ? response[0].unitCount : 0;
+                        updateMatrix["amz_avg_selling_price365"] = response[0].averageUnitPrice.amount;
+                        updateMatrix["amz_total_sell_amt365"] = response[0].totalSales.amount;
+                    }
+
+                    updateMatrix["timespan"] = new Date();
+
+                    mysql.query(updateRestock, [updateMatrix, sku['amz_sku'], sku['market_place']]);
+
+                } catch (e) {
+                    log.error(e);
+                    log.error('updateSalesMatrix', updateMatrix, sku['amz_sku'], sku['market_place'])
+                }
+            }
+        }
+        
         weekly();
         monthly()
         threemonthly()
+        yearly()
         var feeskus = await reStockService.getRestocktoGetFee();
 
         for (var i = 0; i < feeskus.length; i++) {
