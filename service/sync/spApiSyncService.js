@@ -23,7 +23,7 @@ class spApiSyncService {
 
                     if (response) {
                         updateMatrix["amz_units_ordered7"] = response[0].unitCount ? response[0].unitCount : null;
-                        updateMatrix["amz_avg_selling_price7"] = response[0].averageUnitPrice.amount;
+                        updateMatrix["amz_avg_selling_price7"] = (+response[0].averageUnitPrice.amount).toFixed(2);
                         updateMatrix["amz_total_sell_amt7"] = response[0].totalSales.amount;
                     }
 
@@ -54,7 +54,7 @@ class spApiSyncService {
 
                     if (response) {
                         updateMatrix["amz_units_ordered30"] = response[0].unitCount ? response[0].unitCount : 0;
-                        updateMatrix["amz_avg_selling_price30"] = response[0].averageUnitPrice.amount;
+                        updateMatrix["amz_avg_selling_price30"] = (+response[0].averageUnitPrice.amount).toFixed(2);
                         updateMatrix["amz_total_sell_amt30"] = response[0].totalSales.amount;
                     }
                     updateMatrix["timespan"] = new Date();
@@ -85,7 +85,7 @@ class spApiSyncService {
 
                     if (response) {
                         updateMatrix["amz_units_ordered90"] = response[0].unitCount ? response[0].unitCount : 0;
-                        updateMatrix["amz_avg_selling_price90"] = response[0].averageUnitPrice.amount;
+                        updateMatrix["amz_avg_selling_price90"] = (+response[0].averageUnitPrice.amount).toFixed(2);
                         updateMatrix["amz_total_sell_amt90"] = response[0].totalSales.amount;
                     }
 
@@ -117,7 +117,7 @@ class spApiSyncService {
                 var apiResponse = await sellingPartnerOperationsService.getFeesEstimateBySKU(marketPlace, sku['amz_sku'], sku['amz_current_price'], currencyCode)
 
                 if (!isNaN(apiResponse)) {
-                    updateMatrix["amz_fee_estimate"] = apiResponse
+                    updateMatrix["amz_fee_estimate"] = (+apiResponse).toFixed(2);
                     updateMatrix["timespan"] = new Date();
 
                     mysql.query(updateRestock, [updateMatrix, sku['amz_sku'], sku['market_place']]);
