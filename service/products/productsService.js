@@ -168,9 +168,11 @@ class productsService {
                     .catch(err => reject(err));
           })
      }
-     getMastersku() {
+     getMastersku(query) {
+          //concatenating  base sql query
+          const sqlquery = `${getMasterSku} AND sellerSKU LIKE "%${query}%"`
           return new Promise((resolve, reject) => {
-               mysql.query(getMasterSku, null)
+               mysql.query(sqlquery, null)
                     .then(products => resolve(products))
                     .catch(err => reject(err));
           })

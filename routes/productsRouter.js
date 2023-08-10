@@ -120,7 +120,8 @@ router.get("/getproduct", authorization("Product View"), (req, res, next) => {
     })
 });
 router.get("/getmastersku", authorization("Product View"), (req, res, next) => {
-  productsService.getMastersku()
+  const { query }=req.query;
+  productsService.getMastersku(query)
     .then(response => {
       res.send(response);
     })
