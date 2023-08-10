@@ -168,14 +168,16 @@ class productsService {
                     .catch(err => reject(err));
           })
      }
-     getMastersku(query) {
-          //concatenating  base sql query
-          const sqlquery = `${getMasterSku} AND sellerSKU LIKE "%${query}%"`
-          return new Promise((resolve, reject) => {
-               mysql.query(sqlquery, null)
-                    .then(products => resolve(products))
-                    .catch(err => reject(err));
-          })
+     async getMastersku(query) {
+       //concatenating  base sql query
+       const value= `%${query}%`
+       const sqlquery = `${getMasterSku} AND sellerSKU LIKE ?`;
+       try {
+         const skus = await mysql.query(sqlquery, [value]);
+         return skus;
+       } catch (error) {
+         throw error;
+       }
      }
 }
 module.exports = new productsService;
