@@ -41,7 +41,6 @@ router.get("/skulist", authorization("Product View"), (req, res, next) => {
 
 router.put("/update", authorization("Product Edit"), (req, res, next) => {
   var updatedata = req.body;
-  console.log("PUT::",updatedata);
   var params = {
     suppliers: updatedata['suppliers'],
     reshippingCost: (+updatedata['reshippingCost']).toFixed(2),
@@ -76,7 +75,6 @@ router.put("/update", authorization("Product Edit"), (req, res, next) => {
 });
 router.post("/update", authorization("Product Edit"), (req, res, next) => {
   var updatedata = req.body;
-  console.log("PUT::",updatedata);
   var params = {
     suppliers: updatedata['suppliers'],
     reshippingCost: (+updatedata['reshippingCost']).toFixed(2),
