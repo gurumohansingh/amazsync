@@ -158,4 +158,6 @@ module.exports = {
     "SELECT * FROM filterPresets WHERE tabName = ? AND userId = ? AND presetName = ? LIMIT 0, 1",
   getFilterQueryById:
     "SELECT filterQuery FROM filterPresets WHERE id = ? AND userId = ? LIMIT 0, 1",
+    getAllTableLayouts: "SELECT id,name FROM tableLayouts WHERE tabName =?",
+    insertTableLayout: `INSERT into tableLayouts(name,tabName,columnNames) values(?,?,?)`,
 };
