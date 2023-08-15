@@ -24,6 +24,7 @@ var createError = require('http-errors'),
 	restock = require('./routes/restockRouter'),
 	historyRouter = require('./routes/historyRouter'),
 	profitRouter = require('./routes/profitRouter'),
+	filterRouter = require('./routes/filterRoute'),
 	bodyParser = require('body-parser');
 var { authorization } = require("./service/requestValidate");
 
@@ -87,6 +88,7 @@ app.use('/products', productsRouter);
 app.use('/info', infoRouter);
 app.use('/supplier', suppierRouter);
 app.use('/location', locationsRouter);
+app.use('/filter', filterRouter);
 app.use('/kit', kitRouter);
 app.use('/admn', authorization("Admn All"), admn);
 app.use('/shipment', authorization("Admn All"), inventoryPlanner);
