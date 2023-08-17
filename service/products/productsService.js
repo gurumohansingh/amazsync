@@ -130,12 +130,40 @@ class productsService {
                     .catch(err => reject(err));
           })
      }
-     updateProduct(user, params, sku) {
-          return new Promise((resolve, reject) => {
-               mysql.query(updateProductUI, [params, sku])
-                    .then(skulist => resolve(skulist))
-                    .catch(err => reject(err));
-          })
+     async updateProduct(req, res, next) {
+          const params = {
+               suppliers: req.body['suppliers'],
+               reshippingCost: req.body['reshippingCost'],
+               prepMaterialCost: req.body['prepMaterialCost'],
+               prepLaborCost: req.body['prepLaborCost'],
+               tag: Array.isArray(req.body['tag']) ? req.body['tag'].join(',') : req.body['tag'],
+               targetDaysInAmazon: req.body['targetDaysInAmazon'],
+               targetDaysInWarehouse: req.body['targetDaysInWarehouse'],
+               isPartSKUOnly: req.body['isPartSKUOnly'],
+               EANLocal: req.body['EANLocal'],
+               packageWeightLocal: req.body['packageWeightLocal'],
+               itemNoteLocal: req.body['itemNoteLocal'],
+               dimensionsLocal: req.body['dimensionsLocal'],
+               UPCLocal: req.body['UPCLocal'],
+               isActiveLocal: req.body['isActiveLocal'],
+               additionalPrepInstructions: req.body['additionalPrepInstructions'],
+               itemNameLocal: req.body['itemNameLocal'],
+               countryofOriginLocal: req.body['countryofOriginLocal'],
+               htcCodeLocal: req.body['htcCodeLocal'],
+               casePackQuantity: req.body['casePackQuantity'],
+               casePackUPC: req.body['casePackUPC'],
+               ismasterSku: req.body['ismasterSku'],
+               masterSku: req.body['masterSku']
+             }
+          try {
+            const result = await mysql.query(updateProductUI, [
+              params,
+              req.body["sellerSKU"],
+            ]);
+            return res.status(200).send(result);
+          } catch (error) {
+            return res.status(500).send(error);
+          }
      }
      async addProduct(user, params, sku) {
           var config = await sellerSettings.getSellerId(user);
