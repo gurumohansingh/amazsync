@@ -57,13 +57,12 @@ class sellerSettings {
         const newSetting = {
           settings: JSON.stringify(setting),
           username: req.loggedUser.username,
-          settinggroup: constant.SELLERSETTINGGROUP,
+          settinggroup:  setting["settinggroup"],
         };
         await mysql.query(addSetting, newSetting);
         return res.status(200).send("Setting added successfully.");
       }
     } catch (err) {
-      console.error(err);
       return res.status(500).send(err);
     }
   }
