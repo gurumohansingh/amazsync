@@ -81,7 +81,7 @@ module.exports = {
   updateKitCount: "update kitProducts set count=? where sku=? and parentSku=?",
   updatekitname: "update products set itemNameLocal=? where sellerSKU=?",
   updateInventoryStock:
-    "update inventorystock set stock=?,masterSKU=? where sku =? and warehouseId=?",
+    "update inventorystock set stock=?,masterSKU=?,local_stock=? where sku =? and warehouseId=?",
   updateInventoryStockNoMaster:
     "update inventorystock set stock=? where sku =? and warehouseId=?",
   addInventoryStock: "insert into inventorystock set ?",
@@ -90,7 +90,7 @@ module.exports = {
   updateInventoryStockBySku:
     "update inventorystock set stock=?,locationid=? where sku =? and warehouseId=?",
   localInventory:
-    "select p1.*,t1.binlocationname,t1.warehousename, t1.warehouseId,t1.locationid,t1.stock from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId=?)t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU",
+    "select p1.*,t1.binlocationname,t1.warehousename, t1.warehouseId,t1.locationid,t1.stock,t1.local_stock from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock, stock.local_stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId=?)t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU",
   localInventoryCount:
     "select COUNT(*) as totalLocation from (SELECT p.*,bin.name as binlocationname,wh.name as warehousename, stock.warehouseId,stock.locationid,stock.stock from products p LEFT JOIN inventorystock stock on p.sellerSKU=stock.sku LEFT JOIN binlocation bin on stock.locationid=bin.id LEFT JOIN warehouse wh on stock.warehouseId=wh.id WHERE stock.warehouseId=?)t1 right JOIN products p1 on p1.sellerSKU = t1.sellerSKU",
   updateInventoryLocation:
@@ -131,7 +131,7 @@ module.exports = {
   updateRestock: "update restock SET ? where amz_sku=? and market_place=?",
   deleteRestock: "delete restock where azm_sku=? and market_place=?",
   getRestockData: "select * from restock",
-  getRestockFullData: `select r1.*, bl.name as locationname,warehouse.name as warehousename,invenStk.stock,p1.masterSKU,p1.casePackQuantity,p1.amazonASIN,p1.amazonFNSKU, p1.imageUrl,p1.imageHeight,p1.imageWidth,p1.sellerSKU,p1.itemName,p1.itemNameLocal,p1.kit,p1.reshippingCost,p1.prepMaterialCost,p1.prepLaborCost from restock r1
+  getRestockFullData: `select r1.*, bl.name as locationname,warehouse.name as warehousename,invenStk.stock, invenStk.local_stock,p1.masterSKU,p1.casePackQuantity,p1.amazonASIN,p1.amazonFNSKU, p1.imageUrl,p1.imageHeight,p1.imageWidth,p1.sellerSKU,p1.itemName,p1.itemNameLocal,p1.kit,p1.reshippingCost,p1.prepMaterialCost,p1.prepLaborCost from restock r1
                             left join products p1 on r1.amz_sku = p1.sellerSKU
                             left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku
                             left JOIN binlocation bl on invenStk.locationid = bl.id
