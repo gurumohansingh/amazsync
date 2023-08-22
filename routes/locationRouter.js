@@ -204,7 +204,7 @@ router.post("/updateInventory", authorization("Inventory Edit Stock"), async (re
            locationid: req.body.locationid,
            stock: req.body.stock,
            masterSKU: req.body.masterSKU,
-           local_stock: req.body.localStock,
+           localStock: req.body.localStock,
          };
          await locationService.addInventoryStock(insertparams);
          return res.status(200).send("Added Successfully.");
