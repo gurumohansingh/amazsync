@@ -37,6 +37,17 @@ class sellingPartnerOperationsService {
         var response = await sellingPartnerAPIService.callAPi('getOrderMetrics', 'sales', paramns);
         return response
     }
+    async getOrderMetricsYearly(marketPlace, sku) {
+
+        var paramns = {
+            marketplaceIds: marketPlace,
+            interval: `${this.getStartDate(365)}--${this.getEndDate()}`,
+            granularity: "Total",
+            sku: sku
+        };
+        var response = await sellingPartnerAPIService.callAPi('getOrderMetrics', 'sales', paramns);
+        return response
+    }
 
     getStartDate(days) {
         var today = new Date();

@@ -186,10 +186,12 @@ class restockService {
       element["amz_avg_profit7"] = (element["profit"] * element["amz_units_ordered7"]).toFixed(2)
       element["amz_avg_profit30"] = (element["profit"] * element["amz_units_ordered30"]).toFixed(2)
       element["amz_avg_profit90"] = (element["profit"] * element["amz_units_ordered90"]).toFixed(2)
+      element["amz_avg_profit365"] = (element["profit"] * element["amz_units_ordered365"]).toFixed(2)
 
       element["productRoi7"] = ((element['amz_avg_selling_price7'] - amzFee - element["cost_per_unit"]) / element["cost_per_unit"]).toFixed(2)
       element["productRoi30"] = ((element['amz_avg_selling_price30'] - amzFee - element["cost_per_unit"]) / element["cost_per_unit"]).toFixed(2)
       element["productRoi90"] = ((element['amz_avg_selling_price90'] - amzFee - element["cost_per_unit"]) / element["cost_per_unit"]).toFixed(2)
+      element["productRoi365"] = ((element['amz_avg_selling_price365'] - amzFee - element["cost_per_unit"]) / element["cost_per_unit"]).toFixed(2)
     });
     return restock;
 
