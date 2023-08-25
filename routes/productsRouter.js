@@ -43,9 +43,9 @@ router.put("/update", authorization("Product Edit"), (req, res, next) => {
   var updatedata = req.body;
   var params = {
     suppliers: updatedata['suppliers'],
-    reshippingCost: updatedata['reshippingCost'],
-    prepMaterialCost: updatedata['prepMaterialCost'],
-    prepLaborCost: updatedata['prepLaborCost'],
+    reshippingCost: (+updatedata['reshippingCost']).toFixed(2),
+    prepMaterialCost: (+updatedata['prepMaterialCost']).toFixed(2),
+    prepLaborCost: (+updatedata['prepLaborCost']).toFixed(2),
     tag: Array.isArray(updatedata['tag']) ? updatedata['tag'].join(',') : updatedata['tag'],
     targetDaysInAmazon: updatedata['targetDaysInAmazon'],
     targetDaysInWarehouse: updatedata['targetDaysInWarehouse'],
@@ -77,9 +77,9 @@ router.post("/update", authorization("Product Edit"), (req, res, next) => {
   var updatedata = req.body;
   var params = {
     suppliers: updatedata['suppliers'],
-    reshippingCost: updatedata['reshippingCost'],
-    prepMaterialCost: updatedata['prepMaterialCost'],
-    prepLaborCost: updatedata['prepLaborCost'],
+    reshippingCost: (+updatedata['reshippingCost']).toFixed(2),
+    prepMaterialCost: (+updatedata['prepMaterialCost']).toFixed(2),
+    prepLaborCost: (+updatedata['prepLaborCost']).toFixed(2),
     tag: Array.isArray(updatedata['tag']) ? updatedata['tag'].join(',') : updatedata['tag'],
     targetDaysInAmazon: updatedata['targetDaysInAmazon'],
     targetDaysInWarehouse: updatedata['targetDaysInWarehouse'],
