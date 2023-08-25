@@ -119,13 +119,13 @@ router.get("/getproduct", authorization("Product View"), (req, res, next) => {
       res.status(500).send(err);
     })
 });
-router.get("/getmastersku", authorization("Product View"), (req, res, next) => {
-  productsService.getMastersku()
-    .then(response => {
-      res.send(response);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    })
+router.get("/getmastersku", authorization("Product View"), async (req, res, next) => {
+  const { query } = req.query;
+  try {
+    const response = await productsService.getMastersku(query);
+    res.send(response);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 module.exports = router;
