@@ -200,43 +200,56 @@ class inventoryPlannerService {
     return new Promise((resolve, reject) => {
       const { sorting, searchParam, sort } = queryParams;
 
-      const parsedSort = JSON.parse(sort || "[]")
+      const parsedSort = JSON.parse(sort || "[]");
 
       let sqlQuery = getPurchaseOrder;
       const whereParams = [];
 
       if (searchParam) {
-        sqlQuery += " where is_virtual <1 || is_virtual is null AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
+        sqlQuery +=
+          " where is_virtual <1 || is_virtual is null AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC";
         whereParams.push(`%${searchParam}%`);
         whereParams.push(`%${searchParam}%`);
       } else {
-        sqlQuery += " where is_virtual <1 || is_virtual is null ORDER by last_modified DESC"
+        sqlQuery +=
+          " where is_virtual <1 || is_virtual is null ORDER by created_date DESC";
       }
 
       if (sorting) {
-        sqlQuery.replace('ORDER by last_modified DESC', '')
+        sqlQuery.replace("ORDER by created_date DESC", "");
       }
 
-      const unknownColumns = ['import']
+      const unknownColumns = ["import"];
 
-      if (parsedSort.length && !unknownColumns.includes(parsedSort[0].property)) {
-        const sortQuery = sqlQuery.includes('ORDER') ? `, ${parsedSort[0].property} ${parsedSort[0].direction}` : ` ORDER BY ${parsedSort[0].property} ${parsedSort[0].direction}`
+      if (
+        parsedSort.length &&
+        !unknownColumns.includes(parsedSort[0].property)
+      ) {
+        const sortQuery = sqlQuery.includes("ORDER")
+          ? `, ${parsedSort[0].property} ${parsedSort[0].direction}`
+          : ` ORDER BY ${parsedSort[0].property} ${parsedSort[0].direction}`;
         sqlQuery += sortQuery;
       }
 
-      sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams)
+      sqlQuery = CommonUtil.createPaginationAndSortingQuery(
+        sqlQuery,
+        queryParams,
+        whereParams
+      );
 
       mysql
         .query(sqlQuery, whereParams)
         .then(async (shipments) => {
-          const shipmentIDS = shipments?.map(ship => ship.id) || []
+          const shipmentIDS = shipments?.map((ship) => ship.id) || [];
 
           if (!shipmentIDS.length) {
             resolve(shipments);
             return;
           }
 
-          const products = await productrService.getFullProductsByPurchaseOrder(shipmentIDS);
+          const products = await productrService.getFullProductsByPurchaseOrder(
+            shipmentIDS
+          );
           shipments.forEach((data) => {
             let prepareItems = [];
             const items = JSON.parse(data["items"]);
@@ -269,7 +282,8 @@ class inventoryPlannerService {
       const whereParams = [];
 
       if (searchParam) {
-        sqlQuery += " AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
+        sqlQuery +=
+          " AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC";
         whereParams.push(`%${searchParam}%`);
         whereParams.push(`%${searchParam}%`);
       }
@@ -287,33 +301,40 @@ class inventoryPlannerService {
   async getVirtualShipments(queryParams) {
     const { type, sorting, searchParam } = queryParams;
 
-    let whereParams = []
+    let whereParams = [];
     let sqlQuery = getVirtualPurchaseOrder;
 
-    whereParams.push(type)
+    whereParams.push(type);
 
     if (searchParam) {
-      sqlQuery += " where is_virtual =? AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
+      sqlQuery +=
+        " where is_virtual =? AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC";
       whereParams.push(`%${searchParam}%`);
       whereParams.push(`%${searchParam}%`);
     } else {
-      sqlQuery += " where is_virtual =? ORDER by last_modified DESC"
+      sqlQuery += " where is_virtual =? ORDER by created_date DESC";
     }
 
     if (sorting) {
-      sqlQuery.replace('ORDER by last_modified DESC', '')
+      sqlQuery.replace("ORDER by created_date DESC", "");
     }
 
-    sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams)
+    sqlQuery = CommonUtil.createPaginationAndSortingQuery(
+      sqlQuery,
+      queryParams,
+      whereParams
+    );
 
     const virtualShipments = await mysql.query(sqlQuery, whereParams);
-    const virtualShipmentIds = virtualShipments?.map(ship => ship.id) || []
+    const virtualShipmentIds = virtualShipments?.map((ship) => ship.id) || [];
 
     if (!virtualShipmentIds.length) {
       return virtualShipments;
     }
 
-    const products = await productrService.getFullProductsByPurchaseOrder(virtualShipmentIds);
+    const products = await productrService.getFullProductsByPurchaseOrder(
+      virtualShipmentIds
+    );
 
     try {
       virtualShipments.forEach(async (data) => {
@@ -348,7 +369,7 @@ class inventoryPlannerService {
     whereParams.push(type);
 
     if (searchParam) {
-      sqlQuery += " AND remoteId LIKE ? OR reference LIKE ?"
+      sqlQuery += " AND remoteId LIKE ? OR reference LIKE ?";
       whereParams.push(`%${searchParam}%`);
       whereParams.push(`%${searchParam}%`);
     }
@@ -395,7 +416,8 @@ class inventoryPlannerService {
       reference: shipmentName,
       remoteId:
         shipmentName +
-        `-${current.getMonth() + 1
+        `-${
+          current.getMonth() + 1
         }-${current.getDate()}-${current.getFullYear()}`,
       status: "Active",
       created_date: new Date(),
