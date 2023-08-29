@@ -165,9 +165,9 @@ class productsService {
   async updateProduct(req, res, next) {
     const params = {
       suppliers: req.body["suppliers"],
-      reshippingCost: req.body["reshippingCost"],
-      prepMaterialCost: req.body["prepMaterialCost"],
-      prepLaborCost: req.body["prepLaborCost"],
+      reshippingCost: (+req.body["reshippingCost"]).toFixed(2),
+      prepMaterialCost: (+req.body["prepMaterialCost"]).toFixed(2),
+      prepLaborCost: (+req.body["prepLaborCost"]).toFixed(2),
       tag: Array.isArray(req.body["tag"])
         ? req.body["tag"].join(",")
         : req.body["tag"],
@@ -203,9 +203,9 @@ class productsService {
   async addProduct(req, res, next) {
     const params = {
       suppliers: req.body["suppliers"],
-      reshippingCost: req.body["reshippingCost"],
-      prepMaterialCost: req.body["prepMaterialCost"],
-      prepLaborCost: req.body["prepLaborCost"],
+      reshippingCost: (+req.body["reshippingCost"]).toFixed(2),
+      prepMaterialCost: (+req.body["prepMaterialCost"]).toFixed(2),
+      prepLaborCost: (+req.body["prepLaborCost"]).toFixed(2),
       tag: Array.isArray(req.body["tag"])
         ? req.body["tag"].join(",")
         : req.body["tag"],

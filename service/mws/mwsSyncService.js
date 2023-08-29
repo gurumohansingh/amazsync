@@ -87,16 +87,19 @@ class mwsSyncService {
             latestReportId
           );
 
-        log.info(
-          `Total products  ${latestDataAvail.length} for reportid`
+        log.info(`Total products  ${latestDataAvail.length} for reportid`);
+
+        const skuList = latestDataAvail.map((product) => product["seller-sku"]);
+
+        const prepFetched = await sellingPartnerAPIService.getPrepInstruction(
+          skuList
         );
 
-        const skuList = latestDataAvail.map(product => product['seller-sku']);
+        const lastestData = this.setPrepInsideProducts(
+          latestDataAvail,
+          prepFetched
+        );
 
-        const prepFetched = await sellingPartnerAPIService.getPrepInstruction(skuList);
-
-        const lastestData = this.setPrepInsideProducts(latestDataAvail, prepFetched)
-        
         const savedProductsList = await mysql.query(getProduct, null);
 
         const latestDataOnly = await this.filterNewSkuData(
@@ -127,17 +130,20 @@ class mwsSyncService {
   setPrepInsideProducts(products, prepsInstructions) {
     if (!prepsInstructions.length || !products.length) {
       return products;
-    } 
+    }
 
-    products.forEach(product => {
-      const prepInst = prepsInstructions.find(inst => inst.SellerSKU === product['seller-sku'])
+    products.forEach((product) => {
+      const prepInst = prepsInstructions.find(
+        (inst) => inst.SellerSKU === product["seller-sku"]
+      );
 
       if (!prepInst) {
         return;
       }
 
-      product['prepInstruction'] = prepInst?.PrepInstructionList?.join(',') || ''
-    })
+      product["prepInstruction"] =
+        prepInst?.PrepInstructionList?.join(",") || "";
+    });
     return products;
   }
 
@@ -145,7 +151,7 @@ class mwsSyncService {
     let totalupdateList = [],
       totalAddList = 0;
     var config = await mwsService.getConfig(user);
-    let bulkInsertData = []
+    let bulkInsertData = [];
     try {
       serverProducts.forEach((product) => {
         var found = DBProducts.filter((item) => {
@@ -205,14 +211,16 @@ class mwsSyncService {
           //sellerId,user,imageUrl,itemName,sellerSKU,status,itemNote,dateAdded,amazonASIN,productId,productIdType
           totalAddList++;
           var newList = [
-            product['prepInstruction'] || "",
+            product["prepInstruction"] || "",
             config.SellerId,
             user,
             product["item-name"] || "",
             product["seller-sku"],
             product["status"] || "",
             product["item-note"] || "",
-            product["open-date"] ? moment(product["open-date"]).format("YYYY-MM-DD HH:mm:ss") : moment().format("YYYY-MM-DD HH:mm:ss"),
+            product["open-date"]
+              ? moment(product["open-date"]).format("YYYY-MM-DD HH:mm:ss")
+              : moment().format("YYYY-MM-DD HH:mm:ss"),
             product["asin1"] || "",
             product["product-id"] || "",
             product["product-id-type"] || 0,
@@ -229,7 +237,7 @@ class mwsSyncService {
             dateAdded: product["open-date"] || "",
             amazonASIN: product["asin1"] || "",
             productId: product["product-id"] || "",
-            amazonPrepInstructions: product['prepInstruction'],
+            amazonPrepInstructions: product["prepInstruction"],
             productIdType: product["product-id-type"] || 0,
             amzlive: 1,
           };
@@ -240,11 +248,8 @@ class mwsSyncService {
             null,
             JSON.stringify(newValue)
           );
-          
-          bulkInsertData.push([
-            ...newList,
-            ...constant.productDefault(),
-          ])
+
+          bulkInsertData.push([...newList, ...constant.productDefault()]);
         }
       });
 
@@ -267,7 +272,7 @@ class mwsSyncService {
       return { newProducts: totalAddList, updatedProducts: totalupdateList };
     } catch (error) {
       log.info(`Exception on updating/adding products ${error}`);
-      throw error
+      throw error;
     }
   }
 
@@ -275,30 +280,29 @@ class mwsSyncService {
     try {
       log.info("Bulk insert started!");
 
-      const chunks = []; 
-  
-      const chunkSize = 100;   
-      
+      const chunks = [];
+
+      const chunkSize = 100;
+
       for (let i = 0; i < bulkData.length; i += chunkSize) {
         chunks.push(bulkData.slice(i, i + chunkSize));
       }
-      
+
       for (const chunk of chunks) {
-        log.info(`bulk inserting ${chunk.length} records`)
+        log.info(`bulk inserting ${chunk.length} records`);
         await this.insertData(addProductFromSync, chunk);
-        log.info(`bulk inserting ${chunk.length} records completed`)
+        log.info(`bulk inserting ${chunk.length} records completed`);
       }
-  
+
       log.info("Bulk insert completed successfully!");
-  
     } catch (error) {
       log.error(`Error while adding products: ${error}`);
-      throw error
+      throw error;
     }
   }
-  
+
   async insertData(query, data) {
-    return mysql.query(query, [data])
+    return mysql.query(query, [data]);
   }
 
   async getMatchingProductForId(user, savedProductsList = []) {
@@ -431,7 +435,10 @@ class mwsSyncService {
       const config = await mwsService.getConfig();
 
       const productDetail =
-        await sellingPartnerAPIService.searchCatalogItemsBySellerSKU(asin, config);
+        await sellingPartnerAPIService.searchCatalogItemsBySellerSKU(
+          asin,
+          config
+        );
 
       const updatedProduct = this.convertSPProductForDatabase(
         productDetail || {}
@@ -639,7 +646,7 @@ class mwsSyncService {
               )
                 ? new Date(element["Recommended ship date"])
                 : null,
-              amz_current_price: element["Price"],
+              amz_current_price: (+element["Price"]).toFixed(2),
               amazon_category: element["Condition"],
             },
             element["Merchant SKU"],
@@ -659,7 +666,7 @@ class mwsSyncService {
             )
               ? new Date(element["Recommended ship date"])
               : null,
-            amz_current_price: element["Price"],
+            amz_current_price: (+element["Price"]).toFixed(2),
             amazon_category: element["Condition"],
           };
           await this.addRestock(restockUSNew, user);
@@ -685,7 +692,7 @@ class mwsSyncService {
               )
                 ? new Date(element["Recommended ship date"])
                 : null,
-              amz_current_price: element["Price"],
+              amz_current_price: (+element["Price"]).toFixed(2),
               amazon_category: element["Condition"],
             },
             element["Merchant SKU"],
@@ -706,7 +713,7 @@ class mwsSyncService {
               )
                 ? new Date(element["Recommended ship date"])
                 : null,
-              amz_current_price: element["Price"],
+              amz_current_price: (+element["Price"]).toFixed(2),
               amazon_category: element["Condition"],
             },
           ];
