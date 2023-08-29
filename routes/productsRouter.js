@@ -4,39 +4,45 @@ const productsService = require("../service/products/productsService");
 var { authorization } = require("../service/requestValidate");
 const { isValidCode } = require("../util/requestValidate");
 
-router.get("/getallproduct", authorization("Product View"), async (req, res, next) => {
-  let totalCount = 0;
-  const { start, limit } = req.query;
+router.get(
+  "/getallproduct",
+  authorization("Product View"),
+  async (req, res, next) => {
+    let totalCount = 0;
+    const { start, limit } = req.query;
 
-  try {
-    const products = await productsService.getAllProducts(req.query);
-    const productCountResult = await productsService.getTotalRecordsForProductList(req.query);
+    try {
+      const products = await productsService.getAllProducts(req.query);
+      const productCountResult =
+        await productsService.getTotalRecordsForProductList(req.query);
 
-    if (Array.isArray(productCountResult) && productCountResult.length) {
-      totalCount = productCountResult.find(count => count)?.totalProducts || 0;
+      if (Array.isArray(productCountResult) && productCountResult.length) {
+        totalCount =
+          productCountResult.find((count) => count)?.totalProducts || 0;
+      }
+
+      const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
+
+      res.send({
+        currentPage,
+        total: totalCount,
+        products,
+      });
+    } catch (error) {
+      res.status(isValidCode(error.code) ? error.code : 500).send(error);
     }
-
-    const currentPage = start ? Math.ceil((start - 1) / limit) + 1 : 1;
-
-    res.send({
-      currentPage,
-      total: totalCount,
-      products,
-    })
-
-  } catch(error) {
-    res.status(isValidCode(error.code) ? error.code : 500).send(error)
   }
-});
+);
 
 router.get("/skulist", authorization("Product View"), (req, res, next) => {
-  productsService.getskuList(req.loggedUser.username)
-    .then(response => {
+  productsService
+    .getskuList(req.loggedUser.username)
+    .then((response) => {
       res.send(response);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send(err);
-    })
+    });
 });
 
 router.put(
@@ -51,23 +57,24 @@ router.post(
   productsService.addProduct
 );
 
-
 router.get("/getproduct", authorization("Product View"), (req, res, next) => {
-  productsService.getProduct(req.query.sku)
-    .then(response => {
+  productsService
+    .getProduct(req.query.sku)
+    .then((response) => {
       res.send(response);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send(err);
-    })
+    });
 });
-router.get("/getmastersku", authorization("Product View"), async (req, res, next) => {
-  const { query } = req.query;
-  try {
-    const response = await productsService.getMastersku(query);
-    res.send(response);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+router.get("/getmastersku", authorization("Product View"), (req, res, next) => {
+  productsService
+    .getMastersku()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 });
 module.exports = router;
