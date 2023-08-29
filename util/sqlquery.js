@@ -1,16 +1,13 @@
 module.exports = {
   login:
     "select role,firstname,password,ID from users where email=? and enable=1",
-  getUserByEmail: "SELECT email FROM users WHERE email = ?",
-  saveNewUser: "INSERT INTO users SET ?",
-  updateSetting:
-    "UPDATE settings SET settings= ? WHERE settinggroup =? AND username = ?",
+  updateSetting: "update settings set settings= ? where settinggroup =?",
   addSetting: "INSERT INTO settings SET ?",
-  getSetting: "SELECT * from settings WHERE settinggroup = ? AND username = ?",
+  getSetting: "select * from settings where settinggroup =?",
   getProductwhere: `SELECT * from products where amzlive =?`,
   updateProductsLive: "update products set amzlive=0",
   getProduct: `SELECT * from products`,
-  getProductByPurchaseOrder: `SELECT p.* FROM purchase_orders po CROSS JOIN JSON_TABLE(po.items, "$[*]" COLUMNS (sku VARCHAR(255) PATH "$.sku")) AS jt JOIN products p ON jt.sku = p.sellerSku WHERE po.id IN (?)`,
+  getProductByPurchaseOrder: `SELECT p.* FROM purchase_orders po CROSS JOIN JSON_TABLE(po.items,"$[*]" COLUMNS (sku VARCHAR(255) PATH "$.sku")) AS jt JOIN products p ON jt.sku = p.sellerSku WHERE po.id IN (?)`,
   getProductCount: `SELECT COUNT(*) as totalProducts from products`,
   getProductBySku: `SELECT * from products where sellerSKU=?`,
   getMasterSku: `SELECT sellerSKU from products where ismasterSku=1`,
@@ -122,29 +119,15 @@ module.exports = {
   updateRestock: "update restock SET ? where amz_sku=? and market_place=?",
   deleteRestock: "delete restock where azm_sku=? and market_place=?",
   getRestockData: "select * from restock",
-<<<<<<< HEAD
-  getRestockFullData: `select r1.*, bl.name as locationname,warehouse.name as warehousename,invenStk.stock, invenStk.localStock,p1.masterSKU,p1.casePackQuantity,p1.amazonASIN,p1.amazonFNSKU, p1.imageUrl,p1.imageHeight,p1.imageWidth,p1.sellerSKU,p1.itemName,p1.itemNameLocal,p1.kit,p1.reshippingCost,p1.prepMaterialCost,p1.prepLaborCost from restock r1
-                            left join products p1 on r1.amz_sku = p1.sellerSKU
-                            left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku
-                            left JOIN binlocation bl on invenStk.locationid = bl.id
-                            left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
-  getRestockFullDataCount: `select count(*) as totalInventories from restock r1
-                            left join products p1 on r1.amz_sku = p1.sellerSKU
-                            left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku
-                            left JOIN binlocation bl on invenStk.locationid = bl.id
-                            left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
-
-=======
   getRestockFullData: `select r1.*, bl.name as locationname,warehouse.name as warehousename,invenStk.stock,p1.masterSKU,p1.casePackQuantity,p1.amazonASIN,p1.amazonFNSKU, p1.imageUrl,p1.imageHeight,p1.imageWidth,p1.sellerSKU,p1.itemName,p1.itemNameLocal,p1.kit,p1.reshippingCost,p1.prepMaterialCost,p1.prepLaborCost from restock r1 left join products p1 on r1.amz_sku = p1.sellerSKU left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku left JOIN binlocation bl on invenStk.locationid = bl.id left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
   getRestockFullDataCount: `select count(*) as totalInventories from restock r1 left join products p1 on r1.amz_sku = p1.sellerSKU left JOIN inventorystock invenStk on invenStk.sku = r1.amz_sku left JOIN binlocation bl on invenStk.locationid = bl.id left JOIN warehouse  on warehouse.id = invenStk.warehouseId`,
->>>>>>> c1a3f276ad0be70fe6a48800d0341dafb25c767d
   getRestockSku: `select market_place,amz_sku,amz_current_price from restock left JOIN products on restock.amz_sku=products.sellerSKU where products.status='Active'`,
   getRestocktoGetFee: `select market_place,amz_sku,amz_current_price from restock left JOIN products on restock.amz_sku=products.sellerSKU where restock.amz_fee_estimate is null`,
   addHistory:
     "insert into audit(type,update_by,old_value,new_value) values(?,?,?,?)",
   getAllHistory:
     "select * from audit where date between ? and ? and type = ? and (old_value like ? or  new_value like ?)",
-  getProfit: `SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_units_ordered365,amz_avg_selling_price365,amz_avg_profit365,amz_total_sell_amt365,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`,
+  getProfit: `SELECT sup.*,imageUrl,imageHeight,imageWidth,sellerSKU,reshippingCost,prepMaterialCost,prepLaborCost,amz_current_price,amz_units_ordered7,amz_avg_selling_price7,amz_avg_profit7,amz_total_sell_amt7,amz_units_ordered30,amz_avg_selling_price30,amz_avg_profit30,amz_total_sell_amt30,amz_units_ordered90,amz_avg_selling_price90,amz_avg_profit90,amz_total_sell_amt90,amz_fee_estimate FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`,
   getProfitCount: `SELECT count(*) as totalProfits FROM products left join restock on products.sellerSKU=restock.amz_sku left join (SELECT MIN(costPerUnit) as costPerUnit ,productSKU,inboundShippingCost FROM suppliers group by productSKU) as sup on products.sellerSKU =sup.productSKU`,
   insertFilterPresets: `insert into filterPresets(userId, filterQuery, tabName, presetName) values(?)`,
   getUserByID: `Select * from users where ID = ?`,
