@@ -6,7 +6,7 @@ module.exports = {
   updateSetting:
     "UPDATE settings SET settings= ? WHERE settinggroup =? AND username = ?",
   addSetting: "INSERT INTO settings SET ?",
-  getSetting: "select * from settings where settinggroup =?",
+  getSetting: "SELECT * from settings WHERE settinggroup = ? AND username = ?",
   getProductwhere: `SELECT * from products where amzlive =?`,
   updateProductsLive: "update products set amzlive=0",
   getProduct: `SELECT * from products`,
