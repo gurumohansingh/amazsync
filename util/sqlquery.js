@@ -1,7 +1,10 @@
 module.exports = {
   login:
     "select role,firstname,password,ID from users where email=? and enable=1",
-  updateSetting: "update settings set settings= ? where settinggroup =?",
+  getUserByEmail: "SELECT email FROM users WHERE email = ?",
+  saveNewUser: "INSERT INTO users SET ?",
+  updateSetting:
+    "UPDATE settings SET settings= ? WHERE settinggroup =? AND username = ?",
   addSetting: "INSERT INTO settings SET ?",
   getSetting: "select * from settings where settinggroup =?",
   getProductwhere: `SELECT * from products where amzlive =?`,
