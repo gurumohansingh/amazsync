@@ -263,13 +263,15 @@ class productsService {
         .catch((err) => reject(err));
     });
   }
-  getMastersku() {
-    return new Promise((resolve, reject) => {
-      mysql
-        .query(getMasterSku, null)
-        .then((products) => resolve(products))
-        .catch((err) => reject(err));
-    });
+  async getMastersku(req, res, next) {
+    const { query } = req.query;
+    const value = `%${query}%`;
+    try {
+      const sku = await mysql.query(getMasterSku, [value]);
+      return res.status(200).send(sku);
+    } catch (error) {
+      return res.status(500).send(error);
+    }
   }
 }
 module.exports = new productsService();

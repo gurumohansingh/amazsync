@@ -10,7 +10,7 @@ module.exports = {
   getProductByPurchaseOrder: `SELECT p.* FROM purchase_orders po CROSS JOIN JSON_TABLE(po.items,"$[*]" COLUMNS (sku VARCHAR(255) PATH "$.sku")) AS jt JOIN products p ON jt.sku = p.sellerSku WHERE po.id IN (?)`,
   getProductCount: `SELECT COUNT(*) as totalProducts from products`,
   getProductBySku: `SELECT * from products where sellerSKU=?`,
-  getMasterSku: `SELECT sellerSKU from products where ismasterSku=1`,
+  getMasterSku: `SELECT sellerSKU FROM products WHERE ismasterSku=1 AND sellerSKU LIKE ?`,
   getSKU: `SELECT sellerSKU,CONCAT_WS('',sellerSKU,'-', itemName) as name FROM products`,
   addProduct:
     "insert into products(sellerId,user,itemName,sellerSKU,status,itemNote,dateAdded,amazonASIN,productId,productIdType,amzlive) VALUES (?)",

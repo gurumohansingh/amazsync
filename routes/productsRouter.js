@@ -67,14 +67,9 @@ router.get("/getproduct", authorization("Product View"), (req, res, next) => {
       res.status(500).send(err);
     });
 });
-router.get("/getmastersku", authorization("Product View"), (req, res, next) => {
-  productsService
-    .getMastersku()
-    .then((response) => {
-      res.send(response);
-    })
-    .catch((err) => {
-      res.status(500).send(err);
-    });
-});
+router.get(
+  "/getmastersku",
+  authorization("Product View"),
+  productsService.getMastersku
+);
 module.exports = router;
