@@ -182,54 +182,39 @@ router.post("/updateProductlocation", authorization("Inventory Edit Location"), 
           })
 });
 
-router.post("/updateInventory", authorization("Inventory Edit Stock"), (req, res, next) => {
-
-     var updateparams = [
-          req.body.stock,
-          req.body.masterSKU,
-          req.body.sku,
-          req.body.warehouseId
-
-     ]
-     var insertparams = {
-          sku: req.body.sku,
-          warehouseId: req.body.warehouseId,
-          locationid: req.body.locationid,
-          stock: req.body.stock,
-          masterSKU: req.body.masterSKU
-     }
-     var checkparams = [
-          req.body.sku,
-          req.body.warehouseId,
-          req.body.locationid
-     ]
-     locationService.getInventoryStock(checkparams)
-          .then(skulist => {
-               if (skulist.length == 0) {
-                    locationService.addInventoryStock(insertparams)
-                         .then(skulist => {
-                              res.send("Successfully");
-                         })
-                         .catch(err => {
-                              log.error(err);
-                              res.status(500).send(err);
-                         })
-               } else {
-                    locationService.updateInventoryStock(updateparams)
-                         .then(skulist => {
-                              res.send("Successfully");
-                         })
-                         .catch(err => {
-                              log.error(err);
-                              res.status(500).send(err);
-                         })
-               }
-          })
-          .catch(err => {
-               log.error(err);
-               res.status(500).send(err);
-          })
+router.post("/updateInventory", authorization("Inventory Edit Stock"), async (req, res, next) => {
+     try {
+       const stock = await locationService.getInventoryStock([
+         req.body.sku,
+         req.body.warehouseId,
+       ]);
+       if (stock.length) {
+         await locationService.updateInventoryStock([
+           req.body.stock,
+           req.body.masterSKU,
+           req.body.localStock,
+           req.body.sku,
+           req.body.warehouseId,
+         ]);
+         return res.status(200).send("Updated Successfully.");
+       } else {
+         const insertparams = {
+           sku: req.body.sku,
+           warehouseId: req.body.warehouseId,
+           locationid: req.body.locationid,
+           stock: req.body.stock,
+           masterSKU: req.body.masterSKU,
+           localStock: req.body.localStock,
+         };
+         await locationService.addInventoryStock(insertparams);
+         return res.status(200).send("Added Successfully.");
+       }
+     } catch (err) {
+       log.error(err);
+       return res.status(500).send(err);
+     }               
 });
+
 router.get("/getlocalinventory", authorization("Inventory View"), async (req, res, next) => {
   try {
     let totalCount = 0;
