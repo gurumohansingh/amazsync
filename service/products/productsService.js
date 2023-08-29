@@ -290,7 +290,7 @@ class productsService {
     });
   }
   async getMastersku(req, res, next) {
-    const { query } = req.query;
+    const { query = "" } = req.query;
     const value = `%${query}%`;
     try {
       const sku = await mysql.query(getMasterSku, [value]);
