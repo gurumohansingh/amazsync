@@ -43,9 +43,9 @@ router.put("/update", authorization("Product Edit"), (req, res, next) => {
   var updatedata = req.body;
   var params = {
     suppliers: updatedata['suppliers'],
-    reshippingCost: (+updatedata['reshippingCost']).toFixed(2),
-    prepMaterialCost: (+updatedata['prepMaterialCost']).toFixed(2),
-    prepLaborCost: (+updatedata['prepLaborCost']).toFixed(2),
+    reshippingCost: updatedata['reshippingCost'],
+    prepMaterialCost: updatedata['prepMaterialCost'],
+    prepLaborCost: updatedata['prepLaborCost'],
     tag: Array.isArray(updatedata['tag']) ? updatedata['tag'].join(',') : updatedata['tag'],
     targetDaysInAmazon: updatedata['targetDaysInAmazon'],
     targetDaysInWarehouse: updatedata['targetDaysInWarehouse'],
@@ -77,9 +77,9 @@ router.post("/update", authorization("Product Edit"), (req, res, next) => {
   var updatedata = req.body;
   var params = {
     suppliers: updatedata['suppliers'],
-    reshippingCost: (+updatedata['reshippingCost']).toFixed(2),
-    prepMaterialCost: (+updatedata['prepMaterialCost']).toFixed(2),
-    prepLaborCost: (+updatedata['prepLaborCost']).toFixed(2),
+    reshippingCost: updatedata['reshippingCost'],
+    prepMaterialCost: updatedata['prepMaterialCost'],
+    prepLaborCost: updatedata['prepLaborCost'],
     tag: Array.isArray(updatedata['tag']) ? updatedata['tag'].join(',') : updatedata['tag'],
     targetDaysInAmazon: updatedata['targetDaysInAmazon'],
     targetDaysInWarehouse: updatedata['targetDaysInWarehouse'],
@@ -119,13 +119,13 @@ router.get("/getproduct", authorization("Product View"), (req, res, next) => {
       res.status(500).send(err);
     })
 });
-router.get("/getmastersku", authorization("Product View"), async (req, res, next) => {
-  const { query } = req.query;
-  try {
-    const response = await productsService.getMastersku(query);
-    res.send(response);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+router.get("/getmastersku", authorization("Product View"), (req, res, next) => {
+  productsService.getMastersku()
+    .then(response => {
+      res.send(response);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    })
 });
 module.exports = router;

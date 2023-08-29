@@ -49,7 +49,32 @@ router.get('/validateToken', (req, res, next) => {
       res.status(401).send(error);
     })
 })
-router.post('/register',usersService.registerUser)
+router.post('/register', (req, res, next) => {
+
+  let { email, firstname, password, confirmPassword } = req.body;
+  let error = [];
+  if (password != confirmPassword) {
+    error.push("Password and confirm password should be same");
+  }
+  if (!firstname) {
+    error.push("First name can't be empty");
+  }
+  if (!email) {
+    error.push("Email name can't be empty");
+  }
+
+  if (error.length == 0) {
+    usersService.registerUser({ email: email, firstname: firstname, password: password })
+      .then((responce) => {
+        res.send("created");
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      })
+  } else {
+    res.status(400).send(error);
+  }
+})
 
 router.post('/logout', (req, res, next) => {
   const token = req.headers["authorization"];

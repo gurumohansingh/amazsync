@@ -206,15 +206,15 @@ class inventoryPlannerService {
       const whereParams = [];
 
       if (searchParam) {
-        sqlQuery += " where is_virtual <1 || is_virtual is null AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC"
+        sqlQuery += " where is_virtual <1 || is_virtual is null AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
         whereParams.push(`%${searchParam}%`);
         whereParams.push(`%${searchParam}%`);
       } else {
-        sqlQuery += " where is_virtual <1 || is_virtual is null ORDER by created_date DESC"
+        sqlQuery += " where is_virtual <1 || is_virtual is null ORDER by last_modified DESC"
       }
 
       if (sorting) {
-        sqlQuery.replace('ORDER by created_date DESC', '')
+        sqlQuery.replace('ORDER by last_modified DESC', '')
       }
 
       const unknownColumns = ['import']
@@ -269,7 +269,7 @@ class inventoryPlannerService {
       const whereParams = [];
 
       if (searchParam) {
-        sqlQuery += " AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC"
+        sqlQuery += " AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
         whereParams.push(`%${searchParam}%`);
         whereParams.push(`%${searchParam}%`);
       }
@@ -293,15 +293,15 @@ class inventoryPlannerService {
     whereParams.push(type)
 
     if (searchParam) {
-      sqlQuery += " where is_virtual =? AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC"
+      sqlQuery += " where is_virtual =? AND remoteId LIKE ? OR reference LIKE ? ORDER by last_modified DESC"
       whereParams.push(`%${searchParam}%`);
       whereParams.push(`%${searchParam}%`);
     } else {
-      sqlQuery += " where is_virtual =? ORDER by created_date DESC"
+      sqlQuery += " where is_virtual =? ORDER by last_modified DESC"
     }
 
     if (sorting) {
-      sqlQuery.replace('ORDER by created_date DESC', '')
+      sqlQuery.replace('ORDER by last_modified DESC', '')
     }
 
     sqlQuery = CommonUtil.createPaginationAndSortingQuery(sqlQuery, queryParams, whereParams)

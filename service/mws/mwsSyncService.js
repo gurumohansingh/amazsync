@@ -639,7 +639,7 @@ class mwsSyncService {
               )
                 ? new Date(element["Recommended ship date"])
                 : null,
-              amz_current_price: (+element["Price"]).toFixed(2),
+              amz_current_price: element["Price"],
               amazon_category: element["Condition"],
             },
             element["Merchant SKU"],
@@ -659,7 +659,7 @@ class mwsSyncService {
             )
               ? new Date(element["Recommended ship date"])
               : null,
-            amz_current_price: (+element["Price"]).toFixed(2),
+            amz_current_price: element["Price"],
             amazon_category: element["Condition"],
           };
           await this.addRestock(restockUSNew, user);
@@ -685,7 +685,7 @@ class mwsSyncService {
               )
                 ? new Date(element["Recommended ship date"])
                 : null,
-              amz_current_price: (+element["Price"]).toFixed(2),
+              amz_current_price: element["Price"],
               amazon_category: element["Condition"],
             },
             element["Merchant SKU"],
@@ -706,7 +706,7 @@ class mwsSyncService {
               )
                 ? new Date(element["Recommended ship date"])
                 : null,
-              amz_current_price: (+element["Price"]).toFixed(2),
+              amz_current_price: element["Price"],
               amazon_category: element["Condition"],
             },
           ];
