@@ -111,17 +111,18 @@ class mwsService {
         });
     }
     async getConfig(user) {
-        var config = await sellerSettings.getSetting(user, constant.SELLERSETTINGGROUP);
+        var config = await sellerSettings.getUserSetting(
+          user,
+          constant.SELLERSETTINGGROUP
+        );
         return new Promise((resolve, reject) => {
-            if (config && config.length > 0 && config[0].settings) {
-                resolve(JSON.parse(config[0].settings));
-            }
-            else {
-                reject();
-            }
-        }
-        )
-    }
+          if (config) {
+            resolve(config);
+          } else {
+            reject();
+          }
+        });
+      }
 
     async getByStatus(user) {
         var config = await this.getConfig(user);

@@ -63,9 +63,25 @@ class sellerSettings {
         return res.status(200).send("Setting added successfully.");
       }
     } catch (err) {
-      console.error(err);
       return res.status(500).send(err);
     }
+  }
+
+  async getUserSetting(username, settingGroup) {
+    return new Promise((resolve, reject) => {
+      mysql
+        .query(getSetting, [settingGroup, username])
+        .then((settings) => {
+          if (settings.length && settings[0].settings) {
+            resolve(JSON.parse(settings[0].settings));
+          } else {
+            reject();
+          }
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
   }
 
   async getSellerId(user) {

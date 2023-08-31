@@ -100,17 +100,18 @@ module.exports = {
   updateRoles: "update users set  role=? where email=?",
   savePurchaseOrder: "insert into purchase_orders set ?",
   getPurchaseOrder:
-    "SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders",
+    "SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items, deleted_at, synced_at, finalized_at FROM purchase_orders",
   getPurchaseOrderCount:
     "SELECT COUNT(*) as totalOrders FROM purchase_orders where is_virtual <1 || is_virtual is null",
   getVirtualPurchaseOrder:
-    "SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,warehouse,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders",
+    "SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,warehouse,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items, deleted_at, synced_at, finalized_at FROM purchase_orders",
   getVirtualPurchaseOrderCount:
     "SELECT COUNT(*) as totalOrders FROM purchase_orders where is_virtual =?",
   getVirtualShipmentById:
     "SELECT id,is_virtual,reference,warehouse,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items FROM purchase_orders where is_virtual =1 and id=? ORDER by last_modified DESC",
   deletePurchaseOrder: "DELETE  FROM purchase_orders where is_virtual is null",
-  updateVirtualShipmentById: "UPDATE purchase_orders set items=? WHERE id=?",
+  updateVirtualShipmentById:
+    "UPDATE purchase_orders set items=?, synced_at=? WHERE id=?",
   removeVirtualShipmentById:
     "UPDATE purchase_orders set is_virtual=2,status=? WHERE id=?",
   updateShipmenStatus: "UPDATE purchase_orders set status=? WHERE remoteId=?",
