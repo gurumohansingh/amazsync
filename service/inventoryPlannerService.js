@@ -84,7 +84,7 @@ class inventoryPlannerService {
     });
   }
   async getConfig(user) {
-    var config = await sellerSettings.getSetting(
+    var config = await sellerSettings.getUserSetting(
       user,
       constant.INVENTORY_PLANNER
     );
@@ -452,13 +452,30 @@ class inventoryPlannerService {
     return newShipment;
   }
   async updateVirtualShipmentById(items, id) {
-    await mysql.query(updateVirtualShipmentById, [items, id]);
+    await mysql.query(updateVirtualShipmentById, [items, new Date(), id]);
     return true;
   }
 
   async removeVirtualShipmentById(status, id) {
-    await mysql.query(removeVirtualShipmentById, [status, id]);
-    return true;
+    const sql = removeVirtualShipmentById.split("WHERE");
+    try {
+      if (status === "Removed") {
+        await mysql.query(`${sql[0]}, deleted_at=? WHERE ${sql[1]}`, [
+          status,
+          new Date(),
+          id,
+        ]);
+      } else if (status === "Finalized") {
+        await mysql.query(`${sql[0]}, finalized_at=? WHERE ${sql[1]}`, [
+          status,
+          new Date(),
+          id,
+        ]);
+      }
+      return true;
+    } catch (error) {
+      throw error;
+    }
   }
   async getShipmentByName(shipmentName) {
     var existShipment = await mysql.query(getShipmentByName, [
