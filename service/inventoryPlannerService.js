@@ -207,7 +207,7 @@ class inventoryPlannerService {
 
       if (searchParam) {
         sqlQuery +=
-          " where is_virtual <1 || is_virtual is null AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC";
+          " where (is_virtual <1 || is_virtual is null) AND (remoteId LIKE ? OR reference LIKE ?) ORDER by created_date DESC";
         whereParams.push(`%${searchParam}%`);
         whereParams.push(`%${searchParam}%`);
       } else {
@@ -283,7 +283,7 @@ class inventoryPlannerService {
 
       if (searchParam) {
         sqlQuery +=
-          " AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC";
+          " AND (remoteId LIKE ? OR reference LIKE ?) ORDER by created_date DESC";
         whereParams.push(`%${searchParam}%`);
         whereParams.push(`%${searchParam}%`);
       }
@@ -308,7 +308,7 @@ class inventoryPlannerService {
 
     if (searchParam) {
       sqlQuery +=
-        " where is_virtual =? AND remoteId LIKE ? OR reference LIKE ? ORDER by created_date DESC";
+        " where is_virtual =? AND (remoteId LIKE ? OR reference LIKE ?) ORDER by created_date DESC";
       whereParams.push(`%${searchParam}%`);
       whereParams.push(`%${searchParam}%`);
     } else {
@@ -369,7 +369,7 @@ class inventoryPlannerService {
     whereParams.push(type);
 
     if (searchParam) {
-      sqlQuery += " AND remoteId LIKE ? OR reference LIKE ?";
+      sqlQuery += " AND (remoteId LIKE ? OR reference LIKE ?)";
       whereParams.push(`%${searchParam}%`);
       whereParams.push(`%${searchParam}%`);
     }
