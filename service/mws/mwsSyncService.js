@@ -23,7 +23,6 @@ const inventoryPlannerService = require("../../service/inventoryPlannerService")
 const { configure } = require("winston");
 const { capitalizeFirstLetter } = require("../../helper");
 const moment = require("moment");
-
 class mwsSyncService {
   async updateInvetory(user) {
     try {
@@ -630,25 +629,20 @@ class mwsSyncService {
       // Process US data in batches
       for (let i = 0; i < latestDataUS.length; i += batchSize) {
         const batch = latestDataUS.slice(i, i + batchSize);
-        console.log("US Batch:", i, i + batchSize);
         await this.fetchRestockBatch(user, batch, "US", savedRestockData);
       }
       // Process CA data in batches
       for (let i = 0; i < latestDataCA.length; i += batchSize) {
         const batch = latestDataCA.slice(i, i + batchSize);
-        console.log("CA Batch:", i, i + batchSize);
         await this.fetchRestockBatch(user, batch, "CA", savedRestockData);
       }
       // Update Sales metrics in Restock.
       await spApiSyncService.updateSalesMatrix();
       lastSync["end_time"] = new Date();
       lastSync["status"] = "Success";
-      console.log("before sync");
       // Insert Sync status in Last Sync
       await mysql.query(addLastSynch, lastSync);
-      console.log("after sync:::");
     } catch (error) {
-      console.log("END::", error);
       lastSync["end_time"] = new Date();
       // Insert Sync status in Last Sync
       await mysql.query(addLastSynch, lastSync);
@@ -672,7 +666,7 @@ class mwsSyncService {
         });
         // If and element matches.
         if (find) {
-          //Update fields
+          //Update Values.
           const restockUpdate = [
             {
               amz_total_days_of_amz_supply: isNaN(
@@ -700,7 +694,7 @@ class mwsSyncService {
           // Update data with new values and store it in DB.
           await this.updateRestock(restockUpdate, find, user);
         } else {
-          // Otherwise create new record.
+          // Create new record.
           const restockNew = {
             market_place: market_place,
             amz_sku: element["Merchant SKU"],
@@ -727,7 +721,6 @@ class mwsSyncService {
           await this.addRestock(restockNew, user);
         }
       } catch (error) {
-        console.log("BATCH ERR::", error);
         throw error;
       }
     }
