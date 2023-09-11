@@ -110,7 +110,9 @@ class sellingPartnerOperationsService {
         return response.FeesEstimateResult.FeesEstimate.TotalFeesEstimate
           .Amount;
       } else {
-        return response.FeesEstimateResult.Error.Message;
+        return (
+          response?.FeesEstimateResult?.Error.Message || "An error occurred."
+        );
       }
     } catch (error) {
       log.error("getFeesEstimateBySKU -error", error);

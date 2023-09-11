@@ -626,7 +626,7 @@ class mwsSyncService {
       //Get saved Restock data from DB.
       const savedRestockData = await mysql.query(getRestockData, null);
 
-      const batchSize = 500;
+      const batchSize = 5000;
       // Process US data in batches
       for (let i = 0; i < latestDataUS.length; i += batchSize) {
         const batch = latestDataUS.slice(i, i + batchSize);
@@ -640,7 +640,7 @@ class mwsSyncService {
         await this.fetchRestockBatch(user, batch, "CA", savedRestockData);
       }
       // Update Sales metrics in Restock.
-      spApiSyncService.updateSalesMatrix();
+      await spApiSyncService.updateSalesMatrix();
       lastSync["end_time"] = new Date();
       lastSync["status"] = "Success";
       console.log("before sync");
