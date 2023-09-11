@@ -597,137 +597,60 @@ class mwsSyncService {
 
   async fetchRestock(user) {
     log.info(`fetchRestock start by ${user}`);
-    var config = await mwsService.getConfig(user);
-    var lastSync = {
+    let lastSync = {
       username: user,
       type: "Restock Sync",
       start_time: new Date(),
       end_time: "",
       status: "Failed",
     };
-    var reportsUS = await sellingPartnerAPIService.getreportId(
-      "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
-      constant.MARKETPLACE_ID_US
-    );
-    var reportsCA = await sellingPartnerAPIService.getreportId(
-      "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
-      constant.MARKETPLACE_ID_CA
-    );
-
-    var latestDataUS = await sellingPartnerAPIService.getreport(
-      reportsUS[0].reportDocumentId
-    );
-    var latestDataCA = await sellingPartnerAPIService.getreport(
-      reportsCA[0].reportDocumentId
-    );
-
-    const savedRestockData = await mysql.query(getRestockData, null);
-    var allkey = {};
     try {
-      latestDataUS.forEach(async (element) => {
-        // Object.keys(element).forEach((key) => {
-        //      allkey[key] = element[key];
-        // })
-        var find = savedRestockData.find((el) => {
-          return (
-            el["market_place"] == "US" &&
-            element["Merchant SKU"] == el["amz_sku"]
-          );
-        });
-        if (find) {
-          var restockUSUpdate = [
-            {
-              amz_total_days_of_amz_supply:
-                element["Days of Supply at Amazon Fulfillment Network"],
-              amz_recommended_order_qty:
-                element["Recommended replenishment qty"],
-              amz_recommended_order_date: !isNaN(
-                Date.parse(element["Recommended ship date"])
-              )
-                ? new Date(element["Recommended ship date"])
-                : null,
-              amz_current_price: (+element["Price"]).toFixed(2),
-              amazon_category: element["Condition"],
-            },
-            element["Merchant SKU"],
-            "US",
-          ];
+      // Get US report from SP-API
+      const reportsUS = await sellingPartnerAPIService.getreportId(
+        "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
+        constant.MARKETPLACE_ID_US
+      );
+      // Get CA report from SP-API
+      const reportsCA = await sellingPartnerAPIService.getreportId(
+        "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
+        constant.MARKETPLACE_ID_CA
+      );
+      // Get latest US data from SP-API
+      const latestDataUS = await sellingPartnerAPIService.getreport(
+        reportsUS[0].reportDocumentId
+      );
+      // Get latest US data from SP-API
+      const latestDataCA = await sellingPartnerAPIService.getreport(
+        reportsCA[0].reportDocumentId
+      );
+      //Get saved Restock data from DB.
+      const savedRestockData = await mysql.query(getRestockData, null);
 
-          await this.updateRestock(restockUSUpdate, find, user);
-        } else {
-          var restockUSNew = {
-            market_place: "US",
-            amz_sku: element["Merchant SKU"],
-            amz_total_days_of_amz_supply:
-              element["Days of Supply at Amazon Fulfillment Network"],
-            amz_recommended_order_qty: element["Recommended replenishment qty"],
-            amz_recommended_order_date: !isNaN(
-              Date.parse(element["Recommended ship date"])
-            )
-              ? new Date(element["Recommended ship date"])
-              : null,
-            amz_current_price: (+element["Price"]).toFixed(2),
-            amazon_category: element["Condition"],
-          };
-          await this.addRestock(restockUSNew, user);
-        }
-      });
-
-      latestDataCA.forEach(async (element) => {
-        var find = savedRestockData.find((el) => {
-          return (
-            el["market_place"] == "CA" &&
-            element["Merchant SKU"] == el["amz_sku"]
-          );
-        });
-        if (find) {
-          var restockCAUpdate = [
-            {
-              amz_total_days_of_amz_supply:
-                element["Days of Supply at Amazon Fulfillment Network"],
-              amz_recommended_order_qty:
-                element["Recommended replenishment qty"],
-              amz_recommended_order_date: !isNaN(
-                Date.parse(element["Recommended ship date"])
-              )
-                ? new Date(element["Recommended ship date"])
-                : null,
-              amz_current_price: (+element["Price"]).toFixed(2),
-              amazon_category: element["Condition"],
-            },
-            element["Merchant SKU"],
-            "CA",
-          ];
-          await this.updateRestock(restockCAUpdate, find, user);
-        } else {
-          var restockCANew = [
-            {
-              market_place: "CA",
-              amz_sku: element["Merchant SKU"],
-              amz_total_days_of_amz_supply:
-                element["Days of Supply at Amazon Fulfillment Network"],
-              amz_recommended_order_qty:
-                element["Recommended replenishment qty"],
-              amz_recommended_order_date: !isNaN(
-                Date.parse(element["Recommended ship date"])
-              )
-                ? new Date(element["Recommended ship date"])
-                : null,
-              amz_current_price: (+element["Price"]).toFixed(2),
-              amazon_category: element["Condition"],
-            },
-          ];
-          //log.error(restockUSNew);
-          await this.addRestock(restockCANew, user);
-        }
-      });
+      const batchSize = 500;
+      // Process US data in batches
+      for (let i = 0; i < latestDataUS.length; i += batchSize) {
+        const batch = latestDataUS.slice(i, i + batchSize);
+        console.log("US Batch:", i, i + batchSize);
+        await this.fetchRestockBatch(user, batch, "US", savedRestockData);
+      }
+      // Process CA data in batches
+      for (let i = 0; i < latestDataCA.length; i += batchSize) {
+        const batch = latestDataCA.slice(i, i + batchSize);
+        console.log("CA Batch:", i, i + batchSize);
+        await this.fetchRestockBatch(user, batch, "CA", savedRestockData);
+      }
+      // Update Sales metrics in Restock.
       spApiSyncService.updateSalesMatrix();
-
       lastSync["end_time"] = new Date();
       lastSync["status"] = "Success";
+      console.log("before sync");
+      // Insert Sync status in Last Sync
       await mysql.query(addLastSynch, lastSync);
+      console.log("after sync:::");
     } catch (error) {
+      console.log("END::", error);
       lastSync["end_time"] = new Date();
+      // Insert Sync status in Last Sync
       await mysql.query(addLastSynch, lastSync);
       log.error(error);
     }
@@ -736,6 +659,79 @@ class mwsSyncService {
     });
   }
 
+  async fetchRestockBatch(user, data, market_place, savedRestockData) {
+    // Loop through all latest data.
+    for (const element of data) {
+      try {
+        // Match existing data with Latest Data.
+        const find = savedRestockData.find((el) => {
+          return (
+            el["market_place"] == market_place &&
+            element["Merchant SKU"] == el["amz_sku"]
+          );
+        });
+        // If and element matches.
+        if (find) {
+          //Update fields
+          const restockUpdate = [
+            {
+              amz_total_days_of_amz_supply: isNaN(
+                +element["Days of Supply at Amazon Fulfillment Network"]
+              )
+                ? null
+                : +element["Days of Supply at Amazon Fulfillment Network"],
+              amz_recommended_order_qty: isNaN(
+                +element["Recommended replenishment qty"]
+              )
+                ? null
+                : +element["Recommended replenishment qty"],
+              amz_recommended_order_date: !isNaN(
+                Date.parse(element["Recommended ship date"])
+              )
+                ? new Date(element["Recommended ship date"])
+                : null,
+              amz_current_price: element["Price"],
+              amazon_category: element["Condition"],
+              update_reason: "Restock Sync",
+            },
+            element["Merchant SKU"],
+            market_place,
+          ];
+          // Update data with new values and store it in DB.
+          await this.updateRestock(restockUpdate, find, user);
+        } else {
+          // Otherwise create new record.
+          const restockNew = {
+            market_place: market_place,
+            amz_sku: element["Merchant SKU"],
+            amz_total_days_of_amz_supply: isNaN(
+              +element["Days of Supply at Amazon Fulfillment Network"]
+            )
+              ? null
+              : +element["Days of Supply at Amazon Fulfillment Network"],
+            amz_recommended_order_qty: isNaN(
+              +element["Recommended replenishment qty"]
+            )
+              ? null
+              : +element["Recommended replenishment qty"],
+            amz_recommended_order_date: !isNaN(
+              Date.parse(element["Recommended ship date"])
+            )
+              ? new Date(element["Recommended ship date"])
+              : null,
+            amz_current_price: element["Price"],
+            amazon_category: element["Condition"],
+            update_reason: "Restock Sync",
+          };
+          // Insert in Restock table.
+          await this.addRestock(restockNew, user);
+        }
+      } catch (error) {
+        console.log("BATCH ERR::", error);
+        throw error;
+      }
+    }
+  }
   async addRestock(data, user) {
     try {
       await mysql.query(addRestock, data);
