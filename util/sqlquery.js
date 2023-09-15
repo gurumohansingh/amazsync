@@ -102,7 +102,7 @@ module.exports = {
   getPurchaseOrder:
     "SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items, deleted_at, synced_at, finalized_at FROM purchase_orders",
   getPurchaseOrderCount:
-    "SELECT COUNT(*) as totalOrders FROM purchase_orders where is_virtual <1 || is_virtual is null",
+    "SELECT COUNT(*) as totalOrders FROM purchase_orders where (is_virtual <1 || is_virtual is null)",
   getVirtualPurchaseOrder:
     "SELECT id,is_virtual,reference,remoteId,reference2,details,status,Vendor,warehouse,source_warehouse_display_name,source,warehouse_display_name,total_ordered,currency,sent_date,created_date,created_by,expected_date,payment_date,shipment_date,received_date,shipping_handling,email_sent,shipment_method,payment_terms,full_total,total,total_ordered,total_received,total_sent,total_remaining,notes,last_modified,replenishment_type,automation_reference,source_of_creation,removed,items, deleted_at, synced_at, finalized_at FROM purchase_orders",
   getVirtualPurchaseOrderCount:
