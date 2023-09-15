@@ -23,7 +23,6 @@ class spApiSyncService {
               marketPlace,
               sku["amz_sku"]
             );
-
           if (response) {
             updateMatrix["amz_units_ordered7"] = response[0].unitCount
               ? response[0].unitCount
@@ -48,6 +47,7 @@ class spApiSyncService {
             sku["amz_sku"],
             sku["market_place"]
           );
+          throw e;
         }
       }
     };
@@ -77,6 +77,7 @@ class spApiSyncService {
             updateMatrix["amz_total_sell_amt30"] =
               response[0].totalSales.amount;
           }
+
           updateMatrix["timespan"] = new Date();
 
           mysql.query(updateRestock, [
@@ -92,6 +93,7 @@ class spApiSyncService {
             sku["amz_sku"],
             sku["market_place"]
           );
+          throw e;
         }
       }
     };
@@ -120,7 +122,6 @@ class spApiSyncService {
               .averageUnitPrice.amount).toFixed(2);
             response[0].totalSales.amount;
           }
-
           updateMatrix["timespan"] = new Date();
 
           mysql.query(updateRestock, [
@@ -136,6 +137,7 @@ class spApiSyncService {
             sku["amz_sku"],
             sku["market_place"]
           );
+          throw e;
         }
       }
     };
@@ -181,6 +183,7 @@ class spApiSyncService {
             sku["amz_sku"],
             sku["market_place"]
           );
+          throw e;
         }
       }
     };
@@ -213,6 +216,7 @@ class spApiSyncService {
         if (!isNaN(apiResponse)) {
           updateMatrix["amz_fee_estimate"] = (+apiResponse).toFixed(2);
           updateMatrix["timespan"] = new Date();
+          updateMatrix["update_reason"] = "Restock Sync.";
 
           mysql.query(updateRestock, [
             updateMatrix,
@@ -221,7 +225,7 @@ class spApiSyncService {
           ]);
         } else {
           mysql.query(updateRestock, [
-            { update_reason: apiResponse },
+            { update_reason: apiResponse || "" },
             sku["amz_sku"],
             sku["market_place"],
           ]);
@@ -234,9 +238,9 @@ class spApiSyncService {
           sku["amz_sku"],
           sku["market_place"]
         );
+        throw e;
       }
     }
-
     return true;
   }
 }
