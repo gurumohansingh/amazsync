@@ -2,12 +2,13 @@ const reStockService = require("../restock/restockService"),
   sellingPartnerOperationsService = require("../sp-api/sellingPartnerOperationsService"),
   constant = require("../../util/constant"),
   mysql = require("../mysql"),
-  { updateRestock } = require("../../util/sqlquery"),
+  { updateRestock, getRestockData } = require("../../util/sqlquery"),
   log = require("../log");
+const sellingPartnerAPIService = require("../sp-api/sellingPartnerAPIService");
 
 class spApiSyncService {
   async updateSalesMatrix() {
-    var skus = await reStockService.getAllRestock();
+    const skus = await reStockService.getAllRestock();
     const weekly = async function () {
       for (var i = 0; i < skus.length; i++) {
         try {
@@ -242,6 +243,133 @@ class spApiSyncService {
       }
     }
     return true;
+  }
+
+  //TO update amazon total fees(FBA fees, monthly storage fees) in DB.
+  async updateAmazonFees() {
+    try {
+      // Get FBA Fees data from sp-api
+      const fbaFeeData = await this.getFeesFromSpAPI(
+        constant.GET_FBA_ESTIMATED_FBA_FEES_TXT_DATA_SP_API
+      );
+      //Get storage Fees data from sp-api
+      const storageFeeData = await this.getFeesFromSpAPI(
+        constant.GET_FBA_STORAGE_FEE_CHARGES_DATA_SP_API
+      );
+      // Get all saved RESTOCK data.
+      const savedRestockData = await reStockService.getAllRestock();
+      console.log(savedRestockData.length);
+      // Calculate AMAZON Total Fees and Save in DB for each saved product.
+      savedRestockData.forEach(async (element) => {
+        //Get average Monthly storage fees of matching ASIN.
+        const avgStorageFee = this.storageFeeAvg(
+          storageFeeData,
+          element.amazonASIN,
+          element.market_place,
+          element.amazonFNSKU
+        );
+
+        //Get average FBA fees of matching ASIN.
+        const avgFBAFees = this.fbaFeeAvg(
+          fbaFeeData,
+          element.amazonASIN,
+          element.market_place,
+          element.amz_sku
+        );
+        //Calculate total amazon fees.
+        const totalAmazonFees =
+          (+avgFBAFees ? +avgFBAFees : 0) +
+          (+avgStorageFee ? +avgStorageFee : 0);
+        log.info(
+          `Total: ${totalAmazonFees} , FBAFees: ${avgFBAFees}, StorageFee: ${avgStorageFee} `
+        );
+        // Save in DB.
+        await mysql.query(updateRestock, [
+          { amz_total_fee: totalAmazonFees },
+          element["amz_sku"],
+          element["market_place"],
+        ]);
+      });
+    } catch (err) {
+      log.error(err);
+      throw err;
+    }
+  }
+
+  //To get report data from sp-api
+  async getFeesFromSpAPI(reportType) {
+    try {
+      let doc = await sellingPartnerOperationsService.getReportDocumentId(
+        reportType,
+        [constant.MARKETPLACE_ID_US, constant.MARKETPLACE_ID_CA]
+      );
+      doc = doc.find(
+        ({ marketplaceIds, processingStatus }) =>
+          marketplaceIds.length > 1 && processingStatus === "DONE"
+      );
+
+      const data = await sellingPartnerAPIService.getreport(
+        doc.reportDocumentId
+      );
+      return data;
+    } catch (error) {
+      log.error("restockService => getFeesFromSpAPI", error);
+      throw error;
+    }
+  }
+
+  //Average of Monthly Storage Fee
+  storageFeeAvg(data, ASIN, countryCode, FNSKU) {
+    const result = data.reduce(
+      (accumulator, element) => {
+        if (
+          countryCode == element.country_code &&
+          (ASIN == element.asin || FNSKU == element.fnsku)
+        ) {
+          // Initialize the sum and count for each key if not already done
+          accumulator.monthlyFee += +element["estimated_monthly_storage_fee"];
+          accumulator.countKey += 1;
+        }
+        return accumulator;
+      },
+      { monthlyFee: 0, countKey: 0 }
+    );
+    return (
+      result["monthlyFee"] / (+result["countKey"] ? +result["countKey"] : 1)
+    );
+  }
+
+  //Average of FBA Fee
+  fbaFeeAvg(data, ASIN, countryCode, SKU) {
+    const currency = this.getCountryCode(countryCode);
+    const result = data.reduce(
+      (accumulator, element) => {
+        if (
+          currency === element.currency &&
+          (ASIN == element.asin || SKU == element.sku)
+        ) {
+          accumulator.feeTotal +=
+            +element["estimated-fee-total"] +
+            +element["estimated-referral-fee-per-unit"] +
+            +element["estimated-variable-closing-fee"];
+          accumulator.countKey += 1;
+        }
+        return accumulator;
+      },
+      { feeTotal: 0, countKey: 0 }
+    );
+    return result["feeTotal"] / (+result["countKey"] ? +result["countKey"] : 1);
+  }
+
+  getCountryCode(countryCode) {
+    switch (countryCode) {
+      case "US":
+        return "USD";
+      case "CA":
+        return "CAD";
+      default:
+        return "USD";
+    }
   }
 }
 module.exports = new spApiSyncService();

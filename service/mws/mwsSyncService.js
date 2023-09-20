@@ -638,6 +638,7 @@ class mwsSyncService {
       }
       // Update Sales metrics in Restock.
       await spApiSyncService.updateSalesMatrix();
+      await spApiSyncService.updateAmazonFees();
       lastSync["end_time"] = new Date();
       lastSync["status"] = "Success";
       // Insert Sync status in Last Sync
