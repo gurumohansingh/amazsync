@@ -23,6 +23,7 @@ const inventoryPlannerService = require("../../service/inventoryPlannerService")
 const { configure } = require("winston");
 const { capitalizeFirstLetter } = require("../../helper");
 const moment = require("moment");
+const { promiseResolver } = require("../../util/common");
 class mwsSyncService {
   async updateInvetory(user) {
     try {
@@ -604,41 +605,40 @@ class mwsSyncService {
       status: "Failed",
     };
     try {
-      // Get US report from SP-API
-      const reportsUS = await sellingPartnerAPIService.getreportId(
-        "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
-        constant.MARKETPLACE_ID_US
-      );
-      // Get CA report from SP-API
-      const reportsCA = await sellingPartnerAPIService.getreportId(
-        "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
-        constant.MARKETPLACE_ID_CA
-      );
-      // Get latest US data from SP-API
-      const latestDataUS = await sellingPartnerAPIService.getreport(
-        reportsUS[0].reportDocumentId
-      );
-      // Get latest US data from SP-API
-      const latestDataCA = await sellingPartnerAPIService.getreport(
-        reportsCA[0].reportDocumentId
-      );
-      //Get saved Restock data from DB.
-      const savedRestockData = await mysql.query(getRestockData, null);
-
+      // Get US and CA report from SP-API
+      const [reportsUS, reportsCA] = await promiseResolver([
+        sellingPartnerAPIService.getreportId(
+          "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
+          constant.MARKETPLACE_ID_US
+        ),
+        sellingPartnerAPIService.getreportId(
+          "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
+          constant.MARKETPLACE_ID_CA
+        ),
+      ]);
+      // Get latest US and CA data from SP-API and restock data from DB.
+      const [latestDataUS, latestDataCA, savedRestockData] =
+        await promiseResolver([
+          sellingPartnerAPIService.getreport(reportsUS[0].reportDocumentId),
+          sellingPartnerAPIService.getreport(reportsCA[0].reportDocumentId),
+          mysql.query(getRestockData, null),
+        ]);
       const batchSize = 5000;
-      // Process US data in batches
+      // Process US and CA data in batches
       for (let i = 0; i < latestDataUS.length; i += batchSize) {
-        const batch = latestDataUS.slice(i, i + batchSize);
-        await this.fetchRestockBatch(user, batch, "US", savedRestockData);
-      }
-      // Process CA data in batches
-      for (let i = 0; i < latestDataCA.length; i += batchSize) {
-        const batch = latestDataCA.slice(i, i + batchSize);
-        await this.fetchRestockBatch(user, batch, "CA", savedRestockData);
+        const batchUS = latestDataUS.slice(i, i + batchSize);
+        const batchCA = latestDataCA.slice(i, i + batchSize);
+        await promiseResolver([
+          this.fetchRestockBatch(user, batchUS, "US", savedRestockData),
+          this.fetchRestockBatch(user, batchCA, "CA", savedRestockData),
+        ]);
       }
       // Update Sales metrics in Restock.
-      await spApiSyncService.updateSalesMatrix();
-      await spApiSyncService.updateAmazonFees();
+      promiseResolver([
+        spApiSyncService.updateSalesMatrix(),
+        spApiSyncService.updateAmazonFees(),
+      ]);
+      //Add end-time and status.
       lastSync["end_time"] = new Date();
       lastSync["status"] = "Success";
       // Insert Sync status in Last Sync
@@ -665,7 +665,6 @@ class mwsSyncService {
             element["Merchant SKU"] == el["amz_sku"]
           );
         });
-        // If and element matches.
         if (find) {
           //Update Values.
           const restockUpdate = [

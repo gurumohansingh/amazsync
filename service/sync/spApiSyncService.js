@@ -1,266 +1,142 @@
+const { queryBatcher, promiseResolver } = require("../../util/common");
 const reStockService = require("../restock/restockService"),
   sellingPartnerOperationsService = require("../sp-api/sellingPartnerOperationsService"),
   constant = require("../../util/constant"),
-  mysql = require("../mysql"),
-  { updateRestock, getRestockData } = require("../../util/sqlquery"),
+  { updateRestock } = require("../../util/sqlquery"),
   log = require("../log");
 const sellingPartnerAPIService = require("../sp-api/sellingPartnerAPIService");
 
 class spApiSyncService {
   async updateSalesMatrix() {
     const skus = await reStockService.getAllRestock();
-    const weekly = async function () {
-      for (var i = 0; i < skus.length; i++) {
-        try {
-          var updateMatrix = {};
-          var sku = skus[i];
-          var marketPlace = constant.MARKETPLACE_ID_US;
-
-          if (sku["market_place"].toUpperCase() == "CA") {
-            marketPlace = constant.MARKETPLACE_ID_CA;
-          }
-          var response =
-            await sellingPartnerOperationsService.getOrderMetricsWeekly(
-              marketPlace,
-              sku["amz_sku"]
-            );
-          if (response) {
-            updateMatrix["amz_units_ordered7"] = response[0].unitCount
-              ? response[0].unitCount
-              : null;
-            updateMatrix["amz_avg_selling_price7"] = (+response[0]
-              .averageUnitPrice.amount).toFixed(2);
-            updateMatrix["amz_total_sell_amt7"] = response[0].totalSales.amount;
-          }
-
-          updateMatrix["timespan"] = new Date();
-
-          mysql.query(updateRestock, [
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"],
-          ]);
-        } catch (e) {
-          log.error(e);
-          log.error(
-            "updateSalesMatrix",
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"]
-          );
-          throw e;
-        }
-      }
-    };
-    const monthly = async function () {
-      for (var i = 0; i < skus.length; i++) {
-        try {
-          var updateMatrix = {};
-          var sku = skus[i];
-          var marketPlace = constant.MARKETPLACE_ID_US;
-
-          if (sku["market_place"].toUpperCase() == "CA") {
-            marketPlace = constant.MARKETPLACE_ID_CA;
-          }
-
-          var response =
-            await sellingPartnerOperationsService.getOrderMetricsMonthly(
-              marketPlace,
-              sku["amz_sku"]
-            );
-
-          if (response) {
-            updateMatrix["amz_units_ordered30"] = response[0].unitCount
-              ? response[0].unitCount
-              : 0;
-            updateMatrix["amz_avg_selling_price30"] = (+response[0]
-              .averageUnitPrice.amount).toFixed(2);
-            updateMatrix["amz_total_sell_amt30"] =
-              response[0].totalSales.amount;
-          }
-
-          updateMatrix["timespan"] = new Date();
-
-          mysql.query(updateRestock, [
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"],
-          ]);
-        } catch (e) {
-          log.error(e);
-          log.error(
-            "updateSalesMatrix",
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"]
-          );
-          throw e;
-        }
-      }
-    };
-    const threemonthly = async function () {
-      for (var i = 0; i < skus.length; i++) {
-        try {
-          var updateMatrix = {};
-          var sku = skus[i];
-          var marketPlace = constant.MARKETPLACE_ID_US;
-
-          if (sku["market_place"].toUpperCase() == "CA") {
-            marketPlace = constant.MARKETPLACE_ID_CA;
-          }
-
-          var response =
-            await sellingPartnerOperationsService.getOrderMetricsThreeMonths(
-              marketPlace,
-              sku["amz_sku"]
-            );
-
-          if (response) {
-            updateMatrix["amz_units_ordered90"] = response[0].unitCount
-              ? response[0].unitCount
-              : 0;
-            updateMatrix["amz_avg_selling_price90"] = (+response[0]
-              .averageUnitPrice.amount).toFixed(2);
-            response[0].totalSales.amount;
-          }
-          updateMatrix["timespan"] = new Date();
-
-          mysql.query(updateRestock, [
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"],
-          ]);
-        } catch (e) {
-          log.error(e);
-          log.error(
-            "updateSalesMatrix",
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"]
-          );
-          throw e;
-        }
-      }
-    };
-    const yearly = async function () {
-      for (var i = 0; i < skus.length; i++) {
-        try {
-          var updateMatrix = {};
-          var sku = skus[i];
-          var marketPlace = constant.MARKETPLACE_ID_US;
-
-          if (sku["market_place"].toUpperCase() == "CA") {
-            marketPlace = constant.MARKETPLACE_ID_CA;
-          }
-
-          var response =
-            await sellingPartnerOperationsService.getOrderMetricsYearly(
-              marketPlace,
-              sku["amz_sku"]
-            );
-
-          if (response) {
-            updateMatrix["amz_units_ordered365"] = response[0].unitCount
-              ? response[0].unitCount
-              : 0;
-            updateMatrix["amz_avg_selling_price365"] = (+response[0]
-              .averageUnitPrice.amount).toFixed(2);
-            updateMatrix["amz_total_sell_amt365"] =
-              response[0].totalSales.amount;
-          }
-
-          updateMatrix["timespan"] = new Date();
-
-          mysql.query(updateRestock, [
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"],
-          ]);
-        } catch (e) {
-          log.error(e);
-          log.error(
-            "updateSalesMatrix",
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"]
-          );
-          throw e;
-        }
-      }
-    };
-    weekly();
-    monthly();
-    threemonthly();
-    yearly();
-    var feeskus = await reStockService.getRestocktoGetFee();
-
-    for (var i = 0; i < feeskus.length; i++) {
+    const queries = [];
+    //Get and asign sales metrics for all SKUs
+    for (const element of skus) {
+      let updateMatrix = {};
       try {
-        var marketPlace = constant.MARKETPLACE_ID_US;
-
-        var sku = feeskus[i],
-          currencyCode = "USD",
-          updateMatrix = {};
-        if (sku["market_place"].toUpperCase() == "CA") {
+        let marketPlace = constant.MARKETPLACE_ID_US;
+        let currencyCode = "USD";
+        //Check if marketPlace is 'CA'.
+        if (element["market_place"].toUpperCase() == "CA") {
           marketPlace = constant.MARKETPLACE_ID_CA;
           currencyCode = "CAD";
         }
-
-        var apiResponse =
-          await sellingPartnerOperationsService.getFeesEstimateBySKU(
+        //Get Metrics data
+        const [
+          responseWeekly,
+          responseMonthly,
+          responseThreeMonths,
+          responseYearly,
+          feeEstimateResponse,
+        ] = await promiseResolver([
+          sellingPartnerOperationsService.getOrderMetricsWeekly(
             marketPlace,
-            sku["amz_sku"],
-            sku["amz_current_price"],
+            element["amz_sku"]
+          ),
+          sellingPartnerOperationsService.getOrderMetricsMonthly(
+            marketPlace,
+            element["amz_sku"]
+          ),
+          sellingPartnerOperationsService.getOrderMetricsThreeMonths(
+            marketPlace,
+            element["amz_sku"]
+          ),
+          sellingPartnerOperationsService.getOrderMetricsYearly(
+            marketPlace,
+            element["amz_sku"]
+          ),
+          sellingPartnerOperationsService.getFeesEstimateBySKU(
+            marketPlace,
+            element["amz_sku"],
+            element["amz_current_price"],
             currencyCode
-          );
-
-        if (!isNaN(apiResponse)) {
-          updateMatrix["amz_fee_estimate"] = (+apiResponse).toFixed(2);
-          updateMatrix["timespan"] = new Date();
-          updateMatrix["update_reason"] = "Restock Sync.";
-
-          mysql.query(updateRestock, [
-            updateMatrix,
-            sku["amz_sku"],
-            sku["market_place"],
-          ]);
-        } else {
-          mysql.query(updateRestock, [
-            { update_reason: apiResponse || "" },
-            sku["amz_sku"],
-            sku["market_place"],
-          ]);
+          ),
+        ]);
+        // Check if Weekly metrics are present.
+        if (responseWeekly) {
+          // if true then create key value pairs.
+          updateMatrix["amz_units_ordered7"] = responseWeekly[0].unitCount
+            ? responseWeekly[0].unitCount
+            : null;
+          updateMatrix["amz_avg_selling_price7"] = (+responseWeekly[0]
+            .averageUnitPrice.amount).toFixed(2);
+          updateMatrix["amz_total_sell_amt7"] =
+            responseWeekly[0].totalSales.amount;
         }
+        // Check if Monthly metrics are present.
+        if (responseMonthly) {
+          // if true then create key value pairs.
+          updateMatrix["amz_units_ordered30"] = responseMonthly[0].unitCount
+            ? responseMonthly[0].unitCount
+            : 0;
+          updateMatrix["amz_avg_selling_price30"] = (+responseMonthly[0]
+            .averageUnitPrice.amount).toFixed(2);
+          updateMatrix["amz_total_sell_amt30"] =
+            responseMonthly[0].totalSales.amount;
+        }
+        // Check if Three Months metrics are present.
+        if (responseThreeMonths) {
+          // if true then create key value pairs.
+          updateMatrix["amz_units_ordered90"] = responseThreeMonths[0].unitCount
+            ? responseThreeMonths[0].unitCount
+            : 0;
+          updateMatrix["amz_avg_selling_price90"] = (+responseThreeMonths[0]
+            .averageUnitPrice.amount).toFixed(2);
+          updateMatrix["amz_total_sell_amt90"] =
+            responseThreeMonths[0].totalSales.amount;
+        }
+        // Check if Yearly metrics are present.
+        if (responseYearly) {
+          // if true then create key value pairs.
+          updateMatrix["amz_units_ordered365"] = responseYearly[0].unitCount
+            ? responseYearly[0].unitCount
+            : 0;
+          updateMatrix["amz_avg_selling_price365"] = (+responseYearly[0]
+            .averageUnitPrice.amount).toFixed(2);
+          updateMatrix["amz_total_sell_amt365"] =
+            responseYearly[0].totalSales.amount;
+        }
+        // Check if Fee Estimates are present.
+        if (!isNaN(feeEstimateResponse)) {
+          updateMatrix["amz_fee_estimate"] = (+feeEstimateResponse).toFixed(2);
+        }
+        //Add update_reason and current time to updateMatrix.
+        updateMatrix["update_reason"] = "Restock Sync.";
+        updateMatrix["timespan"] = new Date();
+        //Push into  Queries array.
+        queries.push({
+          query: updateRestock,
+          params: [updateMatrix, element["amz_sku"], element["market_place"]],
+        });
       } catch (e) {
         log.error(e);
         log.error(
           "updateSalesMatrix",
           updateMatrix,
-          sku["amz_sku"],
-          sku["market_place"]
+          element["amz_sku"],
+          element["market_place"]
         );
         throw e;
       }
     }
+    await queryBatcher(1000, queries);
     return true;
   }
-
-  //TO update amazon total fees(FBA fees, monthly storage fees) in DB.
+  //To update amazon total fees(FBA fees, monthly storage fees) in DB.
   async updateAmazonFees() {
     try {
-      // Get FBA Fees data from sp-api
-      const fbaFeeData = await this.getFeesFromSpAPI(
-        constant.GET_FBA_ESTIMATED_FBA_FEES_TXT_DATA_SP_API
-      );
-      //Get storage Fees data from sp-api
-      const storageFeeData = await this.getFeesFromSpAPI(
-        constant.GET_FBA_STORAGE_FEE_CHARGES_DATA_SP_API
-      );
-      // Get all saved RESTOCK data.
-      const savedRestockData = await reStockService.getAllRestock();
-      console.log(savedRestockData.length);
+      const [fbaFeeData, storageFeeData, savedRestockData] =
+        await promiseResolver([
+          this.getFeesFromSpAPI(
+            constant.GET_FBA_ESTIMATED_FBA_FEES_TXT_DATA_SP_API
+          ),
+          this.getFeesFromSpAPI(
+            constant.GET_FBA_STORAGE_FEE_CHARGES_DATA_SP_API
+          ),
+          reStockService.getAllRestock(),
+        ]);
       // Calculate AMAZON Total Fees and Save in DB for each saved product.
-      savedRestockData.forEach(async (element) => {
+      const totalFeeQueries = savedRestockData.map((element) => {
         //Get average Monthly storage fees of matching ASIN.
         const avgStorageFee = this.storageFeeAvg(
           storageFeeData,
@@ -268,7 +144,6 @@ class spApiSyncService {
           element.market_place,
           element.amazonFNSKU
         );
-
         //Get average FBA fees of matching ASIN.
         const avgFBAFees = this.fbaFeeAvg(
           fbaFeeData,
@@ -280,16 +155,17 @@ class spApiSyncService {
         const totalAmazonFees =
           (+avgFBAFees ? +avgFBAFees : 0) +
           (+avgStorageFee ? +avgStorageFee : 0);
-        log.info(
-          `Total: ${totalAmazonFees} , FBAFees: ${avgFBAFees}, StorageFee: ${avgStorageFee} `
-        );
         // Save in DB.
-        await mysql.query(updateRestock, [
-          { amz_total_fee: totalAmazonFees },
-          element["amz_sku"],
-          element["market_place"],
-        ]);
+        return {
+          query: updateRestock,
+          params: [
+            { amz_total_fee: totalAmazonFees },
+            element["amz_sku"],
+            element["market_place"],
+          ],
+        };
       });
+      await queryBatcher(1000, totalFeeQueries);
     } catch (err) {
       log.error(err);
       throw err;
