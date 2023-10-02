@@ -7,6 +7,8 @@ const {
   getPurchaseOrder,
   getVirtualPurchaseOrder,
 } = require("./sqlquery");
+const mysql = require("../service/mysql");
+const log = require("../service/log");
 
 class CommonUtil {
   static createPaginationAndSortingQuery(query, params, whereClause) {
@@ -19,17 +21,17 @@ class CommonUtil {
     if (sortColumn) {
       const order = sortColumn.specialChar === "+" ? "ASC" : "DESC";
 
-      query += ` ORDER BY ?? ${order}`
+      query += ` ORDER BY ?? ${order}`;
       whereClause.push(sortColumn.columnName);
     }
 
     if (limit) {
-      query += ` LIMIT ?`
+      query += ` LIMIT ?`;
       whereClause.push(parseInt(limit, 10));
     }
 
     if (offset) {
-      query += ` OFFSET ?`
+      query += ` OFFSET ?`;
       whereClause.push(parseInt(offset, 10));
     }
 
@@ -100,6 +102,30 @@ class CommonUtil {
       } else {
         return getVirtualPurchaseOrder;
       }
+    }
+  }
+  //Function to execute queries in batches.
+  static async queryBatcher(batchSize, data) {
+    for (let i = 0; i < data.length; i += batchSize) {
+      const batch = data.slice(i, i + batchSize);
+      log.info("Query Batch:", i, i + batchSize);
+      await batch.forEach(async ({ query, params }) => {
+        try {
+          await mysql.query(query, [...params]);
+        } catch (err) {
+          throw err;
+        }
+      });
+    }
+  }
+  //Function to resolve promises.
+  static async promiseResolver(promises) {
+    try {
+      const responses = await Promise.all(promises);
+      return responses;
+    } catch (error) {
+      log.error("promiseResolver error:", error);
+      throw error;
     }
   }
 }

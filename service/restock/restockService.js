@@ -229,34 +229,33 @@ class restockService {
   }
 
   async prepareRestock(restock) {
-    var productSuppliers = await suppliersService.getAllProdcutSupplier();
+    //Get Suppliers Data from DB.
+    const productSuppliers = await suppliersService.getAllProdcutSupplier();
     restock.forEach((element) => {
-      var supplier = productSuppliers.find((productSupplier) => {
+      //Find Product Supplier details.
+      const supplier = productSuppliers.find((productSupplier) => {
         return element.sellerSKU == productSupplier.productSKU;
       });
-      var supplierCost = 0;
-      var amzFee = 0;
+      let supplierCost = 0;
+      let amzFee = 0;
       if (supplier) {
-        supplierCost = supplier.costPerUnit
-          ? +supplier.costPerUnit
-          : 0 + supplier.inboundShippingCost
-          ? +supplier.inboundShippingCost
-          : 0;
+        supplierCost =
+          (supplier.costPerUnit ? +supplier.costPerUnit : 0) +
+          (supplier.inboundShippingCost ? +supplier.inboundShippingCost : 0);
       }
-      amzFee = element.amz_fee_estimate ? element.amz_fee_estimate : 0;
+      amzFee = element.amz_fee_estimate ? +element.amz_fee_estimate : 0;
       element["cost_per_unit"] = (
         +element.reshippingCost +
         +element.prepMaterialCost +
         +element.prepLaborCost +
-        supplierCost
+        +supplierCost
       ).toFixed(2);
+
+      //Calculating Profits for (current profit, 7 day profit, 30 day profit, 90 day profit, 365 day profit)
       element["profit"] = (
         element.amz_current_price -
-        amzFee -
-        element["cost_per_unit"]
-      ).toFixed(2);
-      element["productRoi"] = (
-        element["profit"] / element["cost_per_unit"]
+        element["amz_total_fee"] -
+        +element["cost_per_unit"]
       ).toFixed(2);
       element["amz_avg_profit7"] = (
         element["profit"] * element["amz_units_ordered7"]
@@ -271,29 +270,33 @@ class restockService {
         element["profit"] * element["amz_units_ordered365"]
       ).toFixed(2);
 
+      //Calculating ROI for (current ROI, 7 day ROI, 30 day ROI, 90 day ROI, 365 day ROI)
+      element["productRoi"] = (
+        element["profit"] / element["cost_per_unit"]
+      ).toFixed(2);
       element["productRoi7"] = (
         (element["amz_avg_selling_price7"] -
-          amzFee -
-          element["cost_per_unit"]) /
-        element["cost_per_unit"]
+          element["amz_total_fee"] -
+          +element["cost_per_unit"]) /
+        +element["cost_per_unit"]
       ).toFixed(2);
       element["productRoi30"] = (
         (element["amz_avg_selling_price30"] -
-          amzFee -
-          element["cost_per_unit"]) /
-        element["cost_per_unit"]
+          element["amz_total_fee"] -
+          +element["cost_per_unit"]) /
+        +element["cost_per_unit"]
       ).toFixed(2);
       element["productRoi90"] = (
         (element["amz_avg_selling_price90"] -
-          amzFee -
-          element["cost_per_unit"]) /
-        element["cost_per_unit"]
+          element["amz_total_fee"] -
+          +element["cost_per_unit"]) /
+        +element["cost_per_unit"]
       ).toFixed(2);
       element["productRoi365"] = (
         (element["amz_avg_selling_price365"] -
-          amzFee -
-          element["cost_per_unit"]) /
-        element["cost_per_unit"]
+          element["amz_total_fee"] -
+          +element["cost_per_unit"]) /
+        +element["cost_per_unit"]
       ).toFixed(2);
     });
     return restock;
