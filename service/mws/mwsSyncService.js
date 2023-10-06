@@ -605,7 +605,7 @@ class mwsSyncService {
       status: "Failed",
     };
     try {
-      // Get US and CA report from SP-API
+      //Get US and CA report from SP-API
       const [reportsUS, reportsCA] = await promiseResolver([
         sellingPartnerAPIService.getreportId(
           "GET_RESTOCK_INVENTORY_RECOMMENDATIONS_REPORT",
@@ -643,6 +643,7 @@ class mwsSyncService {
       lastSync["status"] = "Success";
       // Insert Sync status in Last Sync
       await mysql.query(addLastSynch, lastSync);
+      return;
     } catch (error) {
       lastSync["end_time"] = new Date();
       // Insert Sync status in Last Sync
@@ -769,6 +770,37 @@ class mwsSyncService {
       return "done";
     } catch (err) {
       return "Failed";
+    }
+  }
+
+  async fetchSalesVelocity(req, res) {
+    log.info(`fetchSalesVelocity start by Auto Job`);
+    let lastSync = {
+      username: "Auto Job",
+      type: "Sales Velocity Sync",
+      start_time: new Date(),
+      end_time: "",
+      status: "Failed",
+    };
+    try {
+      await spApiSyncService.calculateSalesVelocity();
+      //Add end-time and status.
+      lastSync["end_time"] = new Date();
+      lastSync["status"] = "Success";
+      // Insert Sync status in Last Sync
+      await mysql.query(addLastSynch, lastSync);
+      return res
+        .status(200)
+        .json({ msg: "Sales Velocity updated successfully." });
+    } catch (error) {
+      log.error("mwsSyncService => fetchSalesVelocity:", error);
+      console.log(error);
+      lastSync["end_time"] = new Date();
+      // Insert Sync status in Last Sync
+      await mysql.query(addLastSynch, lastSync);
+      return res
+        .status(500)
+        .json({ msg: "An Error occured while updating sales velocity" });
     }
   }
 }
