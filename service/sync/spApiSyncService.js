@@ -256,10 +256,12 @@ class spApiSyncService {
       for await (const element of skus) {
         const sale = await this.getThreeMonthsSales(element);
         const salesVelocityData = this.getSalesVelocity(sale, inventoryData);
+        const cashflowData = this.getCashflow(salesVelocityData, element);
+
         queries.push({
           query: updateRestock,
           params: [
-            salesVelocityData,
+            { ...salesVelocityData, ...cashflowData },
             element["amz_sku"],
             element["market_place"],
           ],
@@ -371,6 +373,20 @@ class spApiSyncService {
       90
     );
     return { sales_velocity7, sales_velocity30, sales_velocity90 };
+  }
+
+  getCashflow(
+    { sales_velocity7, sales_velocity30, sales_velocity90 },
+    { amz_avg_profit7, amz_avg_profit30, amz_avg_profit90 }
+  ) {
+    const cash_flow7 = sales_velocity7 * amz_avg_profit7;
+    const cash_flow30 = sales_velocity30 * amz_avg_profit30;
+    const cash_flow90 = sales_velocity90 * amz_avg_profit90;
+    return {
+      cash_flow7,
+      cash_flow30,
+      cash_flow90,
+    };
   }
 
   calculateVariableSalesVelocity(sales, inventoryData, numDays) {
