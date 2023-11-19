@@ -247,5 +247,231 @@ class spApiSyncService {
         return "USD";
     }
   }
+
+  async calculateSalesVelocity() {
+    try {
+      const inventoryData = await this.getThreeMonthsInventory();
+      const skus = await reStockService.getAllRestock();
+      let queries = [];
+      for await (const element of skus) {
+        const sale = await this.getThreeMonthsSales(element);
+        const salesVelocityData = this.getSalesVelocity(sale, inventoryData);
+        const cashflowData = this.getCashflow(salesVelocityData, element);
+
+        queries.push({
+          query: updateRestock,
+          params: [
+            { ...salesVelocityData, ...cashflowData },
+            element["amz_sku"],
+            element["market_place"],
+          ],
+        });
+      }
+      console.log("q");
+      await queryBatcher(1000, queries);
+      return;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
+  async getThreeMonthsInventory() {
+    try {
+      const [doc1, doc2] = await promiseResolver([
+        sellingPartnerOperationsService.getReportDocumentId(
+          "GET_LEDGER_SUMMARY_VIEW_DATA",
+          [constant.MARKETPLACE_ID_US, constant.MARKETPLACE_ID_CA],
+          {
+            pageSize: 100,
+            createdUntil: sellingPartnerOperationsService.getStartDate(0),
+            createdSince: sellingPartnerOperationsService.getStartDate(44),
+          }
+        ),
+        sellingPartnerOperationsService.getReportDocumentId(
+          "GET_LEDGER_SUMMARY_VIEW_DATA",
+          [constant.MARKETPLACE_ID_US, constant.MARKETPLACE_ID_CA],
+          {
+            pageSize: 100,
+            createdSince: sellingPartnerOperationsService.getStartDate(89),
+            createdUntil: sellingPartnerOperationsService.getStartDate(44),
+          }
+        ),
+      ]);
+
+      let alldocs = [...doc1, ...doc2];
+      console.log(alldocs.length);
+      const reports = [];
+
+      async function* fetchReports() {
+        for (let i = 0; i < alldocs.length; i += 6) {
+          let sliced = alldocs.slice(i, i + 4);
+          sliced = sliced.map((el) =>
+            sellingPartnerAPIService.getreport(el.reportDocumentId)
+          );
+          const data = await promiseResolver(sliced);
+          yield data;
+        }
+      }
+
+      for await (const element of fetchReports()) {
+        reports.push(
+          ...element.reduce((acc, el) => {
+            if (el?.length) {
+              if (
+                el[0]?.['"Location"'] === '"US"' ||
+                el[0]?.['"Location"'] === '"CA"'
+              ) {
+                const firstDate = el[0]['"Date"'];
+                const filtered = el.reduce((innerAcc, item) => {
+                  if (
+                    item['"Date"'] === firstDate &&
+                    item['"Disposition"'] === '"SELLABLE"'
+                  ) {
+                    const data = {
+                      Date: item['"Date"'],
+                      FNSKU: item['"FNSKU"'],
+                      ASIN: item['"ASIN"'],
+                      MSKU: item['"MSKU"'],
+                      Inventory: item['"Ending Warehouse Balance"'],
+                      Location: item['"Location"'],
+                    };
+                    innerAcc.push(data);
+                  }
+                  return innerAcc;
+                }, []);
+                acc.push(...filtered);
+              }
+            }
+            return acc;
+          }, [])
+        );
+      }
+
+      return reports;
+    } catch (e) {
+      log.error("spApiSyncService => GetThreeMonthsInventory: ", e);
+      console.log(e);
+      throw e;
+    }
+  }
+
+  getSalesVelocity(sales, inventoryData) {
+    const sales_velocity7 = this.calculateVariableSalesVelocity(
+      sales,
+      inventoryData,
+      7
+    );
+    const sales_velocity30 = this.calculateVariableSalesVelocity(
+      sales,
+      inventoryData,
+      30
+    );
+    const sales_velocity90 = this.calculateVariableSalesVelocity(
+      sales,
+      inventoryData,
+      90
+    );
+    return { sales_velocity7, sales_velocity30, sales_velocity90 };
+  }
+
+  getCashflow(
+    { sales_velocity7, sales_velocity30, sales_velocity90 },
+    { amz_avg_profit7, amz_avg_profit30, amz_avg_profit90 }
+  ) {
+    const cash_flow7 = sales_velocity7 * amz_avg_profit7;
+    const cash_flow30 = sales_velocity30 * amz_avg_profit30;
+    const cash_flow90 = sales_velocity90 * amz_avg_profit90;
+    return {
+      cash_flow7,
+      cash_flow30,
+      cash_flow90,
+    };
+  }
+
+  calculateVariableSalesVelocity(sales, inventoryData, numDays) {
+    let numberOfSales = 0;
+    let inStockDays = numDays;
+    sales.sales.slice(0, numDays).forEach((sale, i) => {
+      const date = sale.interval.split("T")[0];
+      if (sale.orderCount) {
+        numberOfSales += sale.orderCount;
+      } else {
+        const findInventory = inventoryData.find((el) => {
+          const date1 = new Date(el.Date);
+          const date2 = new Date(date);
+          return (
+            date1.getFullYear() === date2.getFullYear() &&
+            date1.getMonth() === date2.getMonth() &&
+            date1.getDate() === date2.getDate() &&
+            el.ASIN === `"${sales.asin}"` &&
+            el.Location === `"${sales.market_place}"`
+          );
+        });
+        if (findInventory) {
+          const inv = findInventory.Inventory.replace(/"/g, "");
+          if (!parseInt(inv)) {
+            inStockDays -= 1;
+          }
+        } else {
+          inStockDays -= 1;
+        }
+      }
+    });
+    return numberOfSales / (inStockDays ? inStockDays : 1);
+  }
+
+  async getThreeMonthsSales(element) {
+    const market = this.getMarketID(element.market_place);
+    try {
+      const data = await this.getSalesData(market, element.amazonASIN);
+      if (data) {
+        data.reverse();
+        return {
+          asin: element.amazonASIN,
+          market_place: element.market_place,
+          sales: data,
+        };
+      } else {
+        return {
+          asin: element.amazonASIN,
+          market_place: element.market_place,
+          sales: [],
+        };
+      }
+    } catch (error) {
+      console.log("spApiSyncService => getThreeMonthsSales: ", error);
+      log.info("spApiSyncService => getThreeMonthsSales: ", error);
+      throw error;
+    }
+  }
+
+  async getSalesData(marketPlace, asin) {
+    const paramns = {
+      marketplaceIds: marketPlace,
+      interval: `${sellingPartnerOperationsService.getStartDate(
+        90
+      )}--${sellingPartnerOperationsService.getEndDate()}`,
+      granularity: "Day",
+      asin,
+    };
+    const response = await sellingPartnerAPIService.callAPi(
+      "getOrderMetrics",
+      "sales",
+      paramns
+    );
+    return response;
+  }
+
+  getMarketID(marketPlace) {
+    switch (marketPlace) {
+      case "US":
+        return constant.MARKETPLACE_ID_US;
+      case "CA":
+        return constant.MARKETPLACE_ID_CA;
+      default:
+        return constant.MARKETPLACE_ID_US;
+    }
+  }
 }
 module.exports = new spApiSyncService();

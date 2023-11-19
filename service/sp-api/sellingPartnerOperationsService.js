@@ -150,10 +150,11 @@ class sellingPartnerOperationsService {
     return shipments;
   }
 
-  async getReportDocumentId(reportType, marketplaceIds) {
+  async getReportDocumentId(reportType, marketplaceIds, config) {
     var reportDocumentId = await sellingPartnerAPIService.getreportId(
       reportType,
-      marketplaceIds
+      marketplaceIds,
+      config
     );
     return reportDocumentId;
   }
